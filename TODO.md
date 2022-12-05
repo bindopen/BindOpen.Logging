@@ -24,4 +24,3 @@ Todo list for BindOpen.Logging
 ### v.1.1
 
 * Instantiate host with AddBindOpen method
-
