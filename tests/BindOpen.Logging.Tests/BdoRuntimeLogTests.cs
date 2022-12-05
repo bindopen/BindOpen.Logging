@@ -5,7 +5,7 @@ using System.IO;
 namespace BindOpen.Logging.Tests
 {
     [TestFixture, Order(400)]
-    public class BdoLogTests
+    public class BdoRuntimeLogTests
     {
         private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "Log.xml";
         private readonly string _filePath_json = GlobalVariables.WorkingFolder + "Log.json";

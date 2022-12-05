@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using BindOpen.Framework.MetaData;
+﻿using BindOpen.Framework.MetaData;
 using BindOpen.Framework.MetaData.Elements;
+using System.Linq;
 
 namespace BindOpen.Logging
 {
@@ -32,7 +32,7 @@ namespace BindOpen.Logging
                 LongDescription = poco.LongDescription,
                 ResultCode = poco.ResultCode,
                 Source = poco.Source,
-                StackTraces = poco.StackTraces?.Select(q => q.ToDto()).ToList()                
+                StackTraces = poco.StackTraces?.Select(q => q.ToDto()).ToList()
             };
 
             return dto;

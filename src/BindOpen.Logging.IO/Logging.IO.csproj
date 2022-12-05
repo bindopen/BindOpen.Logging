@@ -36,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Framework.Extensions.IO" Version="1.1.2" />
+    <PackageReference Include="BindOpen.Framework.IO" Version="1.1.5" />
   </ItemGroup>
 
   <ItemGroup>
