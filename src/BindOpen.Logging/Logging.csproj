@@ -25,10 +25,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Events\BdoConditionalEvent.cs~RF5f09345.TMP" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\..\docs\images\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -36,6 +32,10 @@
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\Readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
