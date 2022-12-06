@@ -887,6 +887,43 @@ namespace BindOpen.Logging
         /// Adds the specified warning.
         /// </summary>
         /// <param name="eventKind">The event kind of this instance.</param>
+        /// <param name="filterFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
+        /// <param name="title">The title of this instance.</param>
+        /// <param name="description">The description of this instance.</param>
+        /// <param name="criticality">The criticality of this instance.</param>
+        /// <param name="resultCode">The result code of this instance.</param>
+        /// <param name="source">The ExtensionDataContext of this instance.</param>
+        /// <param name="date">The date to consider.</param>
+        public IBdoLog InsertSubLog(
+            Predicate<IBdoLog> filterFinder = null,
+            EventKinds eventKind = EventKinds.Any,
+            string title = null,
+            Criticalities criticality = Criticalities.None,
+            string description = null,
+            string resultCode = null,
+            string source = null,
+            DateTime? date = null)
+        {
+            var childLog = BdoLogging.CreateLog();
+
+            AddEvent(
+                eventKind,
+                title,
+                criticality,
+                description,
+                resultCode,
+                source,
+                date,
+                childLog,
+                filterFinder);
+
+            return childLog;
+        }
+
+        /// <summary>
+        /// Adds the specified warning.
+        /// </summary>
+        /// <param name="eventKind">The event kind of this instance.</param>
         /// <param name="childLog">The child log of this instance.</param>
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
         /// <param name="title">The title of this instance.</param>
@@ -941,20 +978,17 @@ namespace BindOpen.Logging
             string source = null,
             DateTime? date = null)
         {
-            var childLog = new BdoRuntimeLog();
-
-            AddEvent(
+            InsertSubLog(
+                filterFinder,
                 eventKind,
                 title,
                 criticality,
                 description,
                 resultCode,
                 source,
-                date,
-                childLog,
-                filterFinder);
+                date);
 
-            return childLog;
+            return this;
         }
 
         /// <summary>
@@ -1240,7 +1274,7 @@ namespace BindOpen.Logging
         /// <returns>Returns a new instance of the IBdoLog class.</returns>
         public IBdoLog NewLog()
         {
-            return BdoLogging.CreateLog();
+            return BdoLogging.CreateLog(this);
         }
 
         // Execution
