@@ -22,6 +22,22 @@ namespace BindOpen.Logging
         /// <param name="logger"></param>
         IBdoRuntimeLog WithLogger(IBdoLogger logger);
 
+        // Logs
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filterFinder"></param>
+        /// <param name="eventKind"></param>
+        /// <param name="title"></param>
+        /// <param name="criticality"></param>
+        /// <param name="description"></param>
+        /// <param name="resultCode"></param>
+        /// <param name="source"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        new IBdoRuntimeLog InsertSubLog(Predicate<IBdoLog> filterFinder = null, EventKinds eventKind = EventKinds.Any, string title = null, Criticalities criticality = Criticalities.None, string description = null, string resultCode = null, string source = null, DateTime? date = null);
+
         // Get events
 
         /// <summary>
