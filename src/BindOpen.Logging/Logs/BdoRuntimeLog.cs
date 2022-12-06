@@ -883,18 +883,7 @@ namespace BindOpen.Logging
 
         // Sub logs ------------------------------------
 
-        /// <summary>
-        /// Adds the specified warning.
-        /// </summary>
-        /// <param name="eventKind">The event kind of this instance.</param>
-        /// <param name="filterFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
-        /// <param name="title">The title of this instance.</param>
-        /// <param name="description">The description of this instance.</param>
-        /// <param name="criticality">The criticality of this instance.</param>
-        /// <param name="resultCode">The result code of this instance.</param>
-        /// <param name="source">The ExtensionDataContext of this instance.</param>
-        /// <param name="date">The date to consider.</param>
-        public IBdoLog InsertSubLog(
+        public IBdoRuntimeLog InsertSubLog(
             Predicate<IBdoLog> filterFinder = null,
             EventKinds eventKind = EventKinds.Any,
             string title = null,
@@ -918,6 +907,39 @@ namespace BindOpen.Logging
                 filterFinder);
 
             return childLog;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filterFinder"></param>
+        /// <param name="eventKind"></param>
+        /// <param name="title"></param>
+        /// <param name="criticality"></param>
+        /// <param name="description"></param>
+        /// <param name="resultCode"></param>
+        /// <param name="source"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        IBdoLog IBdoLog.InsertSubLog(
+            Predicate<IBdoLog> filterFinder,
+            EventKinds eventKind,
+            string title,
+            Criticalities criticality,
+            string description,
+            string resultCode,
+            string source,
+            DateTime? date)
+        {
+            return (this as IBdoRuntimeLog).InsertSubLog(
+                filterFinder,
+                eventKind,
+                title,
+                criticality,
+                description,
+                resultCode,
+                source,
+                date);
         }
 
         /// <summary>
