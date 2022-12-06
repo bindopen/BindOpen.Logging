@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.Framework.MetaData;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BindOpen.Logging

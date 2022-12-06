@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.MetaData.Elements;
+﻿using BindOpen.Framework.MetaData;
+using BindOpen.Framework.MetaData.Elements;
 using BindOpen.Framework.MetaData.Items;
 
 namespace BindOpen.Logging
