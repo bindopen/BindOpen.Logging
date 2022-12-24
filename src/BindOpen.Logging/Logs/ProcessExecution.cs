@@ -1,7 +1,7 @@
-﻿using BindOpen.Logging;
-using BindOpen.Framework.MetaData;
+﻿using BindOpen.Framework.MetaData;
 using BindOpen.Framework.MetaData.Elements;
 using BindOpen.Framework.MetaData.Items;
+using BindOpen.Logging;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -403,16 +403,6 @@ namespace BindOpen.Logging
             _progressIndex = 0;
 
             _log?.AddEvent(EventKinds.Checkpoint, "Task resume");
-        }
-
-        /// <summary>
-        /// Sets the specified detail attribute.
-        /// </summary>
-        /// <param name="name">The name of the attribute to set.</param>
-        /// <param name="value">The value of the attribute to set.</param>
-        public void AddDetail(string name, object value)
-        {
-            Detail.Add(BdoElements.CreateScalar(name, DataValueTypes.Text, (value ?? string.Empty).ToString()));
         }
 
         #endregion
