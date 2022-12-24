@@ -12,7 +12,7 @@ namespace BindOpen.Logging
     /// <summary>
     /// This class represents a logger of tasks.
     /// </summary>
-    public class BdoRuntimeLog : IdentifiedNamedDataItem, IBdoRuntimeLog
+    public class BdoRuntimeLog : DataItem, IBdoRuntimeLog
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -23,7 +23,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// Instantiates a new instance of the Log class.
         /// </summary>
-        public BdoRuntimeLog() : base(null, "log_")
+        public BdoRuntimeLog() : base()
         {
         }
 
@@ -34,18 +34,6 @@ namespace BindOpen.Logging
         // ------------------------------------------
 
         #region IBdoLog
-
-        // General ----------------------------------
-
-        /// <summary>
-        /// The display name of this instance.
-        /// </summary>
-        public string DisplayName { get; private set; }
-
-        /// <summary>
-        /// The description of this instance.
-        /// </summary>
-        public string Description { get; private set; }
 
         // Logger ----------------------------------
 
@@ -72,13 +60,6 @@ namespace BindOpen.Logging
         /// Function that filters event.
         /// </summary>
         public Predicate<IBdoLogEvent> SubLogEventPredicate { get; private set; }
-
-        // Detail ----------------------------------
-
-        /// <summary>
-        /// Detail of this instance.
-        /// </summary>
-        public IDataElementSet Detail { get; private set; }
 
         // Events ----------------------------------
 
@@ -1363,66 +1344,85 @@ namespace BindOpen.Logging
         #endregion
 
         // ------------------------------------------
-        // ITNamedPoco, ITIdentifiedPoco  interface
+        // IReferenced Implementation
         // ------------------------------------------
 
-        #region IDataItem
+        #region IReferenced
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        public IBdoLog WithName(string name)
-        {
-            Name = name;
+        public string Key() => Name ?? Id;
 
-            return this;
-        }
+        #endregion
+
+        // ------------------------------------------
+        // IIdentifiedPoco Implementation
+        // ------------------------------------------
+
+        #region IIdentifiedPoco
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Id { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
+        /// <returns></returns>
         public IBdoLog WithId(string id)
         {
             Id = id;
-
             return this;
         }
+
+        #endregion
+
+        // ------------------------------------------
+        // INamedPoco Implementation
+        // ------------------------------------------
+
+        #region INamedPoco
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="displayName"></param>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
         /// <returns></returns>
-        public IBdoLog WithDisplayName(string displayName)
+        public IBdoLog WithName(string name)
         {
-            DisplayName = displayName;
-
+            Name = BdoItems.NewName(name, "log_");
             return this;
         }
+
+        #endregion
+
+        // ------------------------------------------
+        // ITDetailedPoco Implementation
+        // ------------------------------------------
+
+        #region ITDetailedPoco
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="description"></param>
-        /// <returns></returns>
-        public IBdoLog WithDescription(string description)
-        {
-            Description = description;
-
-            return this;
-        }
+        public IDataElementSet Detail { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="detail"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
         public IBdoLog WithDetail(IDataElementSet detail)
         {
             Detail = detail;
-
             return this;
         }
 
@@ -1430,11 +1430,84 @@ namespace BindOpen.Logging
         /// 
         /// </summary>
         /// <param name="detail"></param>
-        /// <returns></returns>
         public IBdoLog WithDetail(params IDataElement[] elements)
         {
-            Detail = BdoElements.CreateSet(elements);
+            Detail = BdoElements.Set(elements);
+            return this;
+        }
 
+        #endregion
+
+        // ------------------------------------------
+        // IGloballyTitled Implementation
+        // ------------------------------------------
+
+        #region IGloballyTitled
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IDictionaryDataItem Title { get; set; }
+
+        public IBdoLog AddTitle(IDataKeyValue item)
+        {
+            Title ??= BdoItems.Dictionary();
+            Title.Add(item);
+            return this;
+        }
+
+        public IBdoLog WithTitle(IDictionaryDataItem dictionary)
+        {
+            Title = dictionary;
+            return this;
+        }
+
+        public string GetTitleText(string key = "*", string defaultKey = "*")
+        {
+            string label = Title?.GetText(key);
+            if (string.IsNullOrEmpty(label))
+            {
+                label = Title?.GetText(defaultKey);
+            }
+
+            return label;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDescribed Implementation
+        // ------------------------------------------
+
+        #region IDescribed
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Description { get; set; }
+
+        public IBdoLog WithDescription(string text)
+        {
+            Description = text;
+            return this;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDisplayNamed Implementation
+        // ------------------------------------------
+
+        #region IDisplayNamed
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string DisplayName { get; set; }
+
+        public IBdoLog WithDisplayName(string text)
+        {
+            DisplayName = text;
             return this;
         }
 

@@ -16,7 +16,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        Criticalities Criticality { get; }
+        Criticalities Criticality { get; set; }
 
         /// <summary>
         /// 
@@ -28,7 +28,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        DateTime? Date { get; }
+        DateTime? Date { get; set; }
 
         /// <summary>
         /// 
@@ -40,7 +40,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        EventKinds Kind { get; }
+        EventKinds Kind { get; set; }
 
         /// <summary>
         /// 
@@ -66,7 +66,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        string LongDescription { get; }
+        string LongDescription { get; set; }
 
         /// <summary>
         /// 
