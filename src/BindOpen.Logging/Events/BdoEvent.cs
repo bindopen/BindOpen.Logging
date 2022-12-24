@@ -8,7 +8,7 @@ namespace BindOpen.Logging
     /// <summary>
     /// This class represents an event.
     /// </summary>
-    public class BdoEvent : IdentifiedNamedDataItem, IBdoEvent
+    public class BdoEvent : DataItem, IBdoEvent
     {
         // ------------------------------------------
         // CONVERTERS
@@ -45,8 +45,69 @@ namespace BindOpen.Logging
         /// <summary>
         /// Instantiates a new instance of the BdoEvent class.
         /// </summary>
-        public BdoEvent() : base(null, "event_")
+        public BdoEvent()
         {
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IReferenced Implementation
+        // ------------------------------------------
+
+        #region IReferenced
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Key() => Id;
+
+        #endregion
+
+        // ------------------------------------------
+        // IIdentifiedPoco Implementation
+        // ------------------------------------------
+
+        #region IIdentifiedPoco
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IBdoEvent WithId(string id)
+        {
+            Id = id;
+            return this;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // INamedPoco Implementation
+        // ------------------------------------------
+
+        #region INamedPoco
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public IBdoEvent WithName(string name)
+        {
+            Name = BdoItems.NewName(name, "event_");
+            return this;
         }
 
         #endregion
@@ -111,30 +172,6 @@ namespace BindOpen.Logging
         /// </summary>
         public Criticalities Criticality { get; set; } = Criticalities.None;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IBdoEvent WithId(string id)
-        {
-            Id = id;
-
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoEvent WithName(string name)
-        {
-            Name = name;
-
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------
@@ -161,7 +198,7 @@ namespace BindOpen.Logging
         /// <param name="elements"></param>
         public IBdoEvent WithDetail(params IDataElement[] elements)
         {
-            return WithDetail(BdoElements.CreateSet(elements));
+            return WithDetail(BdoElements.Set(elements));
         }
 
         #endregion

@@ -72,13 +72,6 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
-        void AddDetail(string name, object value);
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="status"></param>
         void End(ProcessExecutionStatus status = ProcessExecutionStatus.Completed);
 
