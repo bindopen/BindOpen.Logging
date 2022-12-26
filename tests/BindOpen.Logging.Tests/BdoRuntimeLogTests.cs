@@ -43,7 +43,7 @@ namespace BindOpen.Logging.Tests
                 _log.AddException("Exception" + i);
                 _log.AddMessage("Message" + i);
                 _log.AddWarning("Warning" + i);
-                _log.AddSubLog(new BdoRuntimeLog());
+                _log.AddSubLog(new BdoLog());
             }
 
             Test(_log);
@@ -78,7 +78,7 @@ namespace BindOpen.Logging.Tests
                 SaveXmlEventsTest();
             }
 
-            BdoRuntimeLog log = BdoLogging.CreateLog();
+            BdoLog log = BdoLogging.CreateLog();
             _log = XmlHelper.LoadXml<BdoRuntimeLogDto>(_filePath_xml, log: log).ToPoco();
 
             string xml = string.Empty;
@@ -120,7 +120,7 @@ namespace BindOpen.Logging.Tests
                 SaveJsonEventsTest();
             }
 
-            BdoRuntimeLog log = BdoLogging.CreateLog();
+            BdoLog log = BdoLogging.CreateLog();
             _log = JsonHelper.LoadJson<BdoRuntimeLogDto>(_filePath_json, log: log).ToPoco();
 
             string xml = string.Empty;

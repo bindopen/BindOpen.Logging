@@ -186,7 +186,7 @@ namespace BindOpen.Logging
             var cloned = base.Clone(areas) as BdoLogEvent;
 
             cloned.Parent = parent;
-            cloned.Log = Log?.Clone(parent) as BdoRuntimeLog;
+            cloned.Log = Log?.Clone(parent) as BdoLog;
             cloned.Detail = Detail?.Clone<DataElementSet>();
             //cloned.StackTraces = StackTraces?.Select(p=> p.Clone<LogEventStackTrace>()).ToList();
 

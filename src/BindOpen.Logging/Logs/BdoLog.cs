@@ -12,7 +12,7 @@ namespace BindOpen.Logging
     /// <summary>
     /// This class represents a logger of tasks.
     /// </summary>
-    public class BdoRuntimeLog : DataItem, IBdoRuntimeLog
+    public class BdoLog : DataItem, IBdoRuntimeLog
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -23,7 +23,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// Instantiates a new instance of the Log class.
         /// </summary>
-        public BdoRuntimeLog() : base()
+        public BdoLog() : base()
         {
         }
 
@@ -838,7 +838,7 @@ namespace BindOpen.Logging
 
             if (isRecursive)
             {
-                foreach (BdoRuntimeLog childLog in SubLogs)
+                foreach (BdoLog childLog in SubLogs)
                 {
                     childLog.ClearEvents(isRecursive, kinds);
                 }
@@ -1017,7 +1017,7 @@ namespace BindOpen.Logging
         public IBdoLog RemoveSubLog(string id, bool isRecursive = true)
         {
             if ((id != null) && (Events != null) && (Events.RemoveAll(p => p.Log != null && id.KeyEquals(id)) == 0))
-                foreach (BdoRuntimeLog subLog in SubLogs)
+                foreach (BdoLog subLog in SubLogs)
                 {
                     subLog.RemoveSubLog(id, isRecursive);
                 }
@@ -1048,7 +1048,7 @@ namespace BindOpen.Logging
             IBdoLogEvent logEvent = Events.Find(p => p.Id.KeyEquals(id));
             if (isRecursive)
             {
-                foreach (BdoRuntimeLog childLog in SubLogs)
+                foreach (BdoLog childLog in SubLogs)
                 {
                     logEvent = childLog.GetEventWithId(id, true);
                     if (logEvent != null) return logEvent;
@@ -1074,7 +1074,7 @@ namespace BindOpen.Logging
 
             if (isRecursive)
             {
-                foreach (BdoRuntimeLog childLog in SubLogs)
+                foreach (BdoLog childLog in SubLogs)
                 {
                     events.AddRange(childLog.GetEvents(isRecursive, kinds));
                 }
@@ -1135,7 +1135,7 @@ namespace BindOpen.Logging
 
             if (!hasEvent && isRecursive && SubLogs != null)
             {
-                foreach (BdoRuntimeLog childLog in SubLogs)
+                foreach (BdoLog childLog in SubLogs)
                 {
                     if (hasEvent = childLog.HasEvent(isRecursive, kinds))
                     {
@@ -1234,7 +1234,7 @@ namespace BindOpen.Logging
                 return this;
             if (isRecursive)
             {
-                foreach (BdoRuntimeLog currentChildLog in SubLogs)
+                foreach (BdoLog currentChildLog in SubLogs)
                 {
                     IBdoLog log = currentChildLog.GetSubLogWithId(id);
                     if (log != null) return log;
@@ -1432,7 +1432,7 @@ namespace BindOpen.Logging
         /// <param name="detail"></param>
         public IBdoLog WithDetail(params IDataElement[] elements)
         {
-            Detail = BdoElements.Set(elements);
+            Detail = BdoElements.NewSet(elements);
             return this;
         }
 
@@ -1451,7 +1451,7 @@ namespace BindOpen.Logging
 
         public IBdoLog AddTitle(IDataKeyValue item)
         {
-            Title ??= BdoItems.Dictionary();
+            Title ??= BdoItems.NewDictionary();
             Title.Add(item);
             return this;
         }
@@ -1545,7 +1545,7 @@ namespace BindOpen.Logging
         /// <returns>Returns a cloned instance.</returns>
         public IBdoRuntimeLog Clone(IBdoLog parent, params string[] areas)
         {
-            var cloned = base.Clone(areas) as BdoRuntimeLog;
+            var cloned = base.Clone(areas) as BdoLog;
 
             cloned.Parent = parent;
             cloned.Task = Task?.Clone<IBdoTaskConfiguration>();
