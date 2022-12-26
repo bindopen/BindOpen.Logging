@@ -36,7 +36,7 @@ namespace BindOpen.Logging.Tests
         [Test, Order(1)]
         public void LogToStringTest()
         {
-            BdoRuntimeLog log = _testData.log;
+            BdoLog log = _testData.log;
             var st = log.ToString<BdoSnapLoggerFormat>();
             var st_expected =
                 "- Error0" + Environment.NewLine +

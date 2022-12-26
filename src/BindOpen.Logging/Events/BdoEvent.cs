@@ -198,7 +198,7 @@ namespace BindOpen.Logging
         /// <param name="elements"></param>
         public IBdoEvent WithDetail(params IDataElement[] elements)
         {
-            return WithDetail(BdoElements.Set(elements));
+            return WithDetail(BdoElements.NewSet(elements));
         }
 
         #endregion

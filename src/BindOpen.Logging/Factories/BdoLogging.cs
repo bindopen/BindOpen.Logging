@@ -17,9 +17,9 @@ namespace BindOpen.Logging
         /// Creates a new instance of the BdoLog class.
         /// </summary>
         /// <param name="logger">The logger to consider.</param>
-        public static BdoRuntimeLog CreateLog(IBdoLogger logger = null)
+        public static BdoLog CreateLog(IBdoLogger logger = null)
         {
-            return new BdoRuntimeLog().WithLogger(logger) as BdoRuntimeLog;
+            return new BdoLog().WithLogger(logger) as BdoLog;
         }
 
         /// <summary>
@@ -27,12 +27,12 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param name="eventFilter">The function that filters events.</param>
         /// <param name="logger">The logger to consider.</param>
-        public static BdoRuntimeLog CreateLog(
+        public static BdoLog CreateLog(
             Predicate<IBdoLogEvent> eventFilter,
             IBdoLogger logger)
         {
             return CreateLog(logger)
-                .WithSubLogEventPredicate(eventFilter) as BdoRuntimeLog;
+                .WithSubLogEventPredicate(eventFilter) as BdoLog;
         }
 
         /// <summary>
@@ -41,13 +41,13 @@ namespace BindOpen.Logging
         /// <param name="task">The task to consider.</param>
         /// <param name="eventFilter">The function that filters events.</param>
         /// <param name="logger">The logger to consider.</param>
-        public static BdoRuntimeLog CreateLog(
+        public static BdoLog CreateLog(
             IBdoTaskConfiguration task,
             Predicate<IBdoLogEvent> eventFilter = null,
             IBdoLogger logger = null)
         {
             return CreateLog(eventFilter, logger)
-                .WithTask(task) as BdoRuntimeLog;
+                .WithTask(task) as BdoLog;
         }
 
         /// <summary>
@@ -56,14 +56,14 @@ namespace BindOpen.Logging
         /// <param name="parent">The parent log to consider.</param>
         /// <param name="task">The task to consider.</param>
         /// <param name="eventFilter">The function that filters events.</param>
-        public static BdoRuntimeLog CreateLog(
+        public static BdoLog CreateLog(
             IBdoRuntimeLog parent,
             IBdoTaskConfiguration task = null,
             Predicate<IBdoLogEvent> eventFilter = null)
         {
             return CreateLog(eventFilter, parent?.Logger)
                 .WithParent(parent)
-                .WithTask(task) as BdoRuntimeLog;
+                .WithTask(task) as BdoLog;
         }
 
         // LogEvent --------------

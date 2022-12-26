@@ -42,7 +42,7 @@ namespace BindOpen.Logging
         {
             if (dto == null) return null;
 
-            BdoRuntimeLog poco = new();
+            BdoLog poco = new();
             poco
                 .WithEvents(dto.Events?.Select(q => q.ToPoco()).ToArray())
                 .WithExecution(dto.Execution.ToPoco())
