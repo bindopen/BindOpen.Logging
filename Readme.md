@@ -10,7 +10,7 @@ For any additional information, please visit the BindOpen website at https://www
 
 ## License
 
-This project is licensed under the terms of the [MIT LICENSE](https://github.com/bindopen/BindOpen.Framework/blob/master/LICENSE).
+This project is licensed under the terms of the [MIT LICENSE](https://github.com/bindopen/BindOpen.Mango/blob/master/LICENSE).
 
 ## Documentation and Further Learning
 
@@ -28,7 +28,7 @@ The BindOpen Blog is where we announce new features, write engineering blog post
 
 ## Repos and Projects
 
-[BindOpen.Framework](https://github.com/bindopen/BindOpen.Framework) contains the base BindOpen framework packages.
+[BindOpen.Mango](https://github.com/bindopen/BindOpen.Mango) contains the base BindOpen framework packages.
 
 [BindOpen.Databases](https://github.com/bindopen/BindOpen.Databases) allows you to build your database queries easily.
 
@@ -42,5 +42,5 @@ All of our NuGet packages are available from [our NuGet.org profile page](https:
 
 ## Feedback
 
-If you're having trouble with BindOpen, file a bug on the [BindOpen Issue Tracker](https://github.com/bindopen/BindOpen.Framework/issues). 
+If you're having trouble with BindOpen, file a bug on the [BindOpen Issue Tracker](https://github.com/bindopen/BindOpen.Mango/issues). 
 

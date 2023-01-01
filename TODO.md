@@ -1,9 +1,9 @@
-Todo list for BindOpen.Logging
+Todo list for BindOpen.Mango.Logging
 ====
 
 ## Next tasks
 
-- [ ] Adding WithTitle with IDictionaryDataItem
+- [ ] Adding WithTitle with IBdoDictionary
 - [ ] GetValue<T> for scriptVariableSet
 - [ ] Fix bug with repeated parameter script function
 - [ ] BdoDataContext -> ScriptVariableSet
