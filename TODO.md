@@ -1,4 +1,4 @@
-Todo list for BindOpen.Mango.Logging
+Todo list for BindOpen.Logging
 ====
 
 ## Next tasks
