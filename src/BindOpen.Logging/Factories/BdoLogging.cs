@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
-using BindOpen.Extensions.Processing;
+using BindOpen.Data.Configuration;
+using BindOpen.Data.Meta;
 using Microsoft.Extensions.Logging;
 using System;
 
@@ -42,7 +42,7 @@ namespace BindOpen.Logging
         /// <param name="eventFilter">The function that filters events.</param>
         /// <param name="logger">The logger to consider.</param>
         public static BdoLog CreateLog(
-            IBdoTaskConfiguration task,
+            IBdoConfiguration task,
             Predicate<IBdoLogEvent> eventFilter = null,
             IBdoLogger logger = null)
         {
@@ -58,7 +58,7 @@ namespace BindOpen.Logging
         /// <param name="eventFilter">The function that filters events.</param>
         public static BdoLog CreateLog(
             IBdoRuntimeLog parent,
-            IBdoTaskConfiguration task = null,
+            IBdoConfiguration task = null,
             Predicate<IBdoLogEvent> eventFilter = null)
         {
             return CreateLog(eventFilter, parent?.Logger)
@@ -143,7 +143,7 @@ namespace BindOpen.Logging
             var logEvent = new BdoLogEvent()
                 .WithCriticality(ev?.Criticality ?? Criticalities.None)
                 .WithKind(ev?.Kind ?? EventKinds.None)
-                .WithDetail(ev?.Detail?.Clone<BdoElementSet>()) as BdoLogEvent;
+                .WithDetail(ev?.Detail?.Clone<BdoMetaList>()) as BdoLogEvent;
 
             return logEvent;
         }

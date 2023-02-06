@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoElementSet.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoMetaList.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/ProcessExecutionStatus.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/ProcessExecutionState.xsd" />
 
   <xs:complexType name="ProcessExecution">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="detail" type="BdoElementSet" />
+      <xs:element minOccurs="0" maxOccurs="1" name="detail" type="BdoMetaList" />
       <xs:element minOccurs="0" maxOccurs="1" name="location" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="progressIndex" type="xs:float" />
       <xs:element minOccurs="1" maxOccurs="1" name="progressMax" type="xs:float" />

@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Items;
 using System;
 
 namespace BindOpen.Logging
@@ -8,9 +7,9 @@ namespace BindOpen.Logging
     /// 
     /// </summary>
     public interface IBdoEvent :
-        ITIdentifiedPoco<IBdoEvent>, ITNamedPoco<IBdoEvent>,
+        IIdentified, INamed,
         IDisplayNamed, IDescribed, IReferenced,
-        ITStorablePoco<IBdoEvent>, ITDetailedPoco<IBdoEvent>,
+        IStorable, IDetailed,
         IDisposable
     {
         /// <summary>
