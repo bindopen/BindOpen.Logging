@@ -1,7 +1,7 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
+using BindOpen.Data.Configuration;
 using BindOpen.Data.Items;
-using BindOpen.Extensions.Processing;
+using BindOpen.Data.Meta;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -54,7 +54,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// The task of this instance.
         /// </summary>
-        public IBdoTaskConfiguration Task { get; private set; }
+        public IBdoConfiguration TaskConfig { get; private set; }
 
         /// <summary>
         /// Function that filters event.
@@ -1322,9 +1322,9 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param name="task"></param>
         /// <returns></returns>
-        public IBdoLog WithTask(IBdoTaskConfiguration task)
+        public IBdoLog WithTask(IBdoConfiguration task)
         {
-            Task = task;
+            TaskConfig = task;
 
             return this;
         }
@@ -1398,7 +1398,7 @@ namespace BindOpen.Logging
         /// <returns></returns>
         public IBdoLog WithName(string name)
         {
-            Name = BdoItems.NewName(name, "log_");
+            Name = BdoData.NewName(name, "log_");
             return this;
         }
 
@@ -1413,14 +1413,14 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        public IBdoElementSet Detail { get; set; }
+        public IBdoMetaList Detail { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public IBdoLog WithDetail(IBdoElementSet detail)
+        public IBdoLog WithDetail(IBdoMetaList detail)
         {
             Detail = detail;
             return this;
@@ -1430,9 +1430,9 @@ namespace BindOpen.Logging
         /// 
         /// </summary>
         /// <param name="detail"></param>
-        public IBdoLog WithDetail(params IBdoElement[] elements)
+        public IBdoLog WithDetail(params IBdoMetaData[] elements)
         {
-            Detail = BdoElements.NewSet(elements);
+            Detail = BdoMeta.NewList(elements);
             return this;
         }
 
@@ -1451,7 +1451,7 @@ namespace BindOpen.Logging
 
         public IBdoLog AddTitle(KeyValuePair<string, string> item)
         {
-            Title ??= BdoItems.NewDictionary();
+            Title ??= BdoData.NewDictionary();
             Title.Add(item);
             return this;
         }
@@ -1542,8 +1542,8 @@ namespace BindOpen.Logging
             var cloned = base.Clone(areas) as BdoLog;
 
             cloned.Parent = parent;
-            cloned.Task = Task?.Clone<IBdoTaskConfiguration>();
-            cloned.Detail = Detail?.Clone<IBdoElementSet>();
+            cloned.TaskConfig = TaskConfig?.Clone<IBdoConfiguration>();
+            cloned.Detail = Detail?.Clone<IBdoMetaList>();
             cloned.Events = Events?.Select(p => p.Clone<IBdoLogEvent>(cloned)).ToList();
             cloned.Execution = Execution?.Clone<IProcessExecution>();
 
@@ -1581,7 +1581,7 @@ namespace BindOpen.Logging
                 return;
             }
 
-            Task?.Dispose();
+            TaskConfig?.Dispose();
             Detail?.Dispose();
 
             _isDisposed = true;

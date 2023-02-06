@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Data.Meta;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -187,7 +187,7 @@ namespace BindOpen.Logging
 
             cloned.Parent = parent;
             cloned.Log = Log?.Clone(parent) as BdoLog;
-            cloned.Detail = Detail?.Clone<BdoElementSet>();
+            cloned.Detail = Detail?.Clone<BdoMetaList>();
             //cloned.StackTraces = StackTraces?.Select(p=> p.Clone<LogEventStackTrace>()).ToList();
 
             return cloned;
