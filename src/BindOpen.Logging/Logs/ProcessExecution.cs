@@ -1,7 +1,7 @@
-﻿using BindOpen.Logging;
-using BindOpen.Data;
-using BindOpen.Data.Elements;
+﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
+using BindOpen.Logging;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -43,7 +43,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// Detail of this instance.
         /// </summary>
-        public IBdoElementSet Detail { get; set; } = new BdoElementSet();
+        public IBdoMetaList Detail { get; set; } = new BdoMetaList();
 
         // Location -------------------------------------
 

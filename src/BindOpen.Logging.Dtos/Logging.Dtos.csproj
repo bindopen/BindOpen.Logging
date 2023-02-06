@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.Logging.Dtos</AssemblyName>
     <PackageId>BindOpen.Logging.Dtos</PackageId>
     <Product>BindOpen.Runtime</Product>
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Dtos" Version="1.2.1" />
+    <PackageReference Include="BindOpen.Dtos" Version="1.2.4" />
   </ItemGroup>
 
   <ItemGroup>
