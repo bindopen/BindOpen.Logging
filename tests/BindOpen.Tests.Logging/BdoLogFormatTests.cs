@@ -1,4 +1,4 @@
-﻿using BindOpen.Logging.Tests;
+﻿using BindOpen.Data;
 using NUnit.Framework;
 using System;
 

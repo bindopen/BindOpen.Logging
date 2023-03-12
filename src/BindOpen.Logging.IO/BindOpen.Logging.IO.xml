@@ -3613,7 +3613,7 @@
         </member>
         <member name="M:BindOpen.Meta.ElementSetFactory.CreateFromString(System.String)">
             <summary>
-            Creates a new instance of the IBdoMetaList class.
+            Creates a new instance of the IBdoMetaSet class.
             </summary>
             <param name="stringObject">The string to consider.</param>
             <returns>The collection.</returns>
@@ -4686,50 +4686,50 @@
             <param name="parentZoneElement">The parent schema element group to consider.</param>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Meta.BdoMetaList">
+        <member name="T:BindOpen.Meta.BdoMetaSet">
             <summary>
             This class represents a data element set.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.BdoMetaList.Elements">
+        <member name="P:BindOpen.Meta.BdoMetaSet.Elements">
             <summary>
             Elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.BdoMetaList.ElementsSpecified">
+        <member name="P:BindOpen.Meta.BdoMetaSet.ElementsSpecified">
             <summary>
             Specification of the Elements property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.BdoMetaList.Item(System.String)">
+        <member name="P:BindOpen.Meta.BdoMetaSet.Item(System.String)">
             <summary>
             Returns the element with the specified key.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.op_Implicit(BindOpen.Meta.BdoMetaData[])~BindOpen.Meta.BdoMetaList">
+        <member name="M:BindOpen.Meta.BdoMetaSet.op_Implicit(BindOpen.Meta.BdoMetaData[])~BindOpen.Meta.BdoMetaSet">
             <summary>
             Converts from data element array.
             </summary>
             <param name="elements">The elements to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.#ctor">
+        <member name="M:BindOpen.Meta.BdoMetaSet.#ctor">
             <summary>
-            Instantiates a new instance of the BdoMetaList class.
+            Instantiates a new instance of the BdoMetaSet class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.#ctor(BindOpen.Meta.BdoMetaData[])">
+        <member name="M:BindOpen.Meta.BdoMetaSet.#ctor(BindOpen.Meta.BdoMetaData[])">
             <summary>
-            Instantiates a new instance of the BdoMetaList class.
-            </summary>
-            <param name="elements">The elements to consider.</param>
-        </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.#ctor(BindOpen.Meta.IBdoMetaData[])">
-            <summary>
-            Instantiates a new instance of the BdoMetaList class.
+            Instantiates a new instance of the BdoMetaSet class.
             </summary>
             <param name="elements">The elements to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.AddElement(BindOpen.Meta.IBdoMetaData,BindOpen.Meta.IBdoMetaList)">
+        <member name="M:BindOpen.Meta.BdoMetaSet.#ctor(BindOpen.Meta.IBdoMetaData[])">
+            <summary>
+            Instantiates a new instance of the BdoMetaSet class.
+            </summary>
+            <param name="elements">The elements to consider.</param>
+        </member>
+        <member name="M:BindOpen.Meta.BdoMetaSet.AddElement(BindOpen.Meta.IBdoMetaData,BindOpen.Meta.IBdoMetaSet)">
             <summary>
             Adds a new element.
             </summary>
@@ -4738,13 +4738,13 @@
             <returns>Returns the new element that has been added. Returns null if the element has not been added.</returns>
             <remarks>The new element must have a name.</remarks>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.RemoveElement(System.String)">
+        <member name="M:BindOpen.Meta.BdoMetaSet.RemoveElement(System.String)">
             <summary>
             Removes the element with the specified name.
             </summary>
             <param name="key">The key of the element to remove.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.AddElementItem(System.String,System.Object,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Meta.BdoMetaSet.AddElementItem(System.String,System.Object,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item of this instance.
             </summary>
@@ -4753,7 +4753,7 @@
             <param name="log">The log to populate.</param>
             <returns>Indicates whether the item has been set.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.AddElementItems(System.String,System.Object[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Meta.BdoMetaSet.AddElementItems(System.String,System.Object[],BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the items of this instance.
             </summary>
@@ -4762,28 +4762,28 @@
             <param name="log">The log to populate.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.HasItem(System.String)">
+        <member name="M:BindOpen.Meta.BdoMetaSet.HasItem(System.String)">
             <summary>
             Checks if this instance has an element with the specified key.
             </summary>
             <param name="key">The key of the element to check.</param>
             <returns>Returns true if the instance has an element with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.GetCommonItemKeys(BindOpen.Meta.IBdoMetaList)">
+        <member name="M:BindOpen.Meta.BdoMetaSet.GetCommonItemKeys(BindOpen.Meta.IBdoMetaSet)">
             <summary>
             Gets the common keys with the specified set of elements.
             </summary>
             <param name="elementSet">The collection to consider.</param>
             <returns>The names of the common object elements with the specified set of elements.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.GetElementsWithGroupId(System.String)">
+        <member name="M:BindOpen.Meta.BdoMetaSet.GetElementsWithGroupId(System.String)">
             <summary>
             Gets the items with the specified group ID.
             </summary>
             <param name="groupId">The ID of the item group.</param>
             <returns>Returns items with the specified group ID.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.GetElement(System.String,System.String)">
+        <member name="M:BindOpen.Meta.BdoMetaSet.GetElement(System.String,System.String)">
             <summary>
             Returns the item with the specified name and group ID.
             </summary>
@@ -4791,13 +4791,13 @@
             <param name="groupId">The ID of the group of the item to return.</param>
             <returns>Returns the item with the specified name and group ID.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.GetGroupIds">
+        <member name="M:BindOpen.Meta.BdoMetaSet.GetGroupIds">
             <summary>
             Gets all the element groups IDs.
             </summary>
             <returns>Returns all the element group IDs.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.GetElementObject(System.String,BindOpen.Extensions.Data.Scopes.IBdoScope,BindOpen.Extensions.Scripting.IBdoScriptVariableSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Meta.BdoMetaSet.GetElementObject(System.String,BindOpen.Extensions.Data.Scopes.IBdoScope,BindOpen.Extensions.Scripting.IBdoScriptVariableSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item object of this instance.
             </summary>
@@ -4807,7 +4807,7 @@
             <param name="log">The log to populate.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.GetElementObject``1(System.String,BindOpen.Extensions.Data.Scopes.IBdoScope,BindOpen.Extensions.Scripting.IBdoScriptVariableSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Meta.BdoMetaSet.GetElementObject``1(System.String,BindOpen.Extensions.Data.Scopes.IBdoScope,BindOpen.Extensions.Scripting.IBdoScriptVariableSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item object of this instance.
             </summary>
@@ -4817,14 +4817,14 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.GetAvailableIndexes(System.Int32)">
+        <member name="M:BindOpen.Meta.BdoMetaSet.GetAvailableIndexes(System.Int32)">
             <summary>
             Gets the available indexes.
             </summary>
             <param name="maxIndex">The maximum index to consider.</param>
             <returns>Returns the avaible indexes.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.GetTitleLabel(System.String,System.String,System.String,System.String[])">
+        <member name="M:BindOpen.Meta.BdoMetaSet.GetTitleLabel(System.String,System.String,System.String,System.String[])">
             <summary>
             Gets the specified title.
             </summary>
@@ -4834,7 +4834,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>Returns the specified label.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.GetDescriptionLabel(System.String,System.String,System.String,System.String[])">
+        <member name="M:BindOpen.Meta.BdoMetaSet.GetDescriptionLabel(System.String,System.String,System.String,System.String[])">
             <summary>
             Gets the specified description.
             </summary>
@@ -4844,7 +4844,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>Returns the specified label.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.GetTextNode(System.String,System.String)">
+        <member name="M:BindOpen.Meta.BdoMetaSet.GetTextNode(System.String,System.String)">
             <summary>
             Returns a text node representing this instance.
             </summary>
@@ -4852,20 +4852,20 @@
             <param name="indent">Tabulation indent to include in the text.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.Sort(System.String)">
+        <member name="M:BindOpen.Meta.BdoMetaSet.Sort(System.String)">
             <summary>
             Returns a text node representing this instance.
             </summary>
             <param name="groupId">ID of the group to consider. Null if all.</param>
             <returns>Returns the sorted list of data elements.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.Clone">
+        <member name="M:BindOpen.Meta.BdoMetaSet.Clone">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.Update``1(``0,System.String[],BindOpen.Data.Common.UpdateModes[])">
+        <member name="M:BindOpen.Meta.BdoMetaSet.Update``1(``0,System.String[],BindOpen.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -4875,7 +4875,7 @@
             <returns>Log of the operation.</returns>
             <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.Check``1(System.Boolean,``0,System.String[])">
+        <member name="M:BindOpen.Meta.BdoMetaSet.Check``1(System.Boolean,``0,System.String[])">
             <summary>
             Checks this instance.
             </summary>
@@ -4884,7 +4884,7 @@
             <param name="specificationAreas">The specification areas to consider.</param>
             <returns>Returns the check log.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMetaList.Repair``1(``0,System.String[],BindOpen.Data.Common.UpdateModes[])">
+        <member name="M:BindOpen.Meta.BdoMetaSet.Repair``1(``0,System.String[],BindOpen.Data.Common.UpdateModes[])">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
@@ -4927,7 +4927,7 @@
         </member>
         <member name="M:BindOpen.Meta.BdoMetaDataSpecSet.#ctor(BindOpen.Meta.IBdoMetaDataSpec[])">
             <summary>
-            Instantiates a new instance of the BdoMetaList class.
+            Instantiates a new instance of the BdoMetaSet class.
             </summary>
             <param name="elements">The elements to consider.</param>
         </member>
@@ -4944,17 +4944,17 @@
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Meta.IBdoMetaList">
+        <member name="T:BindOpen.Meta.IBdoMetaSet">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.IBdoMetaList.Elements">
+        <member name="P:BindOpen.Meta.IBdoMetaSet.Elements">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.AddElement(BindOpen.Meta.IBdoMetaData,BindOpen.Meta.IBdoMetaList)">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.AddElement(BindOpen.Meta.IBdoMetaData,BindOpen.Meta.IBdoMetaSet)">
             <summary>
             
             </summary>
@@ -4962,7 +4962,7 @@
             <param name="referenceElementSet"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.AddElementItem(System.String,System.Object,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.AddElementItem(System.String,System.Object,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -4971,7 +4971,7 @@
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.AddElementItems(System.String,System.Object[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.AddElementItems(System.String,System.Object[],BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -4980,21 +4980,21 @@
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.GetAvailableIndexes(System.Int32)">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.GetAvailableIndexes(System.Int32)">
             <summary>
             
             </summary>
             <param name="maxIndex"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.GetCommonItemKeys(BindOpen.Meta.IBdoMetaList)">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.GetCommonItemKeys(BindOpen.Meta.IBdoMetaSet)">
             <summary>
             
             </summary>
             <param name="elementSet"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.GetDescriptionLabel(System.String,System.String,System.String,System.String[])">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.GetDescriptionLabel(System.String,System.String,System.String,System.String[])">
             <summary>
             
             </summary>
@@ -5004,13 +5004,13 @@
             <param name="parameters"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.GetGroupIds">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.GetGroupIds">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.GetElement(System.String,System.String)">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.GetElement(System.String,System.String)">
             <summary>
             
             </summary>
@@ -5018,14 +5018,14 @@
             <param name="groupId"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.GetElementsWithGroupId(System.String)">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.GetElementsWithGroupId(System.String)">
             <summary>
             /
             </summary>
             <param name="groupId"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.GetTextNode(System.String,System.String)">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.GetTextNode(System.String,System.String)">
             <summary>
             
             </summary>
@@ -5033,7 +5033,7 @@
             <param name="indent"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.GetTitleLabel(System.String,System.String,System.String,System.String[])">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.GetTitleLabel(System.String,System.String,System.String,System.String[])">
             <summary>
             
             </summary>
@@ -5043,25 +5043,25 @@
             <param name="parameters"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.RemoveElement(System.String)">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.RemoveElement(System.String)">
             <summary>
             
             </summary>
             <param name="key"></param>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.Sort(System.String)">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.Sort(System.String)">
             <summary>
             
             </summary>
             <param name="groupId"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.IBdoMetaList.ElementsSpecified">
+        <member name="P:BindOpen.Meta.IBdoMetaSet.ElementsSpecified">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.GetElementObject(System.String,BindOpen.Extensions.Data.Scopes.IBdoScope,BindOpen.Extensions.Scripting.IBdoScriptVariableSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.GetElementObject(System.String,BindOpen.Extensions.Data.Scopes.IBdoScope,BindOpen.Extensions.Scripting.IBdoScriptVariableSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -5071,7 +5071,7 @@
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.IBdoMetaList.GetElementObject``1(System.String,BindOpen.Extensions.Data.Scopes.IBdoScope,BindOpen.Extensions.Scripting.IBdoScriptVariableSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Meta.IBdoMetaSet.GetElementObject``1(System.String,BindOpen.Extensions.Data.Scopes.IBdoScope,BindOpen.Extensions.Scripting.IBdoScriptVariableSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -5284,7 +5284,7 @@
             <param name="routine">The constraint to add.</param>
             <returns>Returns the item with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataConstraintStatement.AddConstraint(System.String,System.String,BindOpen.Meta.IBdoMetaList,BindOpen.Data.Items.IBdoItemSet{BindOpen.Logging.BdoConditionalEvent})">
+        <member name="M:BindOpen.Data.Specification.DataConstraintStatement.AddConstraint(System.String,System.String,BindOpen.Meta.IBdoMetaSet,BindOpen.Data.Items.IBdoItemSet{BindOpen.Logging.BdoConditionalEvent})">
             <summary>
             Adds the specified constraint.
             </summary>
@@ -5364,7 +5364,7 @@
             </summary>
             <param name="routine"></param>
         </member>
-        <member name="M:BindOpen.Data.Specification.IDataConstraintStatement.AddConstraint(System.String,System.String,BindOpen.Meta.IBdoMetaList,BindOpen.Data.Items.IBdoItemSet{BindOpen.Logging.BdoConditionalEvent})">
+        <member name="M:BindOpen.Data.Specification.IDataConstraintStatement.AddConstraint(System.String,System.String,BindOpen.Meta.IBdoMetaSet,BindOpen.Data.Items.IBdoItemSet{BindOpen.Logging.BdoConditionalEvent})">
             <summary>
             
             </summary>
@@ -6234,7 +6234,7 @@
             <param name="attributeTypes"></param>
             <param name="attribute">The attribute to return.</param>
         </member>
-        <member name="M:BindOpen.Data.ObjectHelper.UpdateFromElementSet``1(System.Object,BindOpen.Meta.IBdoMetaList,BindOpen.Extensions.Data.Scopes.IBdoScope,BindOpen.Extensions.Scripting.IBdoScriptVariableSet)">
+        <member name="M:BindOpen.Data.ObjectHelper.UpdateFromElementSet``1(System.Object,BindOpen.Meta.IBdoMetaSet,BindOpen.Extensions.Data.Scopes.IBdoScope,BindOpen.Extensions.Scripting.IBdoScriptVariableSet)">
             <summary>
             Sets information of the specified property.
             </summary>
@@ -6243,7 +6243,7 @@
             <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">The script variable set to use.</param>
         </member>
-        <member name="M:BindOpen.Data.ObjectHelper.UpdateFromObject``1(BindOpen.Meta.IBdoMetaList,System.Object)">
+        <member name="M:BindOpen.Data.ObjectHelper.UpdateFromObject``1(BindOpen.Meta.IBdoMetaSet,System.Object)">
             <summary>
             Gets the result of the serialization of the specified object.
             </summary>
@@ -8825,7 +8825,7 @@
             <param name="sourceElement">The source element to consider.</param>
             <param name="dynamicObject">The dynamic object of this instance.</param>
         </member>
-        <member name="M:BindOpen.Data.References.DataReferenceDto.#ctor(System.String,BindOpen.Meta.IBdoMetaData,BindOpen.Meta.IBdoMetaList)">
+        <member name="M:BindOpen.Data.References.DataReferenceDto.#ctor(System.String,BindOpen.Meta.IBdoMetaData,BindOpen.Meta.IBdoMetaSet)">
             <summary>
             Instantiates a new instance of the DataReference class.
             </summary>

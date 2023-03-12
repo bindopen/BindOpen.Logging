@@ -26,7 +26,7 @@ namespace BindOpen.Logging
         [JsonPropertyName("detail")]
         [XmlElement("detail")]
         [DefaultValue(null)]
-        public MetaListDto Detail { get; set; }
+        public MetaSetDto Detail { get; set; }
 
         // Location -------------------------------------
 

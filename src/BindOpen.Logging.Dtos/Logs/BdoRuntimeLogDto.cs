@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
@@ -53,7 +52,7 @@ namespace BindOpen.Logging
         /// </summary>
         [JsonPropertyName("task")]
         [XmlElement("task")]
-        public BdoConfigurationDto Task { get; set; }
+        public ConfigurationDto Task { get; set; }
 
         // Detail ----------------------------------
 
@@ -62,7 +61,7 @@ namespace BindOpen.Logging
         /// </summary>
         [JsonPropertyName("detail")]
         [XmlElement("detail")]
-        public MetaListDto Detail { get; set; }
+        public MetaSetDto Detail { get; set; }
 
         // Events ----------------------------------
 
