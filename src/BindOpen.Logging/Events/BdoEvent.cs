@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using System;
 
@@ -165,7 +164,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// Detail of this instance.
         /// </summary>
-        public IBdoMetaList Detail { get; set; }
+        public IBdoMetaSet Detail { get; set; }
 
         /// <summary>
         /// Criticality of this instance.
@@ -185,7 +184,7 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param name="detail"></param>
         /// <returns></returns>
-        public IBdoEvent WithDetail(IBdoMetaList detail)
+        public IBdoEvent WithDetail(IBdoMetaSet detail)
         {
             Detail = detail;
 
@@ -198,7 +197,7 @@ namespace BindOpen.Logging
         /// <param name="elements"></param>
         public IBdoEvent WithDetail(params IBdoMetaData[] elements)
         {
-            return WithDetail(BdoMeta.NewList(elements));
+            return WithDetail(BdoMeta.NewSet(elements));
         }
 
         #endregion
@@ -327,7 +326,7 @@ namespace BindOpen.Logging
         {
             var cloned = base.Clone(areas) as BdoEvent;
 
-            cloned.Detail = Detail?.Clone<BdoMetaList>();
+            cloned.Detail = Detail?.Clone<BdoMetaSet>();
 
             return cloned;
         }

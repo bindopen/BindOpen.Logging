@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data;
 
 namespace BindOpen.Logging
 {

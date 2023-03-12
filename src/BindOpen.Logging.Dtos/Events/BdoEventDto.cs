@@ -65,7 +65,7 @@ namespace BindOpen.Logging
         /// </summary>
         [JsonPropertyName("detail")]
         [XmlElement("detail")]
-        public MetaListDto Detail { get; set; }
+        public MetaSetDto Detail { get; set; }
 
         /// <summary>
         /// Criticality of this instance.
