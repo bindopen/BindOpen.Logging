@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Configuration;
-using BindOpen.Data.Items;
+using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 using Microsoft.Extensions.Logging;
 using System;
@@ -78,7 +77,7 @@ namespace BindOpen.Logging
         /// The event with the specified ID.
         /// </summary>
         /// <param name="index"></param>
-        public IBdoLogEvent this[int index] => Events?.Get(index) as IBdoLogEvent;
+        public IBdoLogEvent this[int index] => Events?.GetAt(index);
 
         /// <summary>
         /// Errors of this instance.
@@ -1234,7 +1233,7 @@ namespace BindOpen.Logging
                 return this;
             if (isRecursive)
             {
-                foreach (BdoLog currentChildLog in SubLogs)
+                foreach (var currentChildLog in SubLogs)
                 {
                     IBdoLog log = currentChildLog.GetSubLogWithId(id);
                     if (log != null) return log;
@@ -1413,59 +1412,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        public IBdoMetaList Detail { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoLog WithDetail(IBdoMetaList detail)
-        {
-            Detail = detail;
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="detail"></param>
-        public IBdoLog WithDetail(params IBdoMetaData[] elements)
-        {
-            Detail = BdoMeta.NewList(elements);
-            return this;
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // IGloballyTitled Implementation
-        // ------------------------------------------
-
-        #region IGloballyTitled
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoDictionary Title { get; set; }
-
-        public IBdoLog AddTitle(KeyValuePair<string, string> item)
-        {
-            Title ??= BdoData.NewDictionary();
-            Title.Add(item);
-            return this;
-        }
-
-        public IBdoLog WithTitle(IBdoDictionary dictionary)
-        {
-            Title = dictionary;
-            return this;
-        }
-
-        public string GetTitleText(string key = "*", string defaultKey = "*")
-        {
-            return Title?[key, defaultKey];
-        }
+        public IBdoMetaSet Detail { get; set; }
 
         #endregion
 
@@ -1480,12 +1427,6 @@ namespace BindOpen.Logging
         /// </summary>
         public string Description { get; set; }
 
-        public IBdoLog WithDescription(string text)
-        {
-            Description = text;
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------
@@ -1498,12 +1439,6 @@ namespace BindOpen.Logging
         /// 
         /// </summary>
         public string DisplayName { get; set; }
-
-        public IBdoLog WithDisplayName(string text)
-        {
-            DisplayName = text;
-            return this;
-        }
 
         #endregion
 
@@ -1543,7 +1478,7 @@ namespace BindOpen.Logging
 
             cloned.Parent = parent;
             cloned.TaskConfig = TaskConfig?.Clone<IBdoConfiguration>();
-            cloned.Detail = Detail?.Clone<IBdoMetaList>();
+            cloned.Detail = Detail?.Clone<IBdoMetaSet>();
             cloned.Events = Events?.Select(p => p.Clone<IBdoLogEvent>(cloned)).ToList();
             cloned.Execution = Execution?.Clone<IProcessExecution>();
 

@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Items;
+using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 using BindOpen.Logging;
 using System;
@@ -43,7 +43,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// Detail of this instance.
         /// </summary>
-        public IBdoMetaList Detail { get; set; } = new BdoMetaList();
+        public IBdoMetaSet Detail { get; set; } = new BdoMetaSet();
 
         // Location -------------------------------------
 

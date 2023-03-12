@@ -187,7 +187,7 @@ namespace BindOpen.Logging
 
             cloned.Parent = parent;
             cloned.Log = Log?.Clone(parent) as BdoLog;
-            cloned.Detail = Detail?.Clone<BdoMetaList>();
+            cloned.Detail = Detail?.Clone<BdoMetaSet>();
             //cloned.StackTraces = StackTraces?.Select(p=> p.Clone<LogEventStackTrace>()).ToList();
 
             return cloned;
