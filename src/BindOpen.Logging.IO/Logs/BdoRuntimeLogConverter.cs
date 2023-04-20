@@ -7,7 +7,7 @@ namespace BindOpen.Logging
     /// <summary>
     /// This class represents a Xml helper.
     /// </summary>
-    public static class BdoRuntimeLogConverter
+    public static class BdoLogConverter
     {
         // Serialization ----------------------------
 
@@ -16,11 +16,11 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static BdoRuntimeLogDto ToDto(this IBdoRuntimeLog poco)
+        public static BdoLogDto ToDto(this IBdoDynamicLog poco)
         {
             if (poco == null) return null;
 
-            BdoRuntimeLogDto dto = new()
+            BdoLogDto dto = new()
             {
                 Description = poco.Description,
                 Detail = poco.Detail.ToDto(),
@@ -38,7 +38,7 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param name="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IBdoRuntimeLog ToPoco(this BdoRuntimeLogDto dto)
+        public static IBdoDynamicLog ToPoco(this BdoLogDto dto)
         {
             if (dto == null) return null;
 
