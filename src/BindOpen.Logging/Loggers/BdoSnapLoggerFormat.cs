@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BindOpen.Data;
+using BindOpen.Data.Helpers;
+using System;
 
 namespace BindOpen.Logging
 {
@@ -12,7 +14,7 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the string that converts the specified log.</returns>
-        public string ToString(IBdoRuntimeLog log)
+        public string ToString(IBdoDynamicLog log)
         {
             if (log != null)
             {
@@ -42,9 +44,14 @@ namespace BindOpen.Logging
                 int level = ev.Level;
                 string indent = new string(' ', (level < 0 ? 0 : level - 1) * 2);
 
-                return indent + (ev.Log != null ? "o " : "- ")
-                   + ev.DisplayName
-                   + (!string.IsNullOrEmpty(ev.Description) ? " | " + ev.Description : "");
+                var displayName = ev.DisplayName ?? ev.Log?.DisplayName;
+                var description = ev.Description ?? ev.Log?.Description;
+
+                var st = ev.Date.ToString(DataValueTypes.Date) ?? "";
+                st += displayName == null ? "" : (st == "" ? "" : " | ") + displayName;
+                st += description == null ? "" : (st == "" ? "" : " | ") + description;
+
+                return indent + (ev.Log != null ? "o " : "- ") + st;
             }
 
             return null;

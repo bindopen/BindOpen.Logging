@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the string that converts the specified log.</returns>
-        string ToString(IBdoRuntimeLog log);
+        string ToString(IBdoDynamicLog log);
 
         /// <summary>
         /// Converts the log event to the string.

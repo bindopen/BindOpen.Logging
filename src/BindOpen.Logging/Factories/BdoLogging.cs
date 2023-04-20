@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Conditions;
 using BindOpen.Data.Meta;
 using Microsoft.Extensions.Logging;
 using System;
@@ -16,9 +17,18 @@ namespace BindOpen.Logging
         /// Creates a new instance of the BdoLog class.
         /// </summary>
         /// <param name="logger">The logger to consider.</param>
-        public static BdoLog CreateLog(IBdoLogger logger = null)
+        public static BdoLog NewLog(IBdoLogger logger = null)
         {
-            return new BdoLog().WithLogger(logger) as BdoLog;
+            return new BdoLog().WithLogger(logger);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the BdoLog class.
+        /// </summary>
+        /// <param name="logger">The logger to consider.</param>
+        public static BdoLog NewLog(ILogger logger)
+        {
+            return NewLog(NewLogger<BdoSnapLoggerFormat>(logger));
         }
 
         /// <summary>
@@ -26,12 +36,12 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param name="eventFilter">The function that filters events.</param>
         /// <param name="logger">The logger to consider.</param>
-        public static BdoLog CreateLog(
+        public static BdoLog NewLog(
             Predicate<IBdoLogEvent> eventFilter,
             IBdoLogger logger)
         {
-            return CreateLog(logger)
-                .WithSubLogEventPredicate(eventFilter) as BdoLog;
+            return NewLog(logger)
+                .WithEventFilter(eventFilter);
         }
 
         /// <summary>
@@ -40,13 +50,13 @@ namespace BindOpen.Logging
         /// <param name="task">The task to consider.</param>
         /// <param name="eventFilter">The function that filters events.</param>
         /// <param name="logger">The logger to consider.</param>
-        public static BdoLog CreateLog(
+        public static BdoLog NewLog(
             IBdoConfiguration task,
             Predicate<IBdoLogEvent> eventFilter = null,
             IBdoLogger logger = null)
         {
-            return CreateLog(eventFilter, logger)
-                .WithTask(task) as BdoLog;
+            return NewLog(eventFilter, logger)
+                .WithTask(task);
         }
 
         /// <summary>
@@ -55,17 +65,35 @@ namespace BindOpen.Logging
         /// <param name="parent">The parent log to consider.</param>
         /// <param name="task">The task to consider.</param>
         /// <param name="eventFilter">The function that filters events.</param>
-        public static BdoLog CreateLog(
-            IBdoRuntimeLog parent,
+        public static BdoLog NewLog(
+            IBdoDynamicLog parent,
             IBdoConfiguration task = null,
             Predicate<IBdoLogEvent> eventFilter = null)
         {
-            return CreateLog(eventFilter, parent?.Logger)
-                .WithParent(parent)
-                .WithTask(task) as BdoLog;
+            return NewLog(eventFilter, parent?.Logger)
+                .WithTask(task)
+                .WithParent(parent);
         }
 
-        // LogEvent --------------
+        // Events --------------
+
+        /// <summary>
+        /// Instantiates a new instance of the BdoEvent class.
+        /// </summary>
+        /// <param name="kind">The kind of this instance.</param>
+        /// <param name="title">The title of this instance.</param>
+        /// <param name="criticality">The criticality of this instance.</param>
+        /// <param name="description">The description of this instance.</param>
+        /// <param name="date">The date of this instance.</param>
+        /// <param name="id">The ID of this instance.</param>
+        public static BdoEvent NewEvent(
+            EventKinds kind,
+            Action<BdoEvent> updater = null)
+        {
+            var ev = NewEvent<BdoEvent>(kind, updater);
+
+            return ev;
+        }
 
         /// <summary>
         /// Instantiates a new instance of the LogEvent class.
@@ -78,133 +106,14 @@ namespace BindOpen.Logging
         /// <param name="source">The ExtensionDataContext of this instance.</param>
         /// <param name="date">The date of this instance.</param>
         /// <param name="id">The ID of this instance.</param>
-        public static BdoLogEvent CreateLogEvent(
+        public static BdoLogEvent NewLogEvent(
             EventKinds kind,
-            string title = null,
-            Criticalities criticality = Criticalities.None,
-            string description = null,
-            string resultCode = null,
-            string source = null,
-            DateTime? date = null,
-            string id = null)
+            Action<BdoLogEvent> updater = null)
         {
-            var ev = new BdoLogEvent()
-                .WithSource(source)
-                .WithResultCode(resultCode)
-                .WithCriticality(criticality)
-                .WithLongDescription(description)
-                .WithDate(date)
-                .WithKind(kind) as BdoLogEvent;
-
-            if (string.IsNullOrEmpty(id))
-            {
-                ev.WithId(id);
-            }
-            ev.WithDisplayName(title);
+            var ev = NewEvent<BdoLogEvent>(kind, updater);
 
             return ev;
         }
-
-        /// <summary>
-        /// Instantiates a new instance of the LogEvent class.
-        /// </summary>
-        /// <param name="exception">The exception to consider.</param>
-        /// <param name="criticality">The criticality to consider.</param>
-        /// <param name="resultCode">The result code to consider.</param>
-        /// <param name="source">The ExtensionDataContext to consider.</param>
-        /// <param name="date">The date of this instance.</param>
-        /// <param name="id">The ID of this instance.</param>
-        public static BdoLogEvent CreateLogEvent(
-            Exception exception,
-            Criticalities criticality = Criticalities.None,
-            string resultCode = null,
-            string source = null,
-            DateTime? date = null,
-            string id = null)
-        {
-            var ev = CreateLogEvent(
-                EventKinds.Exception,
-                exception?.Message,
-                criticality,
-                exception?.ToString(),
-                resultCode, source,
-                date, id);
-
-            return ev;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the LogEvent class.
-        /// </summary>
-        /// <param name="event1">The event to consider.</param>
-        public static BdoLogEvent CreateLogEvent(BdoEvent ev)
-        {
-            var logEvent = new BdoLogEvent()
-                .WithCriticality(ev?.Criticality ?? Criticalities.None)
-                .WithKind(ev?.Kind ?? EventKinds.None)
-                .WithDetail(ev?.Detail?.Clone<BdoMetaSet>()) as BdoLogEvent;
-
-            return logEvent;
-        }
-
-        // Event --------------
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoEvent class.
-        /// </summary>
-        /// <param name="kind">The kind of this instance.</param>
-        /// <param name="title">The title of this instance.</param>
-        /// <param name="criticality">The criticality of this instance.</param>
-        /// <param name="description">The description of this instance.</param>
-        /// <param name="date">The date of this instance.</param>
-        /// <param name="id">The ID of this instance.</param>
-        public static BdoEvent CreateEvent(
-            EventKinds kind,
-            string title = null,
-            Criticalities criticality = Criticalities.None,
-            string description = null,
-            DateTime? date = null,
-            string id = null)
-        {
-            var ev = new BdoEvent()
-                .WithCriticality(criticality)
-                .WithLongDescription(description)
-                .WithDate(date)
-                .WithKind(kind) as BdoEvent;
-
-            if (string.IsNullOrEmpty(id))
-            {
-                ev.WithId(id);
-            }
-            ev.WithDisplayName(title);
-
-            return ev;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoEvent class.
-        /// </summary>
-        /// <param name="exception">The exception to consider.</param>
-        /// <param name="criticality">The criticality to consider.</param>
-        /// <param name="date">The date of this instance.</param>
-        /// <param name="id">The ID of this instance.</param>
-        public static BdoEvent CreateEvent(
-            Exception exception,
-            Criticalities criticality = Criticalities.None,
-            DateTime? date = null,
-            string id = null)
-        {
-            var ev = CreateEvent(
-                EventKinds.Exception,
-                exception?.Message,
-                criticality,
-                exception?.ToString(),
-                date, id);
-
-            return ev;
-        }
-
-        // Conditional event --------------
 
         /// <summary>
         /// Instantiates a new instance of the ConditionalEvent class.
@@ -216,53 +125,39 @@ namespace BindOpen.Logging
         /// <param name="description">The description of this instance.</param>
         /// <param name="date">The date of this instance.</param>
         /// <param name="id">The ID of this instance.</param>
-        public static BdoConditionalEvent CreateConditionalEvent(
-            string conditionScript,
+        public static BdoConditionalEvent NewConditionalEvent(
+            IBdoCondition condition,
             EventKinds kind,
-            string title = null,
-            Criticalities criticality = Criticalities.None,
-            string description = null,
-            DateTime? date = null,
-            string id = null)
+            Action<BdoConditionalEvent> updater)
         {
-            var ev = new BdoConditionalEvent()
-                .WithCondition(conditionScript)
-                .WithCriticality(criticality)
-                .WithLongDescription(description)
-                .WithDate(date)
-                .WithKind(kind) as BdoConditionalEvent;
-
-            if (string.IsNullOrEmpty(id))
-            {
-                ev.WithId(id);
-            }
-            ev.WithDisplayName(title);
+            var ev = NewEvent<BdoConditionalEvent>(kind, updater)
+                .WithCondition(condition);
 
             return ev;
         }
 
         /// <summary>
-        /// Instantiates a new instance of the ConditionalEvent class.
+        /// Instantiates a new instance of the BdoEvent class.
         /// </summary>
-        /// <param name="conditionScript">The condition script of this instance.</param>
-        /// <param name="exception">The exception to consider.</param>
-        /// <param name="criticality">The criticality to consider.</param>
+        /// <param name="kind">The kind of this instance.</param>
+        /// <param name="title">The title of this instance.</param>
+        /// <param name="criticality">The criticality of this instance.</param>
+        /// <param name="description">The description of this instance.</param>
         /// <param name="date">The date of this instance.</param>
         /// <param name="id">The ID of this instance.</param>
-        public static BdoConditionalEvent CreateConditionalEvent(
-            string conditionScript,
-            Exception exception,
-            Criticalities criticality = Criticalities.None,
-            DateTime? date = null,
-            string id = null)
+        public static T NewEvent<T>(
+            EventKinds kind,
+            Action<T> updater)
+            where T : class, IBdoEvent, new()
         {
-            var ev = CreateConditionalEvent(
-                conditionScript,
-                EventKinds.Exception,
-                exception?.Message,
-                criticality,
-                exception?.ToString(),
-                date, id);
+            var ev = new T();
+
+            if (updater != null)
+            {
+                updater.Invoke(ev);
+            }
+
+            ev.Kind = kind;
 
             return ev;
         }
@@ -274,10 +169,23 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param name="logger">The logger to consider.</param>
         /// <returns>Returns the created BDO logger.</returns>
-        public static TBdoLogger<T> CreateLogger<T>(ILogger logger)
+        public static TBdoLogger<T> NewLogger<T>(ILogger logger)
             where T : IBdoLoggerFormat, new()
         {
             var bdoLogger = new TBdoLogger<T>();
+            bdoLogger.SetNative(logger);
+
+            return bdoLogger;
+        }
+
+        /// <summary>
+        /// Creates a new instance of a ITBdoLogger instance.
+        /// </summary>
+        /// <param name="logger">The logger to consider.</param>
+        /// <returns>Returns the created BDO logger.</returns>
+        public static TBdoLogger<BdoSnapLoggerFormat> NewLogger(ILogger logger)
+        {
+            var bdoLogger = new TBdoLogger<BdoSnapLoggerFormat>();
             bdoLogger.SetNative(logger);
 
             return bdoLogger;

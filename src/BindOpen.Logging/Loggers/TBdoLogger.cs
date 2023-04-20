@@ -6,7 +6,7 @@ namespace BindOpen.Logging
     /// <summary>
     /// This class represents a logger.
     /// </summary>
-    public class TBdoLogger<T> : BdoItem, ITBdoLogger<T>
+    public class TBdoLogger<T> : BdoObject, ITBdoLogger<T>
         where T : IBdoLoggerFormat, new()
     {
         protected ILogger _nativeLogger;
@@ -71,7 +71,7 @@ namespace BindOpen.Logging
                         break;
                 }
 
-                if (ev?.Log != null)
+                if (ev?.Log?.Events != null)
                 {
                     foreach (IBdoLogEvent logEvent in ev.Log.Events)
                     {
