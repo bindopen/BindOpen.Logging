@@ -14,7 +14,7 @@ namespace BindOpen.Logging.Tests
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            var log = BdoLogging.CreateLog();
+            var log = BdoLogging.NewLog();
             for (int i = 0; i < 2; i++)
             {
                 log
@@ -22,8 +22,8 @@ namespace BindOpen.Logging.Tests
                     .AddException("Exception" + i)
                     .AddMessage("Message" + i)
                     .AddWarning("Warning" + i)
-                    .AddSubLog(
-                        BdoLogging.CreateLog().WithDisplayName("Sub log" + i)
+                    .AddChild(
+                        BdoLogging.NewLog().WithDisplayName("Sub log" + i)
                     );
             }
 
@@ -56,7 +56,7 @@ namespace BindOpen.Logging.Tests
         [Test, Order(2)]
         public void LogEventToStringTest()
         {
-            BdoLogEvent logEvent = _testData.log.Events[0];
+            BdoLogEvent logEvent = _testData.log.Events?[0];
             var st = logEvent.ToString<BdoSnapLoggerFormat>();
             var st_expected = "- Error0";
 

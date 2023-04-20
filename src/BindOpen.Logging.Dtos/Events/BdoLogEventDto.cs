@@ -50,7 +50,7 @@ namespace BindOpen.Logging
         /// </summary>
         [JsonPropertyName("log")]
         [XmlElement("log")]
-        public BdoRuntimeLogDto Log { get; set; }
+        public BdoLogDto Log { get; set; }
 
         #endregion
 

@@ -12,7 +12,7 @@ namespace BindOpen.Logging
     /// </summary>
     [XmlType("Log", Namespace = "https://docs.bindopen.org/xsd")]
     [XmlRoot(ElementName = "log", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
-    public class BdoRuntimeLogDto : IDto
+    public class BdoLogDto : IDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -88,9 +88,9 @@ namespace BindOpen.Logging
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoRuntimeLogDto class.
+        /// Instantiates a new instance of the BdoLogDto class.
         /// </summary>
-        public BdoRuntimeLogDto()
+        public BdoLogDto()
         {
         }
 

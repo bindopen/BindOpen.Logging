@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Logging
+﻿using BindOpen.Data.Conditions;
+
+namespace BindOpen.Logging
 {
     /// <summary>
     /// This class represents a conditional event.
@@ -14,7 +16,7 @@
         /// <summary>
         /// Condition script of this instance.
         /// </summary>
-        public string ConditionScript { get; set; }
+        public IBdoCondition Condition { get; set; }
 
         #endregion
 
@@ -29,26 +31,6 @@
         /// </summary>
         public BdoConditionalEvent()
         {
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // MUTATORS
-        // ------------------------------------------
-
-        #region Mutators
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="conditionScript"></param>
-        /// <returns></returns>
-        public IBdoConditionalEvent WithCondition(string conditionScript)
-        {
-            ConditionScript = conditionScript;
-
-            return this;
         }
 
         #endregion

@@ -11,7 +11,7 @@ namespace BindOpen.Logging
     /// <summary>
     /// This class represents the process execution.
     /// </summary>
-    public class ProcessExecution : BdoItem, IProcessExecution
+    public class ProcessExecution : BdoObject, IProcessExecution
     {
         // ------------------------------------------
         // VARIABLES
@@ -168,9 +168,9 @@ namespace BindOpen.Logging
         {
             get
             {
-                if (DateTime.TryParseExact(_startDate, StringHelper.__DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime aExecutionStartDate))
+                if (DateTime.TryParseExact(_startDate, StringHelper.__DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime aExecutionStartDate))
                 {
-                    if (DateTime.TryParseExact(_endDate, StringHelper.__DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime aExecutionEndDate))
+                    if (DateTime.TryParseExact(_endDate, StringHelper.__DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime aExecutionEndDate))
                     {
                         return aExecutionEndDate.Subtract(aExecutionStartDate).ToString();
                     }

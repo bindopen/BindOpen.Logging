@@ -3303,7 +3303,7 @@
             <param name="accessibilityLevel">The accessibilty level of this instance.</param>
             <param name="specificationLevels">The specification levels of this instance.</param>
         </member>
-        <member name="M:BindOpen.Meta.DocumentElementSpec.IsCompatibleWith(BindOpen.Data.Items.IBdoItem)">
+        <member name="M:BindOpen.Meta.DocumentElementSpec.IsCompatibleWith(BindOpen.Data.Items.IBdoObject)">
             <summary>
             Indicates whether this instance is compatible with the specified data item.
             </summary>
@@ -4090,7 +4090,7 @@
             Initializes a new entity element.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.ObjectElement.#ctor(System.String,System.String,System.String,BindOpen.Meta.IObjectElementSpec,BindOpen.Data.Items.IBdoItem[])">
+        <member name="M:BindOpen.Meta.ObjectElement.#ctor(System.String,System.String,System.String,BindOpen.Meta.IObjectElementSpec,BindOpen.Data.Items.IBdoObject[])">
             <summary>
             Initializes a new data entity element.
             </summary>
@@ -4100,7 +4100,7 @@
             <param name="specification">The specification to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.ObjectElement.#ctor(System.String,System.String,BindOpen.Data.Items.IBdoItem[])">
+        <member name="M:BindOpen.Meta.ObjectElement.#ctor(System.String,System.String,BindOpen.Data.Items.IBdoObject[])">
             <summary>
             Initializes a new data entity element.
             </summary>
@@ -4108,14 +4108,14 @@
             <param name="classFullName">The entity unique name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.ObjectElement.#ctor(System.String,BindOpen.Data.Items.IBdoItem[])">
+        <member name="M:BindOpen.Meta.ObjectElement.#ctor(System.String,BindOpen.Data.Items.IBdoObject[])">
             <summary>
             Initializes a new data entity element.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.ObjectElement.#ctor(BindOpen.Data.Items.IBdoItem[])">
+        <member name="M:BindOpen.Meta.ObjectElement.#ctor(BindOpen.Data.Items.IBdoObject[])">
             <summary>
             Initializes a new data entity element.
             </summary>
@@ -5284,7 +5284,7 @@
             <param name="routine">The constraint to add.</param>
             <returns>Returns the item with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataConstraintStatement.AddConstraint(System.String,System.String,BindOpen.Meta.IBdoMetaSet,BindOpen.Data.Items.IBdoItemSet{BindOpen.Logging.BdoConditionalEvent})">
+        <member name="M:BindOpen.Data.Specification.DataConstraintStatement.AddConstraint(System.String,System.String,BindOpen.Meta.IBdoMetaSet,BindOpen.Data.Items.IBdoObjectSet{BindOpen.Logging.BdoConditionalEvent})">
             <summary>
             Adds the specified constraint.
             </summary>
@@ -5364,7 +5364,7 @@
             </summary>
             <param name="routine"></param>
         </member>
-        <member name="M:BindOpen.Data.Specification.IDataConstraintStatement.AddConstraint(System.String,System.String,BindOpen.Meta.IBdoMetaSet,BindOpen.Data.Items.IBdoItemSet{BindOpen.Logging.BdoConditionalEvent})">
+        <member name="M:BindOpen.Data.Specification.IDataConstraintStatement.AddConstraint(System.String,System.String,BindOpen.Meta.IBdoMetaSet,BindOpen.Data.Items.IBdoObjectSet{BindOpen.Logging.BdoConditionalEvent})">
             <summary>
             
             </summary>
@@ -5569,7 +5569,7 @@
             <param name="accessibilityLevel">The accessibilty level of this instance.</param>
             <param name="specificationLevels">The specification levels of this instance.</param>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataSpecification.IsCompatibleWith(BindOpen.Data.Items.IBdoItem)">
+        <member name="M:BindOpen.Data.Specification.DataSpecification.IsCompatibleWith(BindOpen.Data.Items.IBdoObject)">
             <summary>
             Indicates whether this instance is compatible with the specified data item.
             </summary>
@@ -5983,7 +5983,7 @@
             <param name="referenceSpecification"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.IDataSpecification.IsCompatibleWith(BindOpen.Data.Items.IBdoItem)">
+        <member name="M:BindOpen.Data.Specification.IDataSpecification.IsCompatibleWith(BindOpen.Data.Items.IBdoObject)">
             <summary>
             
             </summary>
@@ -8060,12 +8060,12 @@
             <param name="namePreffix">The preffix of the name of this instance.</param>
             <param name="id">The ID to consider.</param>
         </member>
-        <member name="T:BindOpen.Data.Items.IBdoItem">
+        <member name="T:BindOpen.Data.Items.IBdoObject">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItem.Check(System.Boolean,System.String[])">
+        <member name="M:BindOpen.Data.Items.IBdoObject.Check(System.Boolean,System.String[])">
             <summary>
             
             </summary>
@@ -8073,7 +8073,7 @@
             <param name="specificationAreas"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItem.Check``1(System.Boolean,``0,System.String[])">
+        <member name="M:BindOpen.Data.Items.IBdoObject.Check``1(System.Boolean,``0,System.String[])">
             <summary>
             
             </summary>
@@ -8083,7 +8083,7 @@
             <param name="specificationAreas"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItem.Repair(System.String[],BindOpen.Data.Common.UpdateModes[])">
+        <member name="M:BindOpen.Data.Items.IBdoObject.Repair(System.String[],BindOpen.Data.Common.UpdateModes[])">
             <summary>
             
             </summary>
@@ -8091,25 +8091,7 @@
             <param name="updateModes"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItem.Repair``1(``0,System.String[],BindOpen.Data.Common.UpdateModes[])">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="item"></param>
-            <param name="specificationAreas"></param>
-            <param name="updateModes"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Data.Items.IBdoItem.Update(System.String[],BindOpen.Data.Common.UpdateModes[])">
-            <summary>
-            
-            </summary>
-            <param name="specificationAreas"></param>
-            <param name="updateModes"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Data.Items.IBdoItem.Update``1(``0,System.String[],BindOpen.Data.Common.UpdateModes[])">
+        <member name="M:BindOpen.Data.Items.IBdoObject.Repair``1(``0,System.String[],BindOpen.Data.Common.UpdateModes[])">
             <summary>
             
             </summary>
@@ -8119,7 +8101,25 @@
             <param name="updateModes"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItem.UpdateRuntimeInfo(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Scripting.IBdoScriptVariableSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Items.IBdoObject.Update(System.String[],BindOpen.Data.Common.UpdateModes[])">
+            <summary>
+            
+            </summary>
+            <param name="specificationAreas"></param>
+            <param name="updateModes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Items.IBdoObject.Update``1(``0,System.String[],BindOpen.Data.Common.UpdateModes[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="item"></param>
+            <param name="specificationAreas"></param>
+            <param name="updateModes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Items.IBdoObject.UpdateRuntimeInfo(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Scripting.IBdoScriptVariableSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -8127,13 +8127,13 @@
             <param name="scriptVariableSet">The script variable set to consider.</param>
             <param name="log"></param>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItem.UpdateStorageInfo(BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Items.IBdoObject.UpdateStorageInfo(BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
             <param name="log"></param>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItem.Clone``1">
+        <member name="M:BindOpen.Data.Items.IBdoObject.Clone``1">
             <summary>
             Clones this instance.
             </summary>
@@ -8369,14 +8369,14 @@
             <param name="key">The key of the item to return.</param>
             <returns>Returns the item with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.DataItemSet`1.GetCommonItemKeys(BindOpen.Data.Items.IBdoItemSet{`0})">
+        <member name="M:BindOpen.Data.Items.DataItemSet`1.GetCommonItemKeys(BindOpen.Data.Items.IBdoObjectSet{`0})">
             <summary>
             Gets the common keys with the specified set of elements.
             </summary>
             <param name="itemSet">The set of items to consider.</param>
             <returns>The names of the common object items with the specified set of elements.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.DataItemSet`1.Add(`0,BindOpen.Data.Items.IBdoItemSet{`0})">
+        <member name="M:BindOpen.Data.Items.DataItemSet`1.Add(`0,BindOpen.Data.Items.IBdoObjectSet{`0})">
             <summary>
             Adds a new item.
             </summary>
@@ -8386,7 +8386,7 @@
             Returns null if the new item is null or else its name is null.</returns>
             <remarks>The new item must have a name.</remarks>
         </member>
-        <member name="M:BindOpen.Data.Items.DataItemSet`1.Add(System.Collections.Generic.List{`0},BindOpen.Data.Items.IBdoItemSet{`0})">
+        <member name="M:BindOpen.Data.Items.DataItemSet`1.Add(System.Collections.Generic.List{`0},BindOpen.Data.Items.IBdoObjectSet{`0})">
             <summary>
             Adds the specified item.
             </summary>
@@ -8455,89 +8455,89 @@
             </summary>
             <param name="name">The name of the property that has changed.</param>
         </member>
-        <member name="T:BindOpen.Data.Items.IBdoItemSet`1">
+        <member name="T:BindOpen.Data.Items.IBdoObjectSet`1">
             <summary>
             
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="P:BindOpen.Data.Items.IBdoItemSet`1.Items">
+        <member name="P:BindOpen.Data.Items.IBdoObjectSet`1.Items">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.IBdoItemSet`1.Item(System.Int32)">
+        <member name="P:BindOpen.Data.Items.IBdoObjectSet`1.Item(System.Int32)">
             <summary>
             
             </summary>
             <param name="index"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Data.Items.IBdoItemSet`1.Item(System.String)">
+        <member name="P:BindOpen.Data.Items.IBdoObjectSet`1.Item(System.String)">
             <summary>
             
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Data.Items.IBdoItemSet`1.Count">
+        <member name="P:BindOpen.Data.Items.IBdoObjectSet`1.Count">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItemSet`1.Add(`0[])">
+        <member name="M:BindOpen.Data.Items.IBdoObjectSet`1.Add(`0[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItemSet`1.ClearItems">
+        <member name="M:BindOpen.Data.Items.IBdoObjectSet`1.ClearItems">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItemSet`1.Add(System.Collections.Generic.List{`0},BindOpen.Data.Items.IBdoItemSet{`0})">
+        <member name="M:BindOpen.Data.Items.IBdoObjectSet`1.Add(System.Collections.Generic.List{`0},BindOpen.Data.Items.IBdoObjectSet{`0})">
             <summary>
             
             </summary>
             <param name="items"></param>
             <param name="referenceCollection"></param>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItemSet`1.Add(`0,BindOpen.Data.Items.IBdoItemSet{`0})">
+        <member name="M:BindOpen.Data.Items.IBdoObjectSet`1.Add(`0,BindOpen.Data.Items.IBdoObjectSet{`0})">
             <summary>
             
             </summary>
             <param name="item"></param>
             <param name="referenceCollection"></param>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItemSet`1.GetCommonItemKeys(BindOpen.Data.Items.IBdoItemSet{`0})">
+        <member name="M:BindOpen.Data.Items.IBdoObjectSet`1.GetCommonItemKeys(BindOpen.Data.Items.IBdoObjectSet{`0})">
             <summary>
             
             </summary>
             <param name="itemSet"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItemSet`1.GetItem(System.String)">
+        <member name="M:BindOpen.Data.Items.IBdoObjectSet`1.GetItem(System.String)">
             <summary>
             
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItemSet`1.HasItem(System.String)">
+        <member name="M:BindOpen.Data.Items.IBdoObjectSet`1.HasItem(System.String)">
             <summary>
             
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItemSet`1.HasItems">
+        <member name="M:BindOpen.Data.Items.IBdoObjectSet`1.HasItems">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoItemSet`1.Remove(System.String[])">
+        <member name="M:BindOpen.Data.Items.IBdoObjectSet`1.Remove(System.String[])">
             <summary>
             
             </summary>
@@ -12335,7 +12335,7 @@
             Instantiates a new instance of the RoutineConfiguration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Runtime.BdoRoutineConfiguration.#ctor(System.String,BindOpen.Data.Items.IBdoItemSet{BindOpen.Logging.BdoConditionalEvent},BindOpen.Meta.IBdoMetaData[])">
+        <member name="M:BindOpen.Extensions.Runtime.BdoRoutineConfiguration.#ctor(System.String,BindOpen.Data.Items.IBdoObjectSet{BindOpen.Logging.BdoConditionalEvent},BindOpen.Meta.IBdoMetaData[])">
             <summary>
             Instantiates a new instance of the RoutineConfiguration class.
             </summary>

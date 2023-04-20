@@ -7,7 +7,7 @@ namespace BindOpen.Logging
     /// <summary>
     /// This class represents an event.
     /// </summary>
-    public class BdoEvent : BdoItem, IBdoEvent
+    public class BdoEvent : BdoObject, IBdoEvent
     {
         // ------------------------------------------
         // CONVERTERS
@@ -21,7 +21,7 @@ namespace BindOpen.Logging
         /// <param name="st">The string to consider.</param>
         public static implicit operator BdoEvent(string st)
         {
-            return BdoLogging.CreateEvent(EventKinds.Message, st);
+            return BdoLogging.NewEvent(EventKinds.Message).WithDisplayName(st) as BdoEvent;
         }
 
         /// <summary>
@@ -313,10 +313,10 @@ namespace BindOpen.Logging
         #endregion
 
         // ------------------------------------------
-        // IBdoItem interface
+        // IBdoObject interface
         // ------------------------------------------
 
-        #region IBdoItem
+        #region IBdoObject
 
         /// <summary>
         /// Clones this instance.
