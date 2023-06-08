@@ -1,4 +1,4 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Scoping.Data;
 using NUnit.Framework;
 using System.IO;
 using System.Linq;

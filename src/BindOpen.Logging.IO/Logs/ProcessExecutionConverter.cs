@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Logging
+﻿using BindOpen.Bpm;
+
+namespace BindOpen.Logging
 {
     /// <summary>
     /// This class represents a Xml helper.
@@ -12,7 +14,7 @@
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ProcessExecutionDto ToDto(this IProcessExecution poco)
+        public static ProcessExecutionDto ToDto(this IBdoProcessExecution poco)
         {
             if (poco == null) return null;
 
@@ -28,7 +30,7 @@
         /// </summary>
         /// <param name="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IProcessExecution ToPoco(this ProcessExecutionDto dto)
+        public static IBdoProcessExecution ToPoco(this ProcessExecutionDto dto)
         {
             if (dto == null) return null;
 

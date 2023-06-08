@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Helpers;
+﻿using BindOpen.Scoping.Data.Helpers;
 
 namespace BindOpen.Logging.Tests
 {

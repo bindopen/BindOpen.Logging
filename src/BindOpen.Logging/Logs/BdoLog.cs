@@ -1,6 +1,7 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Helpers;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Bpm;
+using BindOpen.Scoping.Data;
+using BindOpen.Scoping.Data.Helpers;
+using BindOpen.Scoping.Data.Meta;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,10 @@ namespace BindOpen.Logging
     /// </summary>
     public class BdoLog : BdoObject, IBdoDynamicLog
     {
+        public IList<IBdoLog> _Children { get => Children()?.ToList(); set { this.WithChildren(value?.ToArray()); } }
+
+        public IList<IBdoLogEvent> _Events { get; set; }
+
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------
@@ -50,7 +55,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// Execution of this instance.
         /// </summary>
-        public IProcessExecution Execution { get; set; }
+        public IBdoProcessExecution Execution { get; set; }
 
         // Task ----------------------------------
 
@@ -67,21 +72,16 @@ namespace BindOpen.Logging
         // Events ----------------------------------
 
         /// <summary>
-        /// Events of this instance.
-        /// </summary>
-        public IList<IBdoLogEvent> Events { get; set; }
-
-        /// <summary>
         /// The event with the specified ID.
         /// </summary>
         /// <param name="id"></param>
-        public IBdoLogEvent this[string id] => GetEvent(id, false);
+        public IBdoLogEvent this[string id] => this.Event(id, false);
 
         /// <summary>
         /// The event with the specified ID.
         /// </summary>
         /// <param name="index"></param>
-        public IBdoLogEvent this[int index] => Events?.GetAt(index);
+        public IBdoLogEvent this[int index] => _Events?.GetAt(index);
 
         // Tree ----------------------------------
 
@@ -91,26 +91,13 @@ namespace BindOpen.Logging
         public IBdoLog Parent { get; set; }
 
         /// <summary>
-        /// Root of this instance.
-        /// </summary>
-        public IBdoLog Root
-        {
-            get => Parent == null ? this : Parent.Root;
-        }
-
-        /// <summary>
-        /// The level of this instance.
-        /// </summary>
-        public int Level => Parent == null ? 0 : Parent.Level + 1;
-
-        /// <summary>
         /// 
         /// </summary>
         public void Sanitize()
         {
             if (this.HasErrorsOrExceptionsOrWarnings() == false)
             {
-                RemoveEvents(true, q => q.Kind == EventKinds.Checkpoint);
+                RemoveEvents(true, EventKinds.Checkpoint);
             }
         }
 
@@ -124,25 +111,19 @@ namespace BindOpen.Logging
 
         // Children
 
-        public IEnumerable<IBdoLog> Children() => Children(null);
+        public IEnumerable<IBdoLog> Children(Predicate<IBdoLog> filter = null)
+            => _Events?.Where(p => p.Log != null && filter?.Invoke(p.Log) != false).Select(p => p.Log).Cast<IBdoLog>() ?? Enumerable.Empty<IBdoLog>();
 
-        public IEnumerable<IBdoLog> Children(Predicate<IBdoLogEvent> filter)
-            => Events?.Where(p => filter?.Invoke(p) != false && p.Log != null).Select(p => p.Log).Cast<IBdoLog>() ?? Enumerable.Empty<IBdoLog>();
-
-        public bool HasChild()
+        public IBdoLog Child(Predicate<IBdoLog> filter = null, bool isRecursive = false)
         {
-            return Events?.Where(p => p.Log != null).Any(p => p.Log != null) ?? false;
-        }
-
-        public IBdoLog GetChild(string id, bool isRecursive = false)
-        {
-            if (Id.Equals(id, StringComparison.OrdinalIgnoreCase))
+            if (filter == null || filter?.Invoke(this) == true)
                 return this;
+
             if (isRecursive)
             {
-                foreach (var currentChildLog in Children())
+                foreach (var currentChildLog in _Children)
                 {
-                    var log = currentChildLog.GetChild(id, true);
+                    var log = currentChildLog.Child(filter, true);
                     if (log != null) return log;
                 }
             }
@@ -150,11 +131,24 @@ namespace BindOpen.Logging
             return null;
         }
 
+        public bool HasChild(Predicate<IBdoLog> filter = null)
+            => _Events?.Where(p => p.Log != null).Any(p => p.Log != null) ?? false;
+
         public IBdoLog InsertChild(EventKinds kind = EventKinds.Any, Action<IBdoLogEvent> updater = null)
         {
             var child = NewLog();
 
             InsertEvent(kind, updater).WithLog(child);
+
+            return child;
+        }
+
+        public IBdoLog InsertChild(Action<IBdoLog> updater)
+        {
+            var child = NewLog();
+            updater?.Invoke(child);
+
+            InsertEvent(EventKinds.Any).WithLog(child);
 
             return child;
         }
@@ -176,7 +170,7 @@ namespace BindOpen.Logging
         }
 
         public IBdoLog AddChild(
-            IBdoLog child,
+            IBdoLog child = null,
             EventKinds kind = EventKinds.Any,
             string title = null,
             string description = null,
@@ -188,89 +182,19 @@ namespace BindOpen.Logging
                 .WithLongDescription(description)
                 .WithDate(date)
                 .WithResultCode(resultCode)
-                .WithLog(child));
+                .WithLog(child ?? BdoLogging.NewLog()));
 
             return this;
         }
 
         // Events
 
-        public IEnumerable<IBdoLogEvent> GetEvents(bool isRecursive = true, Predicate<IBdoLogEvent> filter = null)
-        {
-            var events = Events?.Where(q => filter?.Invoke(q) == true).ToList() ?? new List<IBdoLogEvent>();
-
-            if (isRecursive)
-            {
-                foreach (var child in Children())
-                {
-                    events.AddRange((child as IBdoDynamicLog)?.GetEvents(isRecursive, filter));
-                }
-            }
-
-            return events;
-        }
-
-        /// <summary>
-        /// Returns the event of this instance with the specified ID.
-        /// </summary>
-        /// <param name="id">The ID of the event to return.</param>
-        /// <param name="isRecursive">Indicate whether the search is recursive.</param>
-        /// <returns>The event of this instance with the specified ID.</returns>
-        public IBdoLogEvent GetEvent(string id, bool isRecursive = false)
-        {
-            if (id == null || Events == null) return null;
-
-            IBdoLogEvent logEvent = Events.FirstOrDefault(q => q.BdoKeyEquals(id));
-            if (isRecursive)
-            {
-                foreach (var child in Children())
-                {
-                    logEvent = (child as IBdoDynamicLog)?.GetEvent(id, true);
-                    if (logEvent != null) return logEvent;
-                }
-            }
-
-            return logEvent;
-        }
-
-        public bool HasEvent(bool isRecursive = true, Predicate<IBdoLogEvent> filter = null)
-        {
-            if (Events == null) return false;
-
-            bool hasEvent = Events?.Any(q => filter?.Invoke(q) != false) == true;
-
-            var children = Children();
-            if (!hasEvent && isRecursive && children != null)
-            {
-                foreach (var child in children)
-                {
-                    if (hasEvent = (child as IBdoDynamicLog)?.HasEvent(isRecursive, filter) ?? false)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return hasEvent;
-        }
-
         public bool HasEvent(bool isRecursive = true, params EventKinds[] kinds)
-        {
-            var any = !kinds.Any() || kinds.Any(q => q == EventKinds.Any);
-            return HasEvent(isRecursive, q => any || kinds.Contains(q.Kind));
-        }
+            => this.HasEvent(q => kinds.Has(q.Kind), isRecursive);
 
-        public void RemoveEvents(bool isRecursive, Predicate<IBdoLogEvent> filter = null)
+        public int RemoveEvents(bool isRecursive = true, params EventKinds[] kinds)
         {
-            Events = Events?.Where(q => filter?.Invoke(q) != false).ToList();
-
-            if (isRecursive)
-            {
-                foreach (var child in Children())
-                {
-                    (child as IBdoDynamicLog)?.RemoveEvents(isRecursive, filter);
-                }
-            }
+            return this.RemoveEvents(q => kinds.Has(q.Kind), isRecursive);
         }
 
         public IBdoLogEvent InsertEvent(
@@ -307,8 +231,8 @@ namespace BindOpen.Logging
             if (ev != null && EventFilter?.Invoke(ev) != false)
             {
                 ev.WithParent(this);
-                Events ??= new List<IBdoLogEvent>();
-                Events.Add(ev);
+                _Events ??= new List<IBdoLogEvent>();
+                _Events.Add(ev);
             }
 
             return this;
@@ -328,7 +252,7 @@ namespace BindOpen.Logging
 
         public void BuildTree()
         {
-            foreach (var ev in Events)
+            foreach (var ev in _Events)
             {
                 ev.WithParent(this);
                 if (ev.Log != null)
@@ -337,27 +261,6 @@ namespace BindOpen.Logging
                     ev.Log.BuildTree();
                 }
             }
-        }
-
-        // Execution
-
-        /// <summary>
-        /// Starts this instance.
-        /// </summary>
-        public void Start()
-        {
-            Execution ??= new ProcessExecution();
-            Execution.Start();
-        }
-
-        /// <summary>
-        /// Ends this instance specifying the status.
-        /// </summary>
-        /// <param name="status">The new status to consider.</param>
-        public void End(ProcessExecutionStatus status = ProcessExecutionStatus.Completed)
-        {
-            Execution ??= new ProcessExecution();
-            Execution.End(status);
         }
 
         #endregion
@@ -450,20 +353,20 @@ namespace BindOpen.Logging
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone(params string[] areas)
+        public override object Clone()
         {
-            return Clone(null, Array.Empty<string>());
+            return Clone(null);
         }
 
-        public IBdoDynamicLog Clone(IBdoDynamicLog parent, params string[] areas)
+        public IBdoDynamicLog Clone(IBdoDynamicLog parent)
         {
-            var cloned = base.Clone(areas) as BdoLog;
+            var cloned = base.Clone() as BdoLog;
 
             cloned.Parent = parent;
             cloned.TaskConfig = TaskConfig?.Clone<IBdoConfiguration>();
             cloned.Detail = Detail?.Clone<IBdoMetaSet>();
-            cloned.Events = Events?.Select(p => p.Clone(cloned)).ToList();
-            cloned.Execution = Execution?.Clone<IProcessExecution>();
+            cloned.WithEvents(_Events?.Select(p => p.Clone(cloned)).ToArray());
+            cloned.Execution = Execution?.Clone<IBdoProcessExecution>();
 
             return cloned;
         }
@@ -495,11 +398,6 @@ namespace BindOpen.Logging
             _isDisposed = true;
 
             base.Dispose(isDisposing);
-        }
-
-        public void RemoveEvents(bool isRecursive = true, params EventKinds[] kinds)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion

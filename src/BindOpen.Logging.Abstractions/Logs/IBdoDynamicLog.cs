@@ -1,4 +1,4 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Scoping.Data;
 using System;
 using System.Collections.Generic;
 
@@ -9,8 +9,6 @@ namespace BindOpen.Logging
     /// </summary>
     public interface IBdoDynamicLog : IBdoLog, ITChildClonable<IBdoDynamicLog, IBdoDynamicLog>
     {
-        IEnumerable<IBdoLog> Children(Predicate<IBdoLogEvent> filter);
-
         /// <summary>
         /// 
         /// </summary>
@@ -20,11 +18,6 @@ namespace BindOpen.Logging
         /// 
         /// </summary>
         Predicate<IBdoLogEvent> EventFilter { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IList<IBdoLogEvent> Events { get; set; }
 
         // Events
 
@@ -42,33 +35,7 @@ namespace BindOpen.Logging
         /// <returns></returns>
         IBdoLogEvent this[string id] { get; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="isRecursive"></param>
-        /// <param name="kinds"></param>
-        /// <returns></returns>
-        IEnumerable<IBdoLogEvent> GetEvents(bool isRecursive, Predicate<IBdoLogEvent> filter = null);
-
-        bool HasEvent(bool isRecursive = true, Predicate<IBdoLogEvent> filter = null);
-
-        void RemoveEvents(bool isRecursive = true, Predicate<IBdoLogEvent> filter = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="isRecursive"></param>
-        /// <returns></returns>
-        IBdoLogEvent GetEvent(string id, bool isRecursive = false);
-
         IBdoLog InsertChild(
-            EventKinds kind = EventKinds.Any,
-            Action<IBdoLogEvent> updater = null);
-
-        IBdoLog AddEvent(IBdoLogEvent ev);
-
-        IBdoLogEvent InsertEvent(
             EventKinds kind = EventKinds.Any,
             Action<IBdoLogEvent> updater = null);
 
@@ -78,5 +45,15 @@ namespace BindOpen.Logging
         void BuildTree();
 
         new IBdoDynamicLog NewLog();
+
+        // Events
+
+        IList<IBdoLogEvent> _Events { get; set; }
+
+        IBdoLog AddEvent(IBdoLogEvent ev);
+
+        IBdoLogEvent InsertEvent(
+            EventKinds kind = EventKinds.Any,
+            Action<IBdoLogEvent> updater = null);
     }
 }

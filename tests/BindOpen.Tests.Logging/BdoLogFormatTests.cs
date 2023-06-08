@@ -1,6 +1,7 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Scoping.Data;
 using NUnit.Framework;
 using System;
+using System.Linq;
 
 namespace BindOpen.Logging.Tests
 {
@@ -34,6 +35,27 @@ namespace BindOpen.Logging.Tests
         }
 
         [Test, Order(1)]
+        public void LogApisTest()
+        {
+            BdoLog log = _testData.log;
+
+            var count = log.Events().Count();
+            Assert.That(log._Events.Count == count, "Bad ToString function.");
+
+            Assert.That(log.Events(q => q.DisplayName == "Message0").Any(), "Bad ToString function.");
+
+            Assert.That(log._Events[4].Parent == log, "Bad ToString function.");
+
+            log = BdoLogging.NewLog();
+            log.AddChild(
+                    BdoLogging.NewLog()
+                        .AddChild(),
+                    title: "Child0");
+            count = log.LastLogs().Count();
+            Assert.That(count == 2, "Bad ToString function.");
+        }
+
+        [Test, Order(2)]
         public void LogToStringTest()
         {
             BdoLog log = _testData.log;
@@ -53,10 +75,11 @@ namespace BindOpen.Logging.Tests
             Assert.That(st == st_expected, "Bad ToString function.");
         }
 
-        [Test, Order(2)]
+        [Test, Order(3)]
         public void LogEventToStringTest()
         {
-            BdoLogEvent logEvent = _testData.log.Events?[0];
+            BdoLog log = _testData.log;
+            var logEvent = log._Events?[0];
             var st = logEvent.ToString<BdoSnapLoggerFormat>();
             var st_expected = "- Error0";
 

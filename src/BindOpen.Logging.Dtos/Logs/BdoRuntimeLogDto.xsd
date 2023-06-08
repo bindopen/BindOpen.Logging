@@ -3,7 +3,7 @@
 
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/DescribedDataItem.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/ProcessExecution.xsd" />
-  <xs:include schemaLocation="https://docs.bindopen.org/xsd/TaskConfiguration.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/Configuration.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoMetaSet.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/Event.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/LogEvent.xsd" />
@@ -13,7 +13,7 @@
       <xs:extension base="DescribedDataItem">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="execution" type="ProcessExecution" />
-          <xs:element minOccurs="0" maxOccurs="1" name="task" type="BdoTaskConfiguration" />
+          <xs:element minOccurs="0" maxOccurs="1" name="task" type="BdoConfiguration" />
           <xs:element minOccurs="0" maxOccurs="1" name="detail" type="BdoMetaSet" />
           <xs:element minOccurs="0" maxOccurs="1" name="parent" type="BdoLog" />
           <xs:element minOccurs="0" maxOccurs="1" name="children" type="ArrayOfLog_Log" />

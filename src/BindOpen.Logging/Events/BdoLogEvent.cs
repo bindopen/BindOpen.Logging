@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Meta;
-using System;
+﻿using BindOpen.Scoping.Data.Meta;
 using System.Collections.Generic;
 
 namespace BindOpen.Logging
@@ -59,16 +58,6 @@ namespace BindOpen.Logging
         /// </summary>
         public IBdoDynamicLog Parent { get; set; }
 
-        /// <summary>
-        /// Root of this instance.
-        /// </summary>
-        public IBdoDynamicLog Root => Log?.Root as IBdoDynamicLog;
-
-        /// <summary>
-        /// The level of this instance.
-        /// </summary>
-        public int Level => Parent == null ? 0 : Parent.Level + 1;
-
         #endregion
 
         // ------------------------------------------
@@ -81,14 +70,14 @@ namespace BindOpen.Logging
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone(params string[] areas)
+        public override object Clone()
         {
-            return Clone(null, Array.Empty<string>());
+            return Clone(null);
         }
 
-        public IBdoLogEvent Clone(IBdoDynamicLog parent, params string[] areas)
+        public IBdoLogEvent Clone(IBdoDynamicLog parent)
         {
-            var cloned = base.Clone(areas) as BdoLogEvent;
+            var cloned = base.Clone() as BdoLogEvent;
 
             cloned.Parent = parent;
             cloned.Log = Log?.Clone(parent) as BdoLog;

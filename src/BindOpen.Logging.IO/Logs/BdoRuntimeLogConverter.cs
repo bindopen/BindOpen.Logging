@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Scoping.Data;
+using BindOpen.Scoping.Data.Meta;
 using System.Linq;
 
 namespace BindOpen.Logging
@@ -25,7 +25,7 @@ namespace BindOpen.Logging
                 Description = poco.Description,
                 Detail = poco.Detail.ToDto(),
                 DisplayName = poco.DisplayName,
-                Events = poco.Events?.Select(q => q.ToDto()).ToList(),
+                Events = poco._Events?.Select(q => q.ToDto()).ToList(),
                 Execution = poco.Execution.ToDto(),
                 Task = poco.TaskConfig.ToDto()
             };

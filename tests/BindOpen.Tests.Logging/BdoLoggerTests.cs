@@ -1,4 +1,4 @@
-﻿using BindOpen.Scopes;
+﻿using BindOpen.Scoping.Scopes;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Serilog;

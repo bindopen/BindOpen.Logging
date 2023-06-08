@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Dtos.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Scoping.Dtos.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Dtos" Version="1.2.24" />
+    <PackageReference Include="BindOpen.Scoping.Dtos" Version="1.2.39" />
   </ItemGroup>
 
   <ItemGroup>

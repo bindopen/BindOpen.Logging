@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Scoping.Data;
+using BindOpen.Scoping.Data.Meta;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;

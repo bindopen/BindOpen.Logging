@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Scoping.Data;
+using BindOpen.Scoping.Data.Meta;
 using System;
 
 namespace BindOpen.Logging
@@ -322,9 +322,9 @@ namespace BindOpen.Logging
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone(params string[] areas)
+        public override object Clone()
         {
-            var cloned = base.Clone(areas) as BdoEvent;
+            var cloned = base.Clone<BdoEvent>();
 
             cloned.Detail = Detail?.Clone<BdoMetaSet>();
 

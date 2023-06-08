@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Scoping.Data;
+using BindOpen.Scoping.Data.Helpers;
 using System;
 
 namespace BindOpen.Logging
@@ -20,9 +20,9 @@ namespace BindOpen.Logging
             {
                 var st = log.DisplayName
                    + (!string.IsNullOrEmpty(log.Description) ? " | " + log.Description + Environment.NewLine : "");
-                if (log.Events != null)
+                if (log._Events != null)
                 {
-                    foreach (var ev in log.Events)
+                    foreach (var ev in log._Events)
                     {
                         st += ToString(ev) + Environment.NewLine;
                     }
@@ -41,8 +41,8 @@ namespace BindOpen.Logging
         {
             if (ev != null)
             {
-                int level = ev.Level;
-                string indent = new string(' ', (level < 0 ? 0 : level - 1) * 2);
+                int level = ev.Level();
+                var indent = new string(' ', (level < 1 ? 0 : level - 1) * 2);
 
                 var displayName = ev.DisplayName ?? ev.Log?.DisplayName;
                 var description = ev.Description ?? ev.Log?.Description;

@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Conditions;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Scoping.Data;
+using BindOpen.Scoping.Data.Conditions;
+using BindOpen.Scoping.Data.Meta;
 using Microsoft.Extensions.Logging;
 using System;
 
@@ -110,7 +110,7 @@ namespace BindOpen.Logging
             EventKinds kind,
             Action<BdoLogEvent> updater = null)
         {
-            var ev = NewEvent<BdoLogEvent>(kind, updater);
+            var ev = NewEvent(kind, updater);
 
             return ev;
         }
@@ -130,7 +130,7 @@ namespace BindOpen.Logging
             EventKinds kind,
             Action<BdoConditionalEvent> updater)
         {
-            var ev = NewEvent<BdoConditionalEvent>(kind, updater)
+            var ev = NewEvent(kind, updater)
                 .WithCondition(condition);
 
             return ev;
@@ -172,7 +172,7 @@ namespace BindOpen.Logging
         public static TBdoLogger<T> NewLogger<T>(ILogger logger)
             where T : IBdoLoggerFormat, new()
         {
-            var bdoLogger = new TBdoLogger<T>();
+            var bdoLogger = BdoData.New<TBdoLogger<T>>();
             bdoLogger.SetNative(logger);
 
             return bdoLogger;

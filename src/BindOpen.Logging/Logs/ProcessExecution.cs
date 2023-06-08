@@ -1,17 +1,14 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Helpers;
-using BindOpen.Data.Meta;
-using BindOpen.Logging;
+﻿using BindOpen.Bpm;
+using BindOpen.Scoping.Data;
+using BindOpen.Scoping.Data.Meta;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 
 namespace BindOpen.Logging
 {
     /// <summary>
     /// This class represents the process execution.
     /// </summary>
-    public class ProcessExecution : BdoObject, IProcessExecution
+    public class ProcessExecution : BdoObject, IBdoProcessExecution
     {
         // ------------------------------------------
         // VARIABLES
@@ -19,18 +16,8 @@ namespace BindOpen.Logging
 
         #region Variables
 
-        private readonly IBdoLog _log = null;
-
         private ProcessExecutionStatus _status = ProcessExecutionStatus.None;
         private ProcessExecutionState _state = ProcessExecutionState.None;
-        private string _customStatus = null;
-        private float _progressIndex = 0;
-        private float _progressMax = 100;
-
-        private string _startDate = null;
-        private string _restartDate = null;
-        private string _endDate = null;
-        private int _resultLevel = 0;   // Estimated by the programmer. Over a certain number the result could be considered as satisfying.
 
         #endregion
 
@@ -58,27 +45,13 @@ namespace BindOpen.Logging
         /// Progression index of this instance. By default it is set to 0.
         /// </summary>
         /// <seealso cref="ProgressMax"/>
-        public float ProgressIndex
-        {
-            get { return _progressIndex; }
-            set
-            {
-                _progressIndex = value;
-            }
-        }
+        public float ProgressIndex { get; set; }
 
         /// <summary>
         /// Maximum progression of this instance. By default, it is set to 100.
         /// </summary>
         /// <seealso cref="ProgressIndex"/>
-        public float ProgressMax
-        {
-            get { return _progressMax; }
-            set
-            {
-                _progressMax = value;
-            }
-        }
+        public float ProgressMax { get; set; }
 
         // States -------------------------------------
 
@@ -92,8 +65,10 @@ namespace BindOpen.Logging
             {
                 _status = value;
                 ProcessExecutionState processExecutionState;
-                if (_state != (processExecutionState = ProcessExecution.GetState(_status)))
+                if (_state != (processExecutionState = _status.ToState()))
+                {
                     _state = processExecutionState;
+                }
             }
         }
 
@@ -106,77 +81,46 @@ namespace BindOpen.Logging
             set
             {
                 _state = value;
-                if (!ProcessExecution.GetStatuses(_state).Contains(_status))
-                    _status = ProcessExecution.GetDefaultStatus(_state);
+                if (!_state.ToStatuses().Contains(_status))
+                    _status = _state.ToDefaultStatus();
             }
         }
 
         /// <summary>
         /// Custom status of this instance.
         /// </summary>
-        public string CustomStatus
-        {
-            get { return _customStatus; }
-            set
-            {
-                _customStatus = value;
-            }
-        }
+        public string CustomStatus { get; set; }
 
         // Time -------------------------------------
 
         /// <summary>
         /// Start date of this instance.
         /// </summary>
-        public string StartDate
-        {
-            get { return _startDate; }
-            set
-            {
-                _startDate = value;
-            }
-        }
+        public DateTime? StartDate { get; set; }
 
         /// <summary>
         /// Re-start date of this instance.
         /// </summary>
-        public string RestartDate
-        {
-            get { return _restartDate; }
-            set
-            {
-                _restartDate = value;
-            }
-        }
+        public DateTime? RestartDate { get; set; }
 
         /// <summary>
         /// End date of this instance.
         /// </summary>
-        public string EndDate
-        {
-            get { return _endDate; }
-            set
-            {
-                _endDate = value;
-            }
-        }
+        public DateTime? EndDate { get; set; }
 
         /// <summary>
         /// End date of this instance.
         /// </summary>
-        public string Duration
+        public TimeSpan? Duration
         {
             get
             {
-                if (DateTime.TryParseExact(_startDate, StringHelper.__DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime aExecutionStartDate))
+                if (StartDate != null && EndDate != null)
                 {
-                    if (DateTime.TryParseExact(_endDate, StringHelper.__DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime aExecutionEndDate))
-                    {
-                        return aExecutionEndDate.Subtract(aExecutionStartDate).ToString();
-                    }
+                    return EndDate.Value.Subtract(StartDate.Value);
                 }
 
-                return string.Empty;
+                return null;
             }
         }
 
@@ -186,14 +130,7 @@ namespace BindOpen.Logging
         /// Result level of this instance. Over a certain value the result can be considered 
         /// as satisfying.
         /// </summary>
-        public int ResultLevel
-        {
-            get { return _resultLevel; }
-            set
-            {
-                _resultLevel = value;
-            }
-        }
+        public int ResultLevel { get; set; }
 
         #endregion
 
@@ -208,201 +145,6 @@ namespace BindOpen.Logging
         /// </summary>
         public ProcessExecution()
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the ProcessExecution class.
-        /// </summary>
-        public ProcessExecution(IBdoLog log) : this()
-        {
-            _log = log;
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // ACCESSORS
-        // ------------------------------------------
-
-        #region Accessors
-
-        /// <summary>
-        /// Get the process execution state.
-        /// </summary>
-        /// <param name="aString">The execution state string.</param>
-        public static ProcessExecutionState GetState(String aString)
-        {
-            if (!Enum.TryParse<ProcessExecutionState>(aString, true, out ProcessExecutionState state))
-                state = ProcessExecutionState.None;
-
-            return state;
-        }
-
-        /// <summary>
-        /// Get the process execution status.
-        /// </summary>
-        /// <param name="aString">The execution status string.</param>
-        public static ProcessExecutionStatus GetStatus(String aString)
-        {
-            if (!Enum.TryParse<ProcessExecutionStatus>(aString, true, out ProcessExecutionStatus status))
-                status = ProcessExecutionStatus.None;
-
-            return status;
-        }
-
-        /// <summary>
-        /// Get the process execution statuses corresponding to the specified state.
-        /// </summary>
-        /// <param name="state">The state to consider.</param>
-        public static List<ProcessExecutionStatus> GetStatuses(ProcessExecutionState state)
-        {
-            return state switch
-            {
-                ProcessExecutionState.Ended => new List<ProcessExecutionStatus>()
-                    {
-                        ProcessExecutionStatus.Completed,
-                        ProcessExecutionStatus.NothingDone,
-                        ProcessExecutionStatus.Stopped,
-                        ProcessExecutionStatus.Stopped_Error,
-                        ProcessExecutionStatus.Stopped_Exception,
-                        ProcessExecutionStatus.Stopped_User
-                    },
-                ProcessExecutionState.Pending => new List<ProcessExecutionStatus>()
-                    {
-                        ProcessExecutionStatus.Processing,
-                        ProcessExecutionStatus.Queueing,
-                        ProcessExecutionStatus.Waiting
-                    },
-                _ => new List<ProcessExecutionStatus>(),
-            };
-        }
-
-        /// <summary>
-        /// Gets the default status of the specified state.
-        /// </summary>
-        /// <param name="state">The state to consider.</param>
-        public static ProcessExecutionStatus GetDefaultStatus(ProcessExecutionState state)
-        {
-            return state switch
-            {
-                ProcessExecutionState.Pending => ProcessExecutionStatus.Processing,
-                ProcessExecutionState.Ended => ProcessExecutionStatus.Stopped,
-                _ => ProcessExecutionStatus.NothingDone,
-            };
-        }
-
-        /// <summary>
-        /// Get the process execution statuse corresponding to the specified state.
-        /// </summary>
-        /// <param name="status">The status to consider.</param>
-        public static ProcessExecutionState GetState(ProcessExecutionStatus status)
-        {
-            switch (status)
-            {
-                case ProcessExecutionStatus.Completed:
-                case ProcessExecutionStatus.Stopped:
-                case ProcessExecutionStatus.Stopped_Error:
-                case ProcessExecutionStatus.Stopped_Exception:
-                case ProcessExecutionStatus.Stopped_User:
-                    return ProcessExecutionState.Ended;
-                case ProcessExecutionStatus.Queueing:
-                case ProcessExecutionStatus.Waiting:
-                case ProcessExecutionStatus.Processing:
-                    return ProcessExecutionState.Pending;
-                case ProcessExecutionStatus.None:
-                case ProcessExecutionStatus.NothingDone:
-                    break;
-            }
-
-            return ProcessExecutionState.None;
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // MUTATORS
-        // ------------------------------------------
-
-        #region Mutators
-
-        /// <summary>
-        /// Starts this instance.
-        /// </summary>
-        public void Start()
-        {
-            _startDate = DateTime.Now.ToString(DataValueTypes.Date);
-            _restartDate = string.Empty;
-            _endDate = string.Empty;
-            _state = ProcessExecutionState.Pending;
-            _status = ProcessExecutionStatus.Processing;
-            _progressIndex = 0;
-
-            _log?.AddEvent(EventKinds.Checkpoint, "Task started");
-        }
-
-        /// <summary>
-        /// Ends this instance specifying the status.
-        /// </summary>
-        /// <param name="status">The new status to consider.</param>
-        public void End(ProcessExecutionStatus status = ProcessExecutionStatus.Completed)
-        {
-            if (!ProcessExecution.GetStatuses(ProcessExecutionState.Ended).Contains(status)) return;
-
-            _endDate = DateTime.Now.ToString(DataValueTypes.Date);
-            _state = ProcessExecutionState.Ended;
-            _status = status;
-
-            if (_log != null)
-            {
-                switch (status)
-                {
-                    case ProcessExecutionStatus.Completed:
-                        _progressIndex = _progressMax;
-                        _log.AddEvent(EventKinds.Checkpoint, "Task completed");
-                        break;
-                    case ProcessExecutionStatus.NothingDone:
-                        _progressIndex = _progressMax;
-                        _log.AddEvent(EventKinds.Checkpoint, "Task completed with nothing done");
-                        break;
-                    case ProcessExecutionStatus.Stopped_Exception:
-                        _log.AddEvent(EventKinds.Checkpoint, "Task stopped by exception");
-                        break;
-                    case ProcessExecutionStatus.Stopped_User:
-                        _log.AddEvent(EventKinds.Checkpoint, "Task stopped by user");
-                        break;
-                    default:
-                        _log.AddEvent(EventKinds.Checkpoint, "Task stopped");
-                        break;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Restarts this instance.
-        /// </summary>
-        public void Restart()
-        {
-            _restartDate = DateTime.Now.ToString(DataValueTypes.Date);
-            _endDate = string.Empty;
-            _state = ProcessExecutionState.Pending;
-            _status = ProcessExecutionStatus.Processing;
-            _progressIndex = 0;
-
-            _log?.AddEvent(EventKinds.Checkpoint, "Task re-started");
-        }
-
-        /// <summary>
-        /// Resumes this instance.
-        /// </summary>
-        public void Resume()
-        {
-            _restartDate = DateTime.Now.ToString(DataValueTypes.Date);
-            _endDate = string.Empty;
-            _state = ProcessExecutionState.Pending;
-            _status = ProcessExecutionStatus.Processing;
-            _progressIndex = 0;
-
-            _log?.AddEvent(EventKinds.Checkpoint, "Task resume");
         }
 
         #endregion
@@ -426,13 +168,16 @@ namespace BindOpen.Logging
                 return;
             }
 
-            _log?.Dispose();
-
             _isDisposed = true;
 
             base.Dispose(isDisposing);
         }
 
-        #endregion   
+        public string Key()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

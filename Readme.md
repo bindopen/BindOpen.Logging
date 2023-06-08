@@ -2,7 +2,7 @@
 
 -----
 
-# BindOpen
+# BindOpen.Logging
 
 BindOpen is a framework that allows you to build widely-extended applications.
 
@@ -30,7 +30,7 @@ The BindOpen Blog is where we announce new features, write engineering blog post
 
 [BindOpen.Mango](https://github.com/bindopen/BindOpen.Mango) contains the base BindOpen framework packages.
 
-[BindOpen.Databases](https://github.com/bindopen/BindOpen.Databases) allows you to build your database queries easily.
+[BindOpen.Scoping.Databases](https://github.com/bindopen/BindOpen.Scoping.Databases) allows you to build your database queries easily.
 
 [BindOpen.Docs](https://github.com/bindopen/BindOpen.Docs) contains BindOpen's documentation.
 

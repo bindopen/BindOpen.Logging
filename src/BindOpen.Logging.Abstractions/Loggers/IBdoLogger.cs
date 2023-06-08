@@ -1,4 +1,4 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Scoping.Data;
 using Microsoft.Extensions.Logging;
 
 namespace BindOpen.Logging

@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Helpers;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Scoping.Data;
+using BindOpen.Scoping.Data.Helpers;
+using BindOpen.Scoping.Data.Meta;
 
 namespace BindOpen.Logging
 {

@@ -1,4 +1,4 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Scoping.Data;
 using Microsoft.Extensions.Logging;
 
 namespace BindOpen.Logging
@@ -71,9 +71,11 @@ namespace BindOpen.Logging
                         break;
                 }
 
-                if (ev?.Log?.Events != null)
+                var events = ev?.Log?.Events();
+
+                if (events != null)
                 {
-                    foreach (IBdoLogEvent logEvent in ev.Log.Events)
+                    foreach (IBdoLogEvent logEvent in events)
                     {
                         Log(logEvent);
                     }
