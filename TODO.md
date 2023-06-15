@@ -1,4 +1,4 @@
-Todo list for BindOpen.Logging
+Todo list for BindOpen.System.Logging
 ====
 
 ## Next tasks
