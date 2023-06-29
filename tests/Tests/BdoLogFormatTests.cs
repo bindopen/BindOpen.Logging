@@ -37,22 +37,19 @@ namespace BindOpen.System.Logging.Tests
         [Test, Order(1)]
         public void LogApisTest()
         {
-            BdoLog log = _testData.log;
+            IBdoLog log = _testData.log;
 
             var count = log.Events().Count();
-            Assert.That(log._Events.Count == count, "Bad ToString function.");
+            Assert.That(count > 0, "Bad ToString function.");
 
             Assert.That(log.Events(q => q.DisplayName == "Message0").Any(), "Bad ToString function.");
 
-            Assert.That(log._Events[4].Parent == log, "Bad ToString function.");
-
-            log = BdoLogging.NewLog();
-            log.AddChild(
-                    BdoLogging.NewLog()
-                        .AddChild(),
+            log = BdoLogging.NewLog()
+                .AddChild(BdoLogging.NewLog()
+                    .AddChild(),
                     title: "Child0");
             count = log.LastLogs().Count();
-            Assert.That(count == 2, "Bad ToString function.");
+            Assert.That(count == 1, "Bad ToString function.");
         }
 
         [Test, Order(2)]

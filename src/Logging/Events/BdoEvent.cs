@@ -74,17 +74,6 @@ namespace BindOpen.System.Logging
         /// </summary>
         public string Id { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IBdoEvent WithId(string id)
-        {
-            Id = id;
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------
@@ -97,17 +86,6 @@ namespace BindOpen.System.Logging
         /// 
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoEvent WithName(string name)
-        {
-            Name = BdoData.NewName(name, "event_");
-            return this;
-        }
 
         #endregion
 
@@ -162,11 +140,6 @@ namespace BindOpen.System.Logging
         public string LongDescription { get; set; }
 
         /// <summary>
-        /// Detail of this instance.
-        /// </summary>
-        public IBdoMetaSet Detail { get; set; }
-
-        /// <summary>
         /// Criticality of this instance.
         /// </summary>
         public Criticalities Criticality { get; set; } = Criticalities.None;
@@ -180,135 +153,9 @@ namespace BindOpen.System.Logging
         #region IDetailedDataItem
 
         /// <summary>
-        /// 
+        /// Detail of this instance.
         /// </summary>
-        /// <param name="detail"></param>
-        /// <returns></returns>
-        public IBdoEvent WithDetail(IBdoMetaSet detail)
-        {
-            Detail = detail;
-
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="elements"></param>
-        public IBdoEvent WithDetail(params IBdoMetaData[] elements)
-        {
-            return WithDetail(BdoMeta.NewSet(elements));
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // IStorable implementation
-        // ------------------------------------------
-
-        #region IStorable
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        public IBdoEvent WithCreationDate(DateTime? date)
-        {
-            CreationDate = date;
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        public IBdoEvent WithLastModificationDate(DateTime? date)
-        {
-            LastModificationDate = date;
-            return this;
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // MUTATORS
-        // ------------------------------------------
-
-        #region Mutators
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="criticality"></param>
-        /// <returns></returns>
-        public IBdoEvent WithCriticality(Criticalities criticality)
-        {
-            Criticality = criticality;
-
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        public IBdoEvent WithDate(DateTime? date)
-        {
-            Date = date;
-
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="kind"></param>
-        /// <returns></returns>
-        public IBdoEvent WithKind(EventKinds kind)
-        {
-            Kind = kind;
-
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="longDescription"></param>
-        /// <returns></returns>
-        public IBdoEvent WithLongDescription(string longDescription)
-        {
-            LongDescription = longDescription;
-
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="displayName"></param>
-        /// <returns></returns>
-        public IBdoEvent WithDisplayName(string displayName)
-        {
-            DisplayName = displayName;
-
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="description"></param>
-        /// <returns></returns>
-        public IBdoEvent WithDescription(string description)
-        {
-            Description = description;
-
-            return this;
-        }
+        public IBdoMetaSet Detail { get; set; }
 
         #endregion
 

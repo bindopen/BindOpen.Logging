@@ -13,7 +13,7 @@ namespace BindOpen.System.Logging
     /// </summary>
     [XmlType("ProcessExecution", Namespace = "https://docs.bindopen.org/xsd")]
     [XmlRoot(ElementName = "processExecution", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
-    public class ProcessExecutionDto : IDto
+    public class ProcessExecutionDto : IBdoDto
     {
         // ------------------------------------------
         // PROPERTIES

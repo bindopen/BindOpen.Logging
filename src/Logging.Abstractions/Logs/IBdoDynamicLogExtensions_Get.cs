@@ -7,7 +7,7 @@ namespace BindOpen.System.Logging
     /// <summary>
     /// 
     /// </summary>
-    public static partial class IBdoLogExtensions
+    public static partial class IBdoDynamicLogExtensions
     {
         /// <summary>
         /// 
