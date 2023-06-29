@@ -13,7 +13,7 @@ namespace BindOpen.System.Logging
     [XmlType("Event", Namespace = "https://docs.bindopen.org/xsd")]
     [XmlRoot(ElementName = "event", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(BdoConditionalEventDto))]
-    public class BdoEventDto : IDto
+    public class BdoEventDto : IBdoDto
     {
         // ------------------------------------------
         // PROPERTIES
