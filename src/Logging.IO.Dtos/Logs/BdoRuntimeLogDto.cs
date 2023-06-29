@@ -12,7 +12,7 @@ namespace BindOpen.System.Logging
     /// </summary>
     [XmlType("Log", Namespace = "https://docs.bindopen.org/xsd")]
     [XmlRoot(ElementName = "log", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
-    public class BdoLogDto : IDto
+    public class BdoLogDto : IBdoDto
     {
         // ------------------------------------------
         // PROPERTIES
