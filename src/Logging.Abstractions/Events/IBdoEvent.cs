@@ -9,7 +9,7 @@ namespace BindOpen.System.Logging
     public interface IBdoEvent :
         IIdentified, INamed,
         IDisplayNamed, IDescribed, IReferenced,
-        IStorable, IBdoDetailed,
+        IDated, IBdoDetailed,
         IDisposable
     {
         /// <summary>
