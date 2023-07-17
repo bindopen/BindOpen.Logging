@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.System.IO.Dtos" Version="1.2.58" />
+    <PackageReference Include="BindOpen.System.IO.Dtos" Version="1.2.59" />
   </ItemGroup>
 
   <ItemGroup>
