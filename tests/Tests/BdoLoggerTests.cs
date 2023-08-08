@@ -57,6 +57,9 @@ namespace BindOpen.System.Logging.Tests
                 _log.AddChild(BdoLogging.NewLog());
             }
 
+            _log.WithEvents(_log._Events?.ToArray());
+            _log.WithChildren(_log._Children?.ToArray());
+
             Test(_log);
         }
     }

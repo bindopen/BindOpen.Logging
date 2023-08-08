@@ -13,9 +13,9 @@ namespace BindOpen.System.Logging
     /// </summary>
     public class BdoLog : BdoObject, IBdoDynamicLog
     {
-        public IList<IBdoLog> _Children { get => Children()?.ToList(); set { this.WithChildren(value?.ToArray()); } }
+        List<IBdoLogEvent> _events;
 
-        public IList<IBdoLogEvent> _Events { get; set; }
+        public IList<IBdoLogEvent> _Events => _events;
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -28,6 +28,33 @@ namespace BindOpen.System.Logging
         /// </summary>
         public BdoLog() : base()
         {
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IBdoDynamicLog Implementation
+        // ------------------------------------------
+
+        #region IBdoDynamicLog
+
+        public int RemoveEvents(
+            Predicate<IBdoLogEvent> filter = null,
+            bool isRecursive = true)
+        {
+            var i = 0;
+
+            i += _events?.RemoveAll(q => filter?.Invoke(q) != false) ?? 0;
+
+            if (isRecursive)
+            {
+                foreach (var child in _Children)
+                {
+                    i += RemoveEvents(filter, isRecursive);
+                }
+            }
+
+            return i;
         }
 
         #endregion
@@ -81,14 +108,9 @@ namespace BindOpen.System.Logging
         /// The event with the specified ID.
         /// </summary>
         /// <param name="index"></param>
-        public IBdoLogEvent this[int index] => _Events?.GetAt(index);
+        public IBdoLogEvent this[int index] => _events?.GetAt(index);
 
         // Tree ----------------------------------
-
-        /// <summary>
-        /// Parent of this instance.
-        /// </summary>
-        public IBdoLog Parent { get; set; }
 
         /// <summary>
         /// 
@@ -109,10 +131,29 @@ namespace BindOpen.System.Logging
 
         #region IBdoLog
 
+        /// <summary>
+        /// Parent of this instance.
+        /// </summary>
+        public IBdoLog Parent { get; set; }
+
+        public IList<IBdoLog> _Children
+        {
+            get => Children()?.ToList();
+            set
+            {
+                this.RemoveEvents(q => q.Log != null, false);
+
+                foreach (var log in value)
+                {
+                    AddChild(log);
+                }
+            }
+        }
+
         // Children
 
         public IEnumerable<IBdoLog> Children(Predicate<IBdoLog> filter = null)
-            => _Events?.Where(p => p.Log != null && filter?.Invoke(p.Log) != false).Select(p => p.Log).Cast<IBdoLog>() ?? Enumerable.Empty<IBdoLog>();
+                => _events?.Where(p => p.Log != null && filter?.Invoke(p.Log) != false).Select(p => p.Log).Cast<IBdoLog>() ?? Enumerable.Empty<IBdoLog>();
 
         public IBdoLog Child(Predicate<IBdoLog> filter = null, bool isRecursive = false)
         {
@@ -132,7 +173,7 @@ namespace BindOpen.System.Logging
         }
 
         public bool HasChild(Predicate<IBdoLog> filter = null)
-            => _Events?.Where(p => p.Log != null).Any(p => p.Log != null) ?? false;
+            => _events?.Where(p => p.Log != null).Any(p => p.Log != null) ?? false;
 
         public IBdoLog InsertChild(EventKinds kind = EventKinds.Any, Action<IBdoLogEvent> updater = null)
         {
@@ -231,8 +272,8 @@ namespace BindOpen.System.Logging
             if (ev != null && EventFilter?.Invoke(ev) != false)
             {
                 ev.WithParent(this);
-                _Events ??= new List<IBdoLogEvent>();
-                _Events.Add(ev);
+                _events ??= new List<IBdoLogEvent>();
+                _events.Add(ev);
             }
 
             return this;
@@ -252,7 +293,7 @@ namespace BindOpen.System.Logging
 
         public void BuildTree()
         {
-            foreach (var ev in _Events)
+            foreach (var ev in _events)
             {
                 ev.WithParent(this);
                 if (ev.Log != null)
@@ -365,7 +406,7 @@ namespace BindOpen.System.Logging
             cloned.Parent = parent;
             cloned.TaskConfig = TaskConfig?.Clone<IBdoConfiguration>();
             cloned.Detail = Detail?.Clone<IBdoMetaSet>();
-            cloned.WithEvents(_Events?.Select(p => p.Clone(cloned)).ToArray());
+            cloned.WithEvents(_events?.Select(p => p.Clone(cloned)).ToArray());
             cloned.Execution = Execution?.Clone<IBdoProcessExecution>();
 
             return cloned;
