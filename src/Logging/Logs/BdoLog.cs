@@ -60,6 +60,71 @@ namespace BindOpen.System.Logging
         #endregion
 
         // ------------------------------------------
+        // ITParent implementation
+        // ------------------------------------------
+
+        #region ITParent
+
+        /// <summary>
+        /// Parent of this instance.
+        /// </summary>
+        public IBdoLog Parent { get; set; }
+
+        public IList<IBdoLog> _Children
+        {
+            get => Children()?.ToList();
+            set
+            {
+                this.RemoveEvents(q => q.Log != null, false);
+
+                foreach (var log in value)
+                {
+                    AddChild(log);
+                }
+            }
+        }
+
+        public IEnumerable<IBdoLog> Children(Predicate<IBdoLog> filter = null)
+                => _events?.Where(p => p.Log != null && filter?.Invoke(p.Log) != false).Select(p => p.Log).Cast<IBdoLog>() ?? Enumerable.Empty<IBdoLog>();
+
+        public IBdoLog Child(Predicate<IBdoLog> filter = null, bool isRecursive = false)
+        {
+            if (filter == null || filter?.Invoke(this) == true)
+                return this;
+
+            if (isRecursive)
+            {
+                foreach (var currentChildLog in _Children)
+                {
+                    var log = currentChildLog.Child(filter, true);
+                    if (log != null) return log;
+                }
+            }
+
+            return null;
+        }
+
+        public bool HasChild(Predicate<IBdoLog> filter = null)
+            => _events?.Where(p => p.Log != null).Any(p => p.Log != null) ?? false;
+
+        public IBdoLog InsertChild(Action<IBdoLog> updater)
+        {
+            var child = NewLog();
+            updater?.Invoke(child);
+
+            InsertEvent(EventKinds.Any).WithLog(child);
+
+            return child;
+        }
+
+        public void RemoveChildren(Predicate<IBdoLog> filter = null)
+        {
+            _events?.RemoveAll(p => filter?.Invoke(p?.Log) != true);
+        }
+
+        #endregion
+
+        // ------------------------------------------
         // IBdoLog Implementation
         // ------------------------------------------
 
@@ -123,73 +188,11 @@ namespace BindOpen.System.Logging
             }
         }
 
-        #endregion
-
-        // ------------------------------------------
-        // IBdoLog implementation
-        // ------------------------------------------
-
-        #region IBdoLog
-
-        /// <summary>
-        /// Parent of this instance.
-        /// </summary>
-        public IBdoLog Parent { get; set; }
-
-        public IList<IBdoLog> _Children
-        {
-            get => Children()?.ToList();
-            set
-            {
-                this.RemoveEvents(q => q.Log != null, false);
-
-                foreach (var log in value)
-                {
-                    AddChild(log);
-                }
-            }
-        }
-
-        // Children
-
-        public IEnumerable<IBdoLog> Children(Predicate<IBdoLog> filter = null)
-                => _events?.Where(p => p.Log != null && filter?.Invoke(p.Log) != false).Select(p => p.Log).Cast<IBdoLog>() ?? Enumerable.Empty<IBdoLog>();
-
-        public IBdoLog Child(Predicate<IBdoLog> filter = null, bool isRecursive = false)
-        {
-            if (filter == null || filter?.Invoke(this) == true)
-                return this;
-
-            if (isRecursive)
-            {
-                foreach (var currentChildLog in _Children)
-                {
-                    var log = currentChildLog.Child(filter, true);
-                    if (log != null) return log;
-                }
-            }
-
-            return null;
-        }
-
-        public bool HasChild(Predicate<IBdoLog> filter = null)
-            => _events?.Where(p => p.Log != null).Any(p => p.Log != null) ?? false;
-
         public IBdoLog InsertChild(EventKinds kind = EventKinds.Any, Action<IBdoLogEvent> updater = null)
         {
             var child = NewLog();
 
             InsertEvent(kind, updater).WithLog(child);
-
-            return child;
-        }
-
-        public IBdoLog InsertChild(Action<IBdoLog> updater)
-        {
-            var child = NewLog();
-            updater?.Invoke(child);
-
-            InsertEvent(EventKinds.Any).WithLog(child);
 
             return child;
         }

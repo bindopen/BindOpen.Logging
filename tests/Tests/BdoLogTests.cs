@@ -26,7 +26,7 @@ namespace BindOpen.System.Logging.Tests
 
         private void Test(IBdoDynamicLog log)
         {
-            Assert.That(log.Errors().Count() == _testData.itemNumber, "Bad insertion of errors ({0} expected; {1} found)", _testData.itemNumber, _log.Errors().Count());
+            Assert.That(log.Errors(false).Count() == _testData.itemNumber, "Bad insertion of errors ({0} expected; {1} found)", _testData.itemNumber, _log.Errors().Count());
             Assert.That(log.Exceptions().Count() == _testData.itemNumber, "Bad insertion of exceptions ({0} expected; {1} found)", _testData.itemNumber, _log.Exceptions().Count());
             Assert.That(log.Messages().Count() == _testData.itemNumber, "Bad insertion of messages ({0} expected; {1} found)", _testData.itemNumber, _log.Messages().Count());
             Assert.That(log.Warnings().Count() == _testData.itemNumber, "Bad insertion of warnings ({0} expected; {1} found)", _testData.itemNumber, _log.Warnings().Count());
@@ -34,9 +34,13 @@ namespace BindOpen.System.Logging.Tests
         }
 
         [Test, Order(1)]
-        public void CreateEventsTest()
+        public void CreateTest()
         {
-            _log = BdoLogging.NewLog();
+            _log = BdoLogging.NewLog()
+                .WithDetail(
+                    BdoData.NewMeta("string", DataValueTypes.Text, "stringValue"),
+                    BdoData.NewMeta("int", DataValueTypes.Integer, 1500)
+                );
 
             for (int i = 0; i < _testData.itemNumber; i++)
             {
@@ -44,7 +48,10 @@ namespace BindOpen.System.Logging.Tests
                 _log.AddException("Exception" + i);
                 _log.AddMessage("Message" + i);
                 _log.AddWarning("Warning" + i);
-                _log.AddChild(new BdoLog());
+                _log.AddChild(BdoLogging.NewLog()
+                    .WithDisplayName("Child" + i)
+                    .AddError("Child_Error" + i + "_1")
+                );
             }
 
             Test(_log);
@@ -53,11 +60,11 @@ namespace BindOpen.System.Logging.Tests
         // Xml
 
         [Test, Order(2)]
-        public void SaveXmlEventsTest()
+        public void SaveXmlTest()
         {
             if (_log == null)
             {
-                CreateEventsTest();
+                CreateTest();
             }
 
             var log = BdoLogging.NewLog();
@@ -72,11 +79,11 @@ namespace BindOpen.System.Logging.Tests
         }
 
         [Test, Order(3)]
-        public void LoadXmlEventsTest()
+        public void LoadXmlTest()
         {
             if (_log == null || !File.Exists(_filePath_xml))
             {
-                SaveXmlEventsTest();
+                SaveXmlTest();
             }
 
             BdoLog log = BdoLogging.NewLog();
@@ -95,11 +102,11 @@ namespace BindOpen.System.Logging.Tests
         // Json
 
         [Test, Order(2)]
-        public void SaveJsonEventsTest()
+        public void SaveJsonTest()
         {
             if (_log == null)
             {
-                CreateEventsTest();
+                CreateTest();
             }
 
             var log = BdoLogging.NewLog();
@@ -114,11 +121,11 @@ namespace BindOpen.System.Logging.Tests
         }
 
         [Test, Order(3)]
-        public void LoadJsonEventsTest()
+        public void LoadJsonTest()
         {
             if (_log == null || !File.Exists(_filePath_json))
             {
-                SaveJsonEventsTest();
+                SaveJsonTest();
             }
 
             BdoLog log = BdoLogging.NewLog();

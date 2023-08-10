@@ -34,7 +34,7 @@ namespace BindOpen.System.Logging.Tests
         }
 
         [Test, Order(1)]
-        public void CreateEventsTest()
+        public void CreateTest()
         {
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()

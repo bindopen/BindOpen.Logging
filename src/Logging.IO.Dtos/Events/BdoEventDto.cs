@@ -10,8 +10,8 @@ namespace BindOpen.System.Logging
     /// <summary>
     /// This class represents an event.
     /// </summary>
-    [XmlType("Event", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "event", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("Event", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "event", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     [XmlInclude(typeof(BdoConditionalEventDto))]
     public class BdoEventDto : IBdoDto
     {
@@ -42,7 +42,7 @@ namespace BindOpen.System.Logging
         /// </summary>
         [JsonPropertyName("kind")]
         [XmlAttribute("kind")]
-        [DefaultValue(EventKinds.None)]
+        [DefaultValue(EventKinds.Any)]
         public EventKinds Kind { get; set; } = EventKinds.Other;
 
         /// <summary>

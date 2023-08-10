@@ -7,8 +7,8 @@ namespace BindOpen.System.Logging
     /// <summary>
     /// This class represents a conditional event.
     /// </summary>
-    [XmlType("ConditionalEvent", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "event", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ConditionalEvent", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "event", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BdoConditionalEventDto : BdoEventDto
     {
         // ------------------------------------------
