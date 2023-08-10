@@ -34,7 +34,7 @@ namespace BindOpen.System.Logging.Tests
         }
 
         [Test, Order(1)]
-        public void CreateEventsTest()
+        public void CreateTest()
         {
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
@@ -56,6 +56,9 @@ namespace BindOpen.System.Logging.Tests
                 _log.AddWarning("Warning" + i);
                 _log.AddChild(BdoLogging.NewLog());
             }
+
+            _log.WithEvents(_log._Events?.ToArray());
+            _log.WithChildren(_log._Children?.ToArray());
 
             Test(_log);
         }

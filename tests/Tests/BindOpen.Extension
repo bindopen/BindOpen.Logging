@@ -2,7 +2,7 @@
 
 <!-- Tests.Core -->
 <extension id="001444da-7c6e-4d00-a498-c9048cad1832"  name="tests.Core"
-  xmlns="https://docs.bindopen.org/xsd" xmlns:SchemaLocation="BdoExtensionDefinition BdoExtensionDefinition.xsd" >
+  xmlns="https://storage.bindopen.org/xsd/bindopen" xmlns:SchemaLocation="BdoExtensionDefinition BdoExtensionDefinition.xsd" >
   <creationDate>2010-08-05</creationDate>
   <lastModificationDate>2016-08-24</lastModificationDate>
   <title>

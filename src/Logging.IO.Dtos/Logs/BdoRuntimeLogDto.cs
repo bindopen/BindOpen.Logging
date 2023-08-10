@@ -10,8 +10,8 @@ namespace BindOpen.System.Logging
     /// <summary>
     /// This class represents a logger of tasks.
     /// </summary>
-    [XmlType("Log", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "log", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("Log", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "log", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BdoLogDto : IBdoDto
     {
         // ------------------------------------------

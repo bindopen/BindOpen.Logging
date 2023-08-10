@@ -77,9 +77,14 @@ namespace BindOpen.System.Logging
             params IBdoLogEvent[] events)
             where T : IBdoLog
         {
-            if (log is IBdoDynamicLog dynamicLog)
+            if (log is IBdoDynamicLog dynamicLog && events != null)
             {
-                dynamicLog._Events = events;
+                dynamicLog.RemoveEvents();
+
+                foreach (var ev in events)
+                {
+                    dynamicLog.AddEvent(ev);
+                }
             }
 
             return log;
@@ -218,57 +223,5 @@ namespace BindOpen.System.Logging
             params EventKinds[] kinds)
             where T : IBdoLog
             => log.HasEvent(q => kinds.Has(q.Kind), isRecursive);
-
-        public static int RemoveEvents<T>(
-            this T log,
-            Predicate<IBdoLogEvent> filter = null, bool isRecursive = true)
-            where T : IBdoLog
-        {
-            var i = 0;
-
-            if (log is IBdoDynamicLog dynamicLog)
-            {
-                i += dynamicLog._Events?.ToList().RemoveAll(q => filter?.Invoke(q) != false) ?? 0;
-
-                if (isRecursive)
-                {
-                    foreach (var child in dynamicLog._Children)
-                    {
-                        i += dynamicLog.RemoveEvents(filter, isRecursive);
-                    }
-                }
-            }
-
-            return i;
-        }
-
-
-        public static IEnumerable<IBdoLog> LastLogs(this IBdoLog log)
-        {
-            var list = new List<IBdoLog>();
-
-            if (log != null)
-            {
-                var child = log._Children == null ? default : log._Children.LastOrDefault();
-
-                if (child != null)
-                {
-                    if (child?._Children?.Any() == true)
-                    {
-                        foreach (var subChild in child._Children)
-                        {
-                            list.AddRange(subChild.LastLogs());
-                        }
-                    }
-                    else
-                    {
-                        list.Add(child);
-                    }
-                }
-            }
-
-            return list;
-        }
-
     }
 }
