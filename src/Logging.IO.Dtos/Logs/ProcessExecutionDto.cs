@@ -11,8 +11,8 @@ namespace BindOpen.System.Logging
     /// <summary>
     /// This class represents the process execution.
     /// </summary>
-    [XmlType("ProcessExecution", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "processExecution", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ProcessExecution", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "processExecution", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class ProcessExecutionDto : IBdoDto
     {
         // ------------------------------------------

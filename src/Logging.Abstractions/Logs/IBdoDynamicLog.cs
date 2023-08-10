@@ -48,12 +48,16 @@ namespace BindOpen.System.Logging
 
         // Events
 
-        IList<IBdoLogEvent> _Events { get; set; }
+        IList<IBdoLogEvent> _Events { get; }
 
         IBdoLog AddEvent(IBdoLogEvent ev);
 
         IBdoLogEvent InsertEvent(
             EventKinds kind = EventKinds.Any,
             Action<IBdoLogEvent> updater = null);
+
+        int RemoveEvents(
+            Predicate<IBdoLogEvent> filter = null,
+            bool isRecursive = true);
     }
 }

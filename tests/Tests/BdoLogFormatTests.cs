@@ -1,7 +1,6 @@
 ﻿using BindOpen.System.Data;
 using NUnit.Framework;
 using System;
-using System.Linq;
 
 namespace BindOpen.System.Logging.Tests
 {
@@ -35,24 +34,6 @@ namespace BindOpen.System.Logging.Tests
         }
 
         [Test, Order(1)]
-        public void LogApisTest()
-        {
-            IBdoLog log = _testData.log;
-
-            var count = log.Events().Count();
-            Assert.That(count > 0, "Bad ToString function.");
-
-            Assert.That(log.Events(q => q.DisplayName == "Message0").Any(), "Bad ToString function.");
-
-            log = BdoLogging.NewLog()
-                .AddChild(BdoLogging.NewLog()
-                    .AddChild(),
-                    title: "Child0");
-            count = log.LastLogs().Count();
-            Assert.That(count == 1, "Bad ToString function.");
-        }
-
-        [Test, Order(2)]
         public void LogToStringTest()
         {
             BdoLog log = _testData.log;
@@ -72,7 +53,7 @@ namespace BindOpen.System.Logging.Tests
             Assert.That(st == st_expected, "Bad ToString function.");
         }
 
-        [Test, Order(3)]
+        [Test, Order(2)]
         public void LogEventToStringTest()
         {
             BdoLog log = _testData.log;

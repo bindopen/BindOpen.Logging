@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Logging;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
@@ -10,8 +9,8 @@ namespace BindOpen.System.Logging
     /// <summary>
     /// This class represents a log event.
     /// </summary>
-    [XmlType("LogEvent", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "logEvent", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("LogEvent", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "logEvent", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BdoLogEventDto : BdoEventDto
     {
         // ------------------------------------------
