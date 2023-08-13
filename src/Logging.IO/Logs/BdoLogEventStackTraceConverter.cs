@@ -12,11 +12,11 @@
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static BdoLogEventStackTraceDto ToDto(this IBdoLogEventStackTrace poco)
+        public static LogEventStackTraceDto ToDto(this IBdoLogEventStackTrace poco)
         {
             if (poco == null) return null;
 
-            BdoLogEventStackTraceDto dto = new()
+            LogEventStackTraceDto dto = new()
             {
                 FilePath = poco.FilePath,
                 FullClassName = poco.FullClassName,
@@ -33,7 +33,7 @@
         /// </summary>
         /// <param name="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IBdoLogEventStackTrace ToPoco(this BdoLogEventStackTraceDto dto)
+        public static IBdoLogEventStackTrace ToPoco(this LogEventStackTraceDto dto)
         {
             if (dto == null) return null;
 

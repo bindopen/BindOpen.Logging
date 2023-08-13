@@ -9,7 +9,7 @@ namespace BindOpen.System.Logging
     /// </summary>
     [XmlType("ConditionalEvent", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "event", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoConditionalEventDto : BdoEventDto
+    public class ConditionalEventDto : EventDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -35,7 +35,7 @@ namespace BindOpen.System.Logging
         /// <summary>
         /// Instantiates a new instance of the BdoConditionalEventDto class.
         /// </summary>
-        public BdoConditionalEventDto() : base()
+        public ConditionalEventDto() : base()
         {
         }
 

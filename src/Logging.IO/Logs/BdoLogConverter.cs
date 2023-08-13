@@ -16,11 +16,11 @@ namespace BindOpen.System.Logging
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static BdoLogDto ToDto(this IBdoDynamicLog poco)
+        public static LogDto ToDto(this IBdoDynamicLog poco)
         {
             if (poco == null) return null;
 
-            BdoLogDto dto = new()
+            LogDto dto = new()
             {
                 Description = poco.Description,
                 Detail = poco.Detail.ToDto(),
@@ -38,7 +38,7 @@ namespace BindOpen.System.Logging
         /// </summary>
         /// <param name="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IBdoDynamicLog ToPoco(this BdoLogDto dto)
+        public static IBdoDynamicLog ToPoco(this LogDto dto)
         {
             if (dto == null) return null;
 

@@ -8,7 +8,7 @@ namespace BindOpen.System.Logging
     /// This structures defines the stack trace of a task result.
     /// </summary>
     [XmlType("LogEventStackTrace", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    public class BdoLogEventStackTraceDto : IBdoDto
+    public class LogEventStackTraceDto : IBdoDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -59,7 +59,7 @@ namespace BindOpen.System.Logging
 
         #region Constructors
 
-        public BdoLogEventStackTraceDto()
+        public LogEventStackTraceDto()
         {
         }
 

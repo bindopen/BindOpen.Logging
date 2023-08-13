@@ -11,7 +11,7 @@ namespace BindOpen.System.Logging
     /// </summary>
     [XmlType("LogEvent", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "logEvent", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoLogEventDto : BdoEventDto
+    public class LogEventDto : EventDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -42,14 +42,14 @@ namespace BindOpen.System.Logging
         [JsonPropertyName("stack.trace")]
         [XmlArray("stack.traces")]
         [XmlArrayItem("stack.trace")]
-        public List<BdoLogEventStackTraceDto> StackTraces { get; set; }
+        public List<LogEventStackTraceDto> StackTraces { get; set; }
 
         /// <summary>
         /// The log of this instance.
         /// </summary>
         [JsonPropertyName("log")]
         [XmlElement("log")]
-        public BdoLogDto Log { get; set; }
+        public LogDto Log { get; set; }
 
         #endregion
 
@@ -62,7 +62,7 @@ namespace BindOpen.System.Logging
         /// <summary>
         /// Instantiates a new instance of the BdoLogEventDto class.
         /// </summary>
-        public BdoLogEventDto()
+        public LogEventDto()
         {
         }
 
