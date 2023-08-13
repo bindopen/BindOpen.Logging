@@ -1,12 +1,11 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
-using BindOpen.System.Processing;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.Logging
+namespace BindOpen.System.Processing
 {
     /// <summary>
     /// This class represents the process execution.

@@ -1,4 +1,5 @@
 ﻿using BindOpen.System.Data;
+using BindOpen.System.IO.Dtos;
 using NUnit.Framework;
 using System.IO;
 using System.Linq;
@@ -87,7 +88,7 @@ namespace BindOpen.System.Logging.Tests
             }
 
             BdoLog log = BdoLogging.NewLog();
-            _log = XmlHelper.LoadXml<BdoLogDto>(_filePath_xml, log: log).ToPoco();
+            _log = XmlHelper.LoadXml<LogDto>(_filePath_xml, log: log).ToPoco();
 
             string xml = string.Empty;
             if (log.HasErrorsOrExceptions())
@@ -129,7 +130,7 @@ namespace BindOpen.System.Logging.Tests
             }
 
             BdoLog log = BdoLogging.NewLog();
-            _log = JsonHelper.LoadJson<BdoLogDto>(_filePath_json, log: log).ToPoco();
+            _log = JsonHelper.LoadJson<LogDto>(_filePath_json, log: log).ToPoco();
 
             string xml = string.Empty;
             if (log.HasErrorsOrExceptions())

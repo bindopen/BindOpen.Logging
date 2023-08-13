@@ -84,7 +84,7 @@ namespace BindOpen.System.Logging
             }
         }
 
-        public IEnumerable<IBdoLog> Children(Predicate<IBdoLog> filter = null)
+        public IEnumerable<IBdoLog> Children(Predicate<IBdoLog> filter = null, bool isRecursive = false)
                 => _events?.Where(p => p.Log != null && filter?.Invoke(p.Log) != false).Select(p => p.Log).Cast<IBdoLog>() ?? Enumerable.Empty<IBdoLog>();
 
         public IBdoLog Child(Predicate<IBdoLog> filter = null, bool isRecursive = false)
@@ -104,7 +104,7 @@ namespace BindOpen.System.Logging
             return null;
         }
 
-        public bool HasChild(Predicate<IBdoLog> filter = null)
+        public bool HasChild(Predicate<IBdoLog> filter = null, bool isRecursive = false)
             => _events?.Where(p => p.Log != null).Any(p => p.Log != null) ?? false;
 
         public IBdoLog InsertChild(Action<IBdoLog> updater)
@@ -117,7 +117,7 @@ namespace BindOpen.System.Logging
             return child;
         }
 
-        public void RemoveChildren(Predicate<IBdoLog> filter = null)
+        public void RemoveChildren(Predicate<IBdoLog> filter = null, bool isRecursive = false)
         {
             _events?.RemoveAll(p => filter?.Invoke(p?.Log) != true);
         }

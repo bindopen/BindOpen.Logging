@@ -17,11 +17,11 @@ namespace BindOpen.System.Logging
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static BdoLogEventDto ToDto(this IBdoLogEvent poco)
+        public static LogEventDto ToDto(this IBdoLogEvent poco)
         {
             if (poco == null) return null;
 
-            BdoLogEventDto dto = new()
+            LogEventDto dto = new()
             {
                 Criticality = poco.Criticality,
                 Date = poco.Date?.ToString(),
@@ -44,7 +44,7 @@ namespace BindOpen.System.Logging
         /// </summary>
         /// <param name="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IBdoLogEvent ToPoco(this BdoLogEventDto dto)
+        public static IBdoLogEvent ToPoco(this LogEventDto dto)
         {
             if (dto == null) return null;
 
