@@ -1,6 +1,6 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
@@ -8,11 +8,12 @@ using System.Xml.Serialization;
 namespace BindOpen.System.Logging
 {
     /// <summary>
-    /// This class represents a logger of tasks.
+    /// This class represents an event.
     /// </summary>
-    [XmlType("Log", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "log", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoLogDto : IBdoDto
+    [XmlType("Event", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "event", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlInclude(typeof(ConditionalEventDto))]
+    public class EventDto : IBdoDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -36,25 +37,28 @@ namespace BindOpen.System.Logging
         [XmlElement("description")]
         public string Description { get; set; }
 
-        // Execution ----------------------------------
+        /// <summary>
+        /// Kind of this instance.
+        /// </summary>
+        [JsonPropertyName("kind")]
+        [XmlAttribute("kind")]
+        [DefaultValue(EventKinds.Any)]
+        public EventKinds Kind { get; set; } = EventKinds.Other;
 
         /// <summary>
-        /// The execution of this instance.
+        /// Creation date of this instance.
         /// </summary>
-        [JsonPropertyName("execution")]
-        [XmlElement("execution")]
-        public ProcessExecutionDto Execution { get; set; }
-
-        // Task ----------------------------------
+        [JsonPropertyName("date")]
+        [XmlAttribute("date")]
+        [DefaultValue("")]
+        public string Date { get; set; }
 
         /// <summary>
-        /// The task of this instance.
+        /// Long description of this instance.
         /// </summary>
-        [JsonPropertyName("task")]
-        [XmlElement("task")]
-        public ConfigurationDto Task { get; set; }
-
-        // Detail ----------------------------------
+        [JsonPropertyName("longDescription")]
+        [XmlElement("longDescription")]
+        public string LongDescription { get; set; }
 
         /// <summary>
         /// Detail of this instance.
@@ -63,21 +67,13 @@ namespace BindOpen.System.Logging
         [XmlElement("detail")]
         public MetaSetDto Detail { get; set; }
 
-        // Events ----------------------------------
-
         /// <summary>
-        /// Events of this instance.
+        /// Criticality of this instance.
         /// </summary>
-        /// <seealso cref="Errors"/>
-        /// <seealso cref="Warnings"/>
-        /// <seealso cref="Messages"/>
-        /// <seealso cref="Exceptions"/>
-        /// <seealso cref="Checkpoints"/>
-        /// <seealso cref="SubLogs"/>
-        [JsonPropertyName("events")]
-        [XmlArray("events")]
-        [XmlArrayItem("event")]
-        public List<BdoLogEventDto> Events { get; set; }
+        [JsonPropertyName("criticality")]
+        [XmlElement("criticality")]
+        [DefaultValue(Criticalities.None)]
+        public Criticalities Criticality { get; set; } = Criticalities.None;
 
         #endregion
 
@@ -88,9 +84,9 @@ namespace BindOpen.System.Logging
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoLogDto class.
+        /// Instantiates a new instance of the BdoEventDto class.
         /// </summary>
-        public BdoLogDto()
+        public EventDto()
         {
         }
 
