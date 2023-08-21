@@ -72,10 +72,10 @@ namespace BindOpen.System.Logging
 
         public ITBdoSet<IBdoLog> _Children
         {
-            get => BdoData.NewSet(Children()?.ToArray());
+            get => BdoData.NewSet(this.Children()?.ToArray());
             set
             {
-                this.RemoveEvents(q => q.Log != null, false);
+                RemoveEvents(q => q.Log != null, false);
 
                 foreach (var log in value)
                 {
@@ -83,47 +83,6 @@ namespace BindOpen.System.Logging
                 }
             }
         }
-
-        public IEnumerable<IBdoLog> Children(Predicate<IBdoLog> filter = null, bool isRecursive = false)
-        {
-            var children = (_events?.Where(p => p.Log != null && filter?.Invoke(p.Log) != false).Select(p => p.Log).Cast<IBdoLog>() ?? Enumerable.Empty<IBdoLog>()).ToList();
-
-            if (isRecursive)
-            {
-                var thisChildren = _Children;
-                foreach (var child in thisChildren)
-                {
-                    children.AddRange(child?.Children(filter, isRecursive));
-                }
-            }
-
-            return children;
-        }
-
-        public IBdoLog Child(Predicate<IBdoLog> filter = null, bool isRecursive = false)
-        {
-            var children = _Children;
-
-            if (children != null)
-            {
-                foreach (var child in children)
-                {
-                    if (filter?.Invoke(child) != false)
-                        return child;
-
-                    if (isRecursive)
-                    {
-                        var subChild = child?.Child(filter, true);
-                        if (subChild != null) return subChild;
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        public bool HasChild(Predicate<IBdoLog> filter = null, bool isRecursive = false)
-            => _events?.Any(q => q.Log != null && filter?.Invoke(q.Log) != false || (isRecursive && (q.Log?.HasChild(filter, true) == true))) == true;
 
         public IBdoLog InsertChild(Action<IBdoLog> updater)
         {
