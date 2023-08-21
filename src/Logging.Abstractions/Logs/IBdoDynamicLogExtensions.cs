@@ -11,6 +11,70 @@ namespace BindOpen.System.Logging
     /// </summary>
     public static partial class IBdoDynamicLogExtensions
     {
+
+        public static IEnumerable<IBdoLog> Children<T>(
+            this T log, Predicate<IBdoLog> filter = null, bool isRecursive = false)
+            where T : IBdoLog
+        {
+            if (log is IBdoDynamicLog dynamicLog)
+            {
+                var children = (dynamicLog._Events?.Where(p => p.Log != null && filter?.Invoke(p.Log) != false).Select(p => p.Log).Cast<IBdoLog>() ?? Enumerable.Empty<IBdoLog>()).ToList();
+
+                if (isRecursive)
+                {
+                    var thisChildren = dynamicLog._Children;
+                    foreach (var child in thisChildren)
+                    {
+                        children.AddRange(child?.Children(filter, isRecursive));
+                    }
+                }
+
+                return children;
+            }
+
+            return null;
+        }
+
+        public static IBdoLog Child<T>(
+            this T log, Predicate<IBdoLog> filter = null, bool isRecursive = false)
+            where T : IBdoLog
+        {
+            if (log is IBdoDynamicLog dynamicLog)
+            {
+                var children = dynamicLog._Children;
+
+                if (children != null)
+                {
+                    foreach (var child in children)
+                    {
+                        if (filter?.Invoke(child) != false)
+                            return child;
+
+                        if (isRecursive)
+                        {
+                            var subChild = child?.Child(filter, true);
+                            if (subChild != null) return subChild;
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public static bool HasChild<T>(
+            this T log, Predicate<IBdoLog> filter = null, bool isRecursive = false)
+            where T : IBdoLog
+        {
+            if (log is IBdoDynamicLog dynamicLog)
+            {
+                return dynamicLog._Events?.Any(q => q.Log != null && filter?.Invoke(q.Log) != false || (isRecursive && (q.Log?.HasChild(filter, true) == true))) == true;
+            }
+
+            return false;
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
