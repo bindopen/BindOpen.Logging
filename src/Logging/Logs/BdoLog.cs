@@ -70,9 +70,9 @@ namespace BindOpen.System.Logging
         /// </summary>
         public IBdoLog Parent { get; set; }
 
-        public IList<IBdoLog> _Children
+        public ITBdoSet<IBdoLog> _Children
         {
-            get => Children()?.ToList();
+            get => BdoData.NewSet(Children()?.ToArray());
             set
             {
                 this.RemoveEvents(q => q.Log != null, false);
@@ -85,19 +85,37 @@ namespace BindOpen.System.Logging
         }
 
         public IEnumerable<IBdoLog> Children(Predicate<IBdoLog> filter = null, bool isRecursive = false)
-                => _events?.Where(p => p.Log != null && filter?.Invoke(p.Log) != false).Select(p => p.Log).Cast<IBdoLog>() ?? Enumerable.Empty<IBdoLog>();
-
-        public IBdoLog Child(Predicate<IBdoLog> filter = null, bool isRecursive = false)
         {
-            if (filter == null || filter?.Invoke(this) == true)
-                return this;
+            var children = (_events?.Where(p => p.Log != null && filter?.Invoke(p.Log) != false).Select(p => p.Log).Cast<IBdoLog>() ?? Enumerable.Empty<IBdoLog>()).ToList();
 
             if (isRecursive)
             {
-                foreach (var currentChildLog in _Children)
+                var thisChildren = _Children;
+                foreach (var child in thisChildren)
                 {
-                    var log = currentChildLog.Child(filter, true);
-                    if (log != null) return log;
+                    children.AddRange(child?.Children(filter, isRecursive));
+                }
+            }
+
+            return children;
+        }
+
+        public IBdoLog Child(Predicate<IBdoLog> filter = null, bool isRecursive = false)
+        {
+            var children = _Children;
+
+            if (children != null)
+            {
+                foreach (var child in children)
+                {
+                    if (filter?.Invoke(child) != false)
+                        return child;
+
+                    if (isRecursive)
+                    {
+                        var subChild = child?.Child(filter, true);
+                        if (subChild != null) return subChild;
+                    }
                 }
             }
 
@@ -105,7 +123,7 @@ namespace BindOpen.System.Logging
         }
 
         public bool HasChild(Predicate<IBdoLog> filter = null, bool isRecursive = false)
-            => _events?.Where(p => p.Log != null).Any(p => p.Log != null) ?? false;
+            => _events?.Any(q => q.Log != null && filter?.Invoke(q.Log) != false || (isRecursive && (q.Log?.HasChild(filter, true) == true))) == true;
 
         public IBdoLog InsertChild(Action<IBdoLog> updater)
         {

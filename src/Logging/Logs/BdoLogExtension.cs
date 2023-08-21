@@ -1,4 +1,6 @@
-﻿namespace BindOpen.System.Logging
+﻿using BindOpen.System.Data;
+
+namespace BindOpen.System.Logging
 {
     /// <summary>
     /// This class represents a log extension.
@@ -16,5 +18,36 @@
             var formater = new T();
             return formater.ToString(log);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithChildren<T>(
+            this T log,
+            params IBdoLog[] children)
+            where T : IBdoLog
+        {
+            if (log != null)
+            {
+                log._Children = BdoData.NewSet<IBdoLog>(children);
+            }
+
+            return log;
+        }
+
+        public static T AddChildren<T>(this T log, params IBdoLog[] children) where T : IBdoLog
+        {
+            if (log != null)
+            {
+                log._Children ??= BdoData.NewSet<IBdoLog>();
+                foreach (var child in children)
+                {
+                    log._Children.Add(child);
+                }
+            }
+
+            return log;
+        }
+
+
     }
 }

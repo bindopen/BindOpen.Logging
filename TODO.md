@@ -4,6 +4,7 @@ Todo list for BindOpen.System.Logging
 ## Next tasks
 
 - [ ] Improve BdoLogger with methods: Log(log), Update(log), Log(ev), Update(ev)
+- [ ] Enhance test cover 
 
 ## Stuff to check out later on
 
