@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public static class IBdoLogTrackedExtensions
+    public static class IBdoLoggerTrackedExtensions
     {
         /// <summary>
         /// 
@@ -11,7 +11,7 @@
         public static T WithLogger<T>(
             this T tracked,
             IBdoLogger logger)
-            where T : IBdoLogTracked
+            where T : IBdoLoggerTracked
         {
             if (tracked != null)
             {

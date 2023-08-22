@@ -1,7 +1,6 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Conditions;
 using BindOpen.System.Data.Meta;
-using BindOpen.System.Logging;
 using Microsoft.Extensions.Logging;
 using System;
 
@@ -173,7 +172,7 @@ namespace BindOpen.System.Logging
         public static TBdoLogger<T> NewLogger<T>(ILogger logger)
             where T : IBdoLoggerFormat, new()
         {
-            var bdoLogger = BdoData.New<TBdoLogger<T>>();
+            var bdoLogger = BdoData.New<TBdoNativeLogger<T>>();
             bdoLogger.SetNative(logger);
 
             return bdoLogger;
@@ -186,7 +185,7 @@ namespace BindOpen.System.Logging
         /// <returns>Returns the created BDO logger.</returns>
         public static TBdoLogger<BdoSnapLoggerFormat> NewLogger(ILogger logger)
         {
-            var bdoLogger = new TBdoLogger<BdoSnapLoggerFormat>();
+            var bdoLogger = BdoData.New<TBdoNativeLogger<BdoSnapLoggerFormat>>();
             bdoLogger.SetNative(logger);
 
             return bdoLogger;
