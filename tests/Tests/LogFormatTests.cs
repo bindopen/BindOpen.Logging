@@ -5,7 +5,7 @@ using System;
 namespace BindOpen.System.Logging.Tests
 {
     [TestFixture, Order(401)]
-    public class BdoLogFormatTests
+    public class LogFormatTests
     {
         private readonly string _filePath = GlobalVariables.WorkingFolder + "Log.xml";
 
