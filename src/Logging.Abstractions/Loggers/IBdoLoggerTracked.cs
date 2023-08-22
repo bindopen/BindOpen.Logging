@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoLogTracked
+    public interface IBdoLoggerTracked
     {
         /// <summary>
         /// 
