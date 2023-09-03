@@ -1,4 +1,4 @@
-﻿using BindOpen.System.Data.Conditions;
+﻿using BindOpen.System.Data;
 
 namespace BindOpen.System.Logging
 {
