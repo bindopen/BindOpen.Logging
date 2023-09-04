@@ -72,7 +72,7 @@ namespace BindOpen.System.Logging
 
         public ITBdoSet<IBdoLog> _Children
         {
-            get => BdoData.NewSet(this.Children()?.ToArray());
+            get => BdoData.NewItemSet(this.Children()?.ToArray());
             set
             {
                 RemoveEvents(q => q.Log != null, false);
