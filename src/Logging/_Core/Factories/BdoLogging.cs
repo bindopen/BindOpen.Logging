@@ -1,6 +1,8 @@
 ﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data.Conditions;
 using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Logging.Events;
+using BindOpen.Kernel.Logging.Loggers;
 using Microsoft.Extensions.Logging;
 using System;
 

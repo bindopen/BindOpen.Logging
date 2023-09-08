@@ -1,6 +1,8 @@
 ﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Logging.Events;
+using BindOpen.Kernel.Logging.Loggers;
 using BindOpen.Kernel.Processing;
 using System;
 using System.Collections.Generic;

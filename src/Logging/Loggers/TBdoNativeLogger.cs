@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BindOpen.Kernel.Logging.Events;
+using Microsoft.Extensions.Logging;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Kernel.Logging.Loggers
 {
     /// <summary>
     /// This class represents a logger.

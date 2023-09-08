@@ -1,6 +1,7 @@
 ﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Logging.Events;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Kernel.Logging.Loggers
 {
     /// <summary>
     /// This class represents a logger.

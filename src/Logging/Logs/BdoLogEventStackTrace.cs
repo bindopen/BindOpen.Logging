@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Kernel.Logging
+﻿using BindOpen.Kernel.Logging.Events;
+
+namespace BindOpen.Kernel.Logging
 {
     /// <summary>
     /// This structures defines the stack trace of a task result.

@@ -53,7 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Logging.IO\Logging.IO.csproj" />
+    <ProjectReference Include="..\..\src\IO\IO.csproj" />
   </ItemGroup>
 
 </Project>
