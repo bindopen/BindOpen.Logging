@@ -1,4 +1,6 @@
 ﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Logging.Events;
+using BindOpen.Kernel.Logging.Loggers;
 using BindOpen.Kernel.Processing;
 using System.Collections.Generic;
 using System.Linq;

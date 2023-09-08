@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Kernel.Logging.Loggers;
 using NUnit.Framework;
 using System;
 
