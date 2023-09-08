@@ -2,26 +2,26 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>BindOpen.Kernel.Logging</AssemblyName>
-    <PackageId>BindOpen.Kernel.Logging</PackageId>
+    <AssemblyName>BindOpen.Kernel.Logging.IO.Dtos</AssemblyName>
+    <PackageId>BindOpen.Kernel.Logging.IO.Dtos</PackageId>
     <Product>BindOpen.Runtime</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.</Description>
+    <Description>The classes of data transfer objects for BindOpen framework.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Kernel.Logging</RootNamespace>
+    <RootNamespace>BindOpen.Kernel.Logging.IO.Dtos</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel.Logging</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.Logging.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>bindopen_icon.png</PackageIcon>
-    <PackageIconUrl>https://storage.bindopen.org/org/icons/bindopen_icon_64x64.png</PackageIconUrl>
+    <PackageIconUrl>https://www.BindOpen.Runtime.org/images/favicon_bdo.png</PackageIconUrl>
     <SignAssembly>true</SignAssembly>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Kernel.Logging.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Kernel.IO.Dtos.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,11 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.Data" Version="1.2.95" />
+    <PackageReference Include="BindOpen.Kernel.IO.Dtos" Version="1.2.95" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Abstractions\Abstractions.csproj" />
   </ItemGroup>
-
 </Project>

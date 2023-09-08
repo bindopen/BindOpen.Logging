@@ -2,7 +2,7 @@
 using BindOpen.Kernel.Data.Meta;
 using System;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Kernel.Logging.Events
 {
     /// <summary>
     /// This class represents an event.

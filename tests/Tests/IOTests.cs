@@ -1,5 +1,5 @@
 ﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.IO.Dtos;
+using BindOpen.Kernel.IO;
 using NUnit.Framework;
 using System.IO;
 using System.Linq;

@@ -1,11 +1,15 @@
-﻿using BindOpen.Kernel.Data.Conditions;
+﻿using System.Text.Json.Serialization;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace BindOpen.Kernel.Logging.Events
 {
     /// <summary>
     /// This class represents a conditional event.
     /// </summary>
-    public class BdoConditionalEvent : BdoEvent, IBdoConditionalEvent
+    [XmlType("ConditionalEvent", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "event", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
+    public class ConditionalEventDto : EventDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -16,7 +20,9 @@ namespace BindOpen.Kernel.Logging.Events
         /// <summary>
         /// Condition script of this instance.
         /// </summary>
-        public IBdoCondition Condition { get; set; }
+        [JsonPropertyName("conditionScript")]
+        [XmlElement("conditionScript")]
+        public string ConditionScript { get; set; }
 
         #endregion
 
@@ -27,9 +33,9 @@ namespace BindOpen.Kernel.Logging.Events
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoConditionalEvent class.
+        /// Instantiates a new instance of the BdoConditionalEventDto class.
         /// </summary>
-        public BdoConditionalEvent()
+        public ConditionalEventDto() : base()
         {
         }
 

@@ -1,7 +1,7 @@
 ﻿using BindOpen.Kernel.Data.Meta;
 using System.Collections.Generic;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Kernel.Logging.Events
 {
     /// <summary>
     /// This class represents a log event.
