@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.IO.Dtos;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.IO.Dtos;
 using NUnit.Framework;
 using System.IO;
 using System.Linq;
 
-namespace BindOpen.System.Logging.Tests
+namespace BindOpen.Kernel.Logging.Tests
 {
     [TestFixture, Order(400)]
     public class IOTests

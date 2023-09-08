@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>BindOpen.System.Logging.IO</AssemblyName>
-    <PackageId>BindOpen.System.Logging.IO</PackageId>
+    <AssemblyName>BindOpen.Kernel.Logging.IO</AssemblyName>
+    <PackageId>BindOpen.Kernel.Logging.IO</PackageId>
     <Product>BindOpen.Runtime</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.System.Logging.IO</RootNamespace>
-    <PackageProjectUrl>https://github.com/bindopen/BindOpen.System.Logging</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bindopen/BindOpen.System.Logging.git</RepositoryUrl>
+    <RootNamespace>BindOpen.Kernel.Logging.IO</RootNamespace>
+    <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel.Logging</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.Logging.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>bindopen_icon.png</PackageIcon>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.System.Logging.IO.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Kernel.Logging.IO.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.System.IO" Version="1.2.93" />
+    <PackageReference Include="BindOpen.Kernel.IO" Version="1.2.94" />
   </ItemGroup>
 
   <ItemGroup>

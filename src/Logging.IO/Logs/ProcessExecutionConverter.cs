@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Processing;
+﻿using BindOpen.Kernel.Processing;
 
-namespace BindOpen.System.Logging
+namespace BindOpen.Kernel.Logging
 {
     /// <summary>
     /// This class represents a Xml helper.

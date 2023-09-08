@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Logging;
 using System;
 
-namespace BindOpen.System.Logging
+namespace BindOpen.Kernel.Logging
 {
     /// <summary>
     /// 
