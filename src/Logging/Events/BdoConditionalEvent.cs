@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Data.Conditions;
+﻿using BindOpen.Kernel.Data.Conditions;
 
-namespace BindOpen.System.Logging
+namespace BindOpen.Kernel.Logging
 {
     /// <summary>
     /// This class represents a conditional event.

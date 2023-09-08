@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>BindOpen.System.Logging.Tests</AssemblyName>
-    <PackageId>BindOpen.System.Logging.Tests</PackageId>
+    <AssemblyName>BindOpen.Kernel.Logging.Tests</AssemblyName>
+    <PackageId>BindOpen.Kernel.Logging.Tests</PackageId>
     <Product>BindOpen.Runtime</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package conducts unit tests on Core libraries.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.System.Logging.Tests</RootNamespace>
+    <RootNamespace>BindOpen.Kernel.Logging.Tests</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

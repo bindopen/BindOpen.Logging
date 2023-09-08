@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Scoping;
+﻿using BindOpen.Kernel.Scoping;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Serilog;
 using System.Linq;
 
-namespace BindOpen.System.Logging.Tests
+namespace BindOpen.Kernel.Logging.Tests
 {
     [TestFixture, Order(400)]
     public class LoggerTests
