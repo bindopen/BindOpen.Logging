@@ -1,4 +1,4 @@
-﻿namespace BindOpen.System.Logging
+﻿namespace BindOpen.Kernel.Logging
 {
     /// <summary>
     /// This interface defines a log event stack trace.

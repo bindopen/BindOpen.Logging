@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.System.Logging
+namespace BindOpen.Kernel.Logging
 {
     /// <summary>
     /// 

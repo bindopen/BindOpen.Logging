@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Processing;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.System.Logging
+namespace BindOpen.Kernel.Logging
 {
     /// <summary>
     /// 

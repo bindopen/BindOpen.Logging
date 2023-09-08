@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.Kernel.Data;
 
-namespace BindOpen.System.Logging
+namespace BindOpen.Kernel.Logging
 {
     /// <summary>
     /// This class represents a log extension.
@@ -28,7 +28,7 @@ namespace BindOpen.System.Logging
         {
             if (log != null)
             {
-                log._Children = BdoData.NewSet<IBdoLog>(children);
+                log._Children = BdoData.NewItemSet(children);
             }
 
             return log;
@@ -38,7 +38,7 @@ namespace BindOpen.System.Logging
         {
             if (log != null)
             {
-                log._Children ??= BdoData.NewSet<IBdoLog>();
+                log._Children ??= BdoData.NewItemSet<IBdoLog>();
                 foreach (var child in children)
                 {
                     log._Children.Add(child);
