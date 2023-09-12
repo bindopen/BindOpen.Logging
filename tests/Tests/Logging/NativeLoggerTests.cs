@@ -7,7 +7,7 @@ using System.Linq;
 namespace BindOpen.Kernel.Logging.Loggers
 {
     [TestFixture, Order(400)]
-    public class LoggerTests
+    public class NativeLoggerTests
     {
         private readonly string _filePath_serilog = GlobalVariables.WorkingFolder + "Serilog.txt";
 
