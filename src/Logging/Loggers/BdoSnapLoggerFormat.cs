@@ -14,19 +14,24 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the string that converts the specified log.</returns>
-        public string ToString(IBdoDynamicLog log)
+        public string ToString(IBdoDynamicLog log, string indent = "")
         {
             if (log != null)
             {
                 var st = log.DisplayName
-                   + (!string.IsNullOrEmpty(log.Description) ? " | " + log.Description + Environment.NewLine : "");
+                   + (!string.IsNullOrEmpty(log.Description) ? " | " + log.Description : "");
+
+                st = string.IsNullOrEmpty(st) ? "" : (st + Environment.NewLine);
+
                 if (log._Events != null)
                 {
                     foreach (var ev in log._Events)
                     {
-                        st += ToString(ev) + Environment.NewLine;
+                        var stEv = ToString(ev, indent + " ");
+                        st += string.IsNullOrEmpty(stEv) ? "" : stEv;
                     }
                 }
+
                 return st;
             }
 
@@ -37,21 +42,28 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public string ToString(IBdoLogEvent ev)
+        public string ToString(IBdoLogEvent ev, string indent = "")
         {
             if (ev != null)
             {
-                int level = ev.Level();
-                var indent = new string(' ', (level < 1 ? 0 : level - 1) * 2);
-
-                var displayName = ev.DisplayName ?? ev.Log?.DisplayName;
-                var description = ev.Description ?? ev.Log?.Description;
+                var displayName = ev.DisplayName;
+                var description = ev.Description;
 
                 var st = ev.Date.ToString(DataValueTypes.Date) ?? "";
                 st += displayName == null ? "" : (st == "" ? "" : " | ") + displayName;
                 st += description == null ? "" : (st == "" ? "" : " | ") + description;
 
-                return indent + (ev.Log != null ? "o " : "- ") + st;
+                if (ev.Log != null)
+                {
+                    st = indent + "o " + (string.IsNullOrEmpty(st) ? "" : st + Environment.NewLine + indent);
+                    st += ToString(ev.Log, indent);
+                }
+                else
+                {
+                    st = string.IsNullOrEmpty(st) ? "" : (indent + "- " + st + Environment.NewLine);
+                }
+
+                return st;
             }
 
             return null;
