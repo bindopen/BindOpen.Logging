@@ -2,7 +2,6 @@
 using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Logging.Events;
-using BindOpen.Kernel.Logging.Loggers;
 using BindOpen.Kernel.Processing;
 using System;
 using System.Collections.Generic;
@@ -113,13 +112,6 @@ namespace BindOpen.Kernel.Logging
         /// Execution of this instance.
         /// </summary>
         public string ResultCode { get; set; }
-
-        // Logger ----------------------------------
-
-        /// <summary>
-        /// The logger of this instance.
-        /// </summary>
-        public IBdoLogger Logger { get; set; }
 
         // Execution ----------------------------------
 

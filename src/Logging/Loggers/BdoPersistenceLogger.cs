@@ -11,7 +11,24 @@ namespace BindOpen.Kernel.Logging.Loggers
     {
         public IBdoConnector Connector { get; set; }
 
-        public IBdoDynamicLog NewLog() => BdoData.New<BdoLog>();
+        public string _rootLogId;
+
+        public string RootLogId { get => _rootLogId; protected set => _rootLogId = value; }
+
+        public IBdoDynamicLog NewRootLog(string id = null)
+        {
+            id ??= _rootLogId;
+
+            var log = GetLog(id).Result;
+            if (log != null)
+            {
+                log = BdoData.New<BdoLog>().WithId(id);
+                CreateLog(log);
+            }
+            _rootLogId = id;
+
+            return log;
+        }
 
         /// <summary>
         /// 

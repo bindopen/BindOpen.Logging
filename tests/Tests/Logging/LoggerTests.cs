@@ -46,7 +46,7 @@ namespace BindOpen.Kernel.Logging.Loggers
             loggerFactory.AddSerilog(Log.Logger);
 
             var logger = BdoLogging.NewLogger(loggerFactory);
-            _log = logger.NewLog();
+            _log = logger.NewRootLog();
 
             for (int i = 0; i < _testData.itemNumber; i++)
             {
