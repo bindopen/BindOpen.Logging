@@ -3,12 +3,12 @@
     /// <summary>
     /// This class represents a logger.
     /// </summary>
-    public class ConsoleLogger : TConsoleLogger<BdoSnapLoggerFormat>
+    public class BdoConsoleLogger : TBdoConsoleLogger<BdoSnapLoggerFormat>
     {
         /// <summary>
         /// Initializes a new instance of the BdoLogger class.
         /// </summary>
-        public ConsoleLogger() : base()
+        public BdoConsoleLogger() : base()
         {
         }
     }
