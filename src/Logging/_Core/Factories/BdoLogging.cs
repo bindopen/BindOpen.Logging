@@ -174,8 +174,8 @@ namespace BindOpen.Kernel.Logging
         public static TBdoLogger<T> NewLogger<T>(ILogger logger)
             where T : IBdoLoggerFormat, new()
         {
-            var bdoLogger = BdoData.New<TBdoNativeLogger<T>>();
-            bdoLogger.SetNative(logger);
+            var bdoLogger = BdoData.New<TBdoExternalLogger<T>>();
+            bdoLogger.SetExternal(logger);
 
             return bdoLogger;
         }
@@ -187,8 +187,8 @@ namespace BindOpen.Kernel.Logging
         /// <returns>Returns the created BDO logger.</returns>
         public static TBdoLogger<BdoSnapLoggerFormat> NewLogger(ILogger logger)
         {
-            var bdoLogger = BdoData.New<TBdoNativeLogger<BdoSnapLoggerFormat>>();
-            bdoLogger.SetNative(logger);
+            var bdoLogger = BdoData.New<TBdoExternalLogger<BdoSnapLoggerFormat>>();
+            bdoLogger.SetExternal(logger);
 
             return bdoLogger;
         }

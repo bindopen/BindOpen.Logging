@@ -27,7 +27,7 @@ namespace BindOpen.Kernel.Logging.Events
                 Date = poco.Date?.ToString(),
                 Description = poco.Description,
                 Detail = poco.Detail.ToDto(),
-                DisplayName = poco.DisplayName,
+                Title = poco.Title,
                 Kind = poco.Kind,
                 Log = poco.Log.ToDto(),
                 LongDescription = poco.LongDescription,
@@ -54,9 +54,9 @@ namespace BindOpen.Kernel.Logging.Events
                 Date = dto.Date.ToDateTime(),
                 Description = dto.Description,
                 Detail = dto.Detail.ToPoco(),
-                DisplayName = dto.DisplayName,
                 Kind = dto.Kind,
-                LongDescription = dto.LongDescription
+                LongDescription = dto.LongDescription,
+                Title = dto.Title
             };
             poco
                 .WithLog(dto.Log.ToPoco())

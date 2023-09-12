@@ -233,7 +233,7 @@ namespace BindOpen.Kernel.Logging
             string resultCode = null)
         {
             InsertEvent(kind, q => q
-                .WithDisplayName(title)
+                .WithTitle(title)
                 .WithDescription(description)
                 .WithDate(date)
                 .WithResultCode(resultCode));
@@ -354,7 +354,7 @@ namespace BindOpen.Kernel.Logging
         /// <summary>
         /// 
         /// </summary>
-        public string DisplayName { get; set; }
+        public string Title { get; set; }
 
         #endregion
 

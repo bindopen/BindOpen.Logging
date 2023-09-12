@@ -21,7 +21,7 @@ namespace BindOpen.Kernel.Logging.Events
         /// <param name="st">The string to consider.</param>
         public static implicit operator BdoEvent(string st)
         {
-            return BdoLogging.NewEvent(EventKinds.Message).WithDisplayName(st) as BdoEvent;
+            return BdoLogging.NewEvent(EventKinds.Message).WithTitle(st) as BdoEvent;
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace BindOpen.Kernel.Logging.Events
         /// <param name="ev">The event to consider.</param>
         public static implicit operator string(BdoEvent ev)
         {
-            return ev?.DisplayName;
+            return ev?.Title;
         }
 
         #endregion
@@ -100,7 +100,7 @@ namespace BindOpen.Kernel.Logging.Events
         /// <summary>
         /// The display name of this instance.
         /// </summary>
-        public string DisplayName { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// The description of this instance.

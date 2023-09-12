@@ -16,17 +16,17 @@
         string MethodName { get; set; }
 
         /// <summary>
-        /// Parameters of the called method.
+        /// The parameters of the called method.
         /// </summary>
         string MethodParams { get; set; }
 
         /// <summary>
-        /// Path of the called file.
+        /// The path of the called file.
         /// </summary>
         string FilePath { get; set; }
 
         /// <summary>
-        /// Called line number.
+        /// The called line number.
         /// </summary>
         string LineNumber { get; set; }
     }

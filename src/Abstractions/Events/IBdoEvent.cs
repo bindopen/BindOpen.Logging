@@ -4,31 +4,31 @@ using System;
 namespace BindOpen.Kernel.Logging.Events
 {
     /// <summary>
-    /// 
+    /// This interface represents an event.
     /// </summary>
     public interface IBdoEvent :
         IIdentified, INamed,
-        IDisplayNamed, IDescribed, IReferenced,
+        ITitled, IDescribed, IReferenced,
         IDated, IBdoDetailed,
         IDisposable
     {
         /// <summary>
-        /// 
+        /// The criticality.
         /// </summary>
         Criticalities Criticality { get; set; }
 
         /// <summary>
-        /// 
+        /// The date.
         /// </summary>
         DateTime? Date { get; set; }
 
         /// <summary>
-        /// 
+        /// The kind.
         /// </summary>
         EventKinds Kind { get; set; }
 
         /// <summary>
-        /// 
+        /// The long description.
         /// </summary>
         string LongDescription { get; set; }
     }

@@ -51,7 +51,7 @@ namespace BindOpen.Kernel.Logging
                 _log.AddMessage("Message" + i);
                 _log.AddWarning("Warning" + i);
                 _log.AddChild(BdoLogging.NewLog()
-                    .WithDisplayName("Child" + i)
+                    .WithTitle("Child" + i)
                     .AddError("Child_Error" + i + "_1")
                 );
             }

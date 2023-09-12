@@ -1,15 +1,16 @@
 ﻿namespace BindOpen.Kernel.Logging.Events
 {
     /// <summary>
-    /// 
+    /// This static class provides extensions to BdoLogEvent class.
     /// </summary>
     public static class IBdoLogEventExtensions
     {
         /// <summary>
-        /// 
+        /// Updates the log of the specified object..
         /// </summary>
-        /// <param name="kind"></param>
-        /// <returns></returns>
+        /// <param name="ev">The event to consider.</param>
+        /// <param name="log">The log to consider</param>
+        /// <returns>Returns the specified object.</returns>
         public static T WithLog<T>(
             this T ev,
             IBdoLog log)
@@ -24,10 +25,11 @@
         }
 
         /// <summary>
-        /// 
+        /// Updates the parent of the specified object..
         /// </summary>
-        /// <param name="parent"></param>
-        /// <returns></returns>
+        /// <param name="ev">The event to consider.</param>
+        /// <param name="parent">The parent log to consider.</param>
+        /// <returns>Returns the specified object.</returns>
         public static T WithParent<T>(
             this T ev,
             IBdoDynamicLog parent)
@@ -43,10 +45,11 @@
 
 
         /// <summary>
-        /// 
+        /// Updates the result code of the specified object..
         /// </summary>
-        /// <param name="resultCode"></param>
-        /// <returns></returns>
+        /// <param name="ev">The event to consider.</param>
+        /// <param name="resultCode">The result code to consider.</param>
+        /// <returns>Returns the specified object.</returns>
         public static T WithResultCode<T>(
             this T ev,
             string resultCode)
@@ -62,10 +65,11 @@
 
 
         /// <summary>
-        /// 
+        /// Updates the source of the specified object..
         /// </summary>
-        /// <param name="source"></param>
-        /// <returns></returns>
+        /// <param name="ev">The event to consider.</param>
+        /// <param name="source">The source to consider.</param>
+        /// <returns>Returns the specified object.</returns>
         public static T WithSource<T>(
             this T ev,
             string source)
@@ -81,10 +85,11 @@
 
 
         /// <summary>
-        /// 
+        /// Updates the stack traces of the specified object..
         /// </summary>
-        /// <param name="stackTraces"></param>
-        /// <returns></returns>
+        /// <param name="ev">The event to consider.</param>
+        /// <param name="stackTraces">The stack traces to consider.</param>
+        /// <returns>Returns the specified object.</returns>
         public static T WithStackTraces<T>(
             this T ev,
             params IBdoLogEventStackTrace[] stackTraces)
@@ -99,8 +104,9 @@
         }
 
         /// <summary>
-        /// Gets the warnings, errors or exceptions of this instance.
+        /// Gets the maximum kind of the events of the specified object.
         /// </summary>
+        /// <param name="ev">The event to consider.</param>
         /// <param name="isRecursive">Indicate whether the search is recursive.</param>
         /// <param name="kinds">The kinds to consider.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
