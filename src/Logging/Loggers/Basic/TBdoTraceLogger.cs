@@ -6,13 +6,13 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// <summary>
     /// This class represents a logger.
     /// </summary>
-    public class TBdoDebugLogger<T> : TBdoLogger<T>
+    public class TBdoTraceLogger<T> : TBdoLogger<T>
         where T : IBdoLoggerFormat, new()
     {
         /// <summary>
         /// Initializes a new instance of the BdoLogger class.
         /// </summary>
-        public TBdoDebugLogger() : base()
+        public TBdoTraceLogger() : base()
         {
         }
 
@@ -23,7 +23,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         public override void Log(IBdoLog item, IBdoLog log = null)
         {
             var st = _formater?.ToString(item);
-            Debug.WriteLine(st);
+            Trace.Write(st);
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         public override void Log(IBdoLogEvent item, IBdoLog log = null)
         {
             var st = _formater?.ToString(item);
-            Debug.WriteLine(st);
+            Trace.Write(st);
         }
     }
 }

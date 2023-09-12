@@ -72,7 +72,7 @@ private void TestMethodA1(string st, IBdoLog log = null)
 ### Basic loggers
 
 ```csharp
-var logger = BdoLogging.NewLogger<BdoConsoleLogger>();
+var logger = BdoLogging.NewLogger<BdoTraceLogger>();
 
 var log = logger.NewRootLog();
 log.AddCheckpoint("Checkpoint A");
