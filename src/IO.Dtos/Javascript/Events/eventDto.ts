@@ -1,7 +1,7 @@
 ﻿/* Auto Generated */
 
 export interface EventDto {
-    displayName: string;
+    title: string;
     description: string;
     kind: any;
     date: string;

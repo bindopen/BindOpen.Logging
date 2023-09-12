@@ -12,7 +12,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the string that converts the specified log.</returns>
-        string ToString(IBdoDynamicLog log, string indent = "");
+        string ToString(IBdoLog log, string indent = "");
 
         /// <summary>
         /// Converts the log event to the string.

@@ -24,7 +24,7 @@ namespace BindOpen.Kernel.Logging
                     .AddMessage("Message" + i)
                     .AddWarning("Warning" + i)
                     .AddChild(
-                        BdoLogging.NewLog().WithDisplayName("Sub log" + i)
+                        BdoLogging.NewLog().WithTitle("Sub log" + i)
                     );
             }
 

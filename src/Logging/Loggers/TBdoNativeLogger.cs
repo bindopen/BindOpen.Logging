@@ -6,7 +6,7 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// <summary>
     /// This class represents a logger.
     /// </summary>
-    public class TBdoNativeLogger<T> : TBdoLogger<T>, ITBdoNativeLogger<T>
+    public class TBdoExternalLogger<T> : TBdoLogger<T>, ITBdoExternalLogger<T>
         where T : IBdoLoggerFormat, new()
     {
         protected ILogger _nativeLogger;
@@ -14,12 +14,12 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// <summary>
         /// The native logger.
         /// </summary>
-        public ILogger NativeLogger => _nativeLogger;
+        public ILogger ExternalLogger => _nativeLogger;
 
         /// <summary>
         /// Initializes a new instance of the BdoLogger class.
         /// </summary>
-        public TBdoNativeLogger() : base()
+        public TBdoExternalLogger() : base()
         {
         }
 
@@ -28,7 +28,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// </summary>
         /// <param name="nativeLogger">The native logger to consider.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
-        public IBdoLogger SetNative(ILogger nativeLogger)
+        public IBdoLogger SetExternal(ILogger nativeLogger)
         {
             _nativeLogger = nativeLogger;
 
@@ -39,15 +39,15 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public override void Log(IBdoDynamicLog item, IBdoLog log = null)
+        public override void Log(IBdoLog item, IBdoLog log = null)
         {
-            if (item != null && _nativeLogger != null)
+            if (item is IBdoDynamicLog dynamicLog && _nativeLogger != null)
             {
                 string st = _formater?.ToString(item);
 
-                var kind = item.GetMaxEventKind();
+                var kind = dynamicLog.GetMaxEventKind();
 
-                LogNative(kind, st);
+                LogExternal(kind, st);
 
                 var events = item.Events();
 
@@ -71,7 +71,7 @@ namespace BindOpen.Kernel.Logging.Loggers
             {
                 string st = _formater?.ToString(item);
 
-                LogNative(item.Kind, st);
+                LogExternal(item.Kind, st);
 
                 if (item.Log != null)
                 {
@@ -80,7 +80,7 @@ namespace BindOpen.Kernel.Logging.Loggers
             }
         }
 
-        private void LogNative(EventKinds kind, string st)
+        private void LogExternal(EventKinds kind, string st)
         {
             if (!string.IsNullOrEmpty(st))
             {

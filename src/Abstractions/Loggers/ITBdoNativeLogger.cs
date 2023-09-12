@@ -5,7 +5,7 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// <summary>
     /// 
     /// </summary>
-    public interface ITBdoNativeLogger<T> : ITBdoLogger<T>
+    public interface ITBdoExternalLogger<T> : ITBdoLogger<T>
         where T : IBdoLoggerFormat, new()
     {
         /// <summary>
@@ -13,6 +13,6 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// </summary>
         /// <param name="nativeLogger">The native logger to consider.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
-        IBdoLogger SetNative(ILogger nativeLogger);
+        IBdoLogger SetExternal(ILogger nativeLogger);
     }
 }

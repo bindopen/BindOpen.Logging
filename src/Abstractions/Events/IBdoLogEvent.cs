@@ -3,12 +3,12 @@
 namespace BindOpen.Kernel.Logging.Events
 {
     /// <summary>
-    /// 
+    /// This interface represents a log event.
     /// </summary>
     public interface IBdoLogEvent : IBdoEvent, ITChild<IBdoDynamicLog>, ITChildClonable<IBdoLogEvent, IBdoDynamicLog>
     {
         /// <summary>
-        /// 
+        /// The log.
         /// </summary>
         IBdoDynamicLog Log { get; set; }
 
