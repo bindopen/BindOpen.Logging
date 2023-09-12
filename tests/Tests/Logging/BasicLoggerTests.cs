@@ -33,15 +33,15 @@ namespace BindOpen.Kernel.Logging.Loggers
                         .AddError("Error" + i + "-1");
                 }
 
-                log.InsertChild(q => q.WithTitle("ChildA"))
-                    .AddError("ErrorA" + "-1");
+                var subLog = log?.InsertChild(EventKinds.Message, "Initializing Child...");
+                var childLog = subLog?.InsertChild(EventKinds.Message, "Loading Child configuration...");
             }
         }
 
         [Test, Order(1)]
         public void RootLogTest()
         {
-            var logger = BdoLogging.NewLogger<BdoDebugLogger>();
+            var logger = BdoLogging.NewLogger<BdoTraceLogger>();
 
             var log = logger.NewRootLog();
 
@@ -51,9 +51,9 @@ namespace BindOpen.Kernel.Logging.Loggers
         }
 
         [Test, Order(2)]
-        public void DebugLoggerTest()
+        public void TraceLoggerTest()
         {
-            var logger = BdoLogging.NewLogger<BdoDebugLogger>();
+            var logger = BdoLogging.NewLogger<BdoTraceLogger>();
 
             var log = logger.NewRootLog().AddChild();
             PopulateLog(log);

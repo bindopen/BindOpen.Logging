@@ -18,10 +18,9 @@ namespace BindOpen.Kernel.Logging.Loggers
         {
             if (log != null)
             {
-                var st = log.Title
-                   + (!string.IsNullOrEmpty(log.Description) ? " | " + log.Description : "");
+                var st = log.Title + (!string.IsNullOrEmpty(log.Description) ? " | " + log.Description : "");
 
-                st += Environment.NewLine;
+                st = string.IsNullOrEmpty(st) ? "" : (indent + "o " + st + Environment.NewLine);
 
                 if (log is IBdoDynamicLog dynamicLog && dynamicLog._Events != null)
                 {
@@ -46,8 +45,8 @@ namespace BindOpen.Kernel.Logging.Loggers
         {
             if (ev != null)
             {
-                var displayName = ev.Title;
-                var description = ev.Description;
+                var displayName = ev.Title ?? ev.Log?.Title;
+                var description = ev.Description ?? ev.Log?.Description;
 
                 var st = ev.Date.ToString(DataValueTypes.Date) ?? "";
                 st += displayName == null ? "" : (st == "" ? "" : " | ") + displayName;
@@ -55,8 +54,16 @@ namespace BindOpen.Kernel.Logging.Loggers
 
                 if (ev.Log != null)
                 {
-                    st = indent + "o " + (string.IsNullOrEmpty(st) ? "" : st + Environment.NewLine + indent);
-                    st += ToString(ev.Log, indent);
+                    st = string.IsNullOrEmpty(st) ? "" : (indent + "o " + st + Environment.NewLine);
+
+                    if (ev.Log is IBdoDynamicLog dynamicLog && dynamicLog._Events != null)
+                    {
+                        foreach (var childEv in dynamicLog._Events)
+                        {
+                            var stEv = ToString(childEv, indent + " ");
+                            st += string.IsNullOrEmpty(stEv) ? "" : stEv;
+                        }
+                    }
                 }
                 else
                 {
