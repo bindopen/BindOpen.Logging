@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace BindOpen.Kernel.Logging.Loggers
 {
     [TestFixture, Order(400)]
-    public class StandardLoggerTests
+    public class BasicLoggerTests
     {
         private readonly string _filePath_serilog = GlobalVariables.WorkingFolder + "Debug.txt";
 
