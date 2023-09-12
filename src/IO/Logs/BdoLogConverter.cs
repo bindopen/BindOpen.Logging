@@ -25,7 +25,7 @@ namespace BindOpen.Kernel.Logging
             {
                 Description = poco.Description,
                 Detail = poco.Detail.ToDto(),
-                DisplayName = poco.DisplayName,
+                Title = poco.Title,
                 Events = poco._Events?.Select(q => q.ToDto()).ToList(),
                 Execution = poco.Execution.ToDto(),
                 Task = poco.TaskConfig.ToDto()
@@ -50,7 +50,7 @@ namespace BindOpen.Kernel.Logging
                 .WithTask(dto.Task.ToPoco())
                 .WithDescription(dto.Description)
                 .WithDetail(dto.Detail.ToPoco())
-                .WithDisplayName(dto.DisplayName);
+                .WithTitle(dto.Title);
 
             return poco;
         }

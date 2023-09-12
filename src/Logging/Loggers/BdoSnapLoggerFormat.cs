@@ -14,18 +14,18 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the string that converts the specified log.</returns>
-        public string ToString(IBdoDynamicLog log, string indent = "")
+        public string ToString(IBdoLog log, string indent = "")
         {
             if (log != null)
             {
-                var st = log.DisplayName
+                var st = log.Title
                    + (!string.IsNullOrEmpty(log.Description) ? " | " + log.Description : "");
 
-                st = string.IsNullOrEmpty(st) ? "" : (st + Environment.NewLine);
+                st += Environment.NewLine;
 
-                if (log._Events != null)
+                if (log is IBdoDynamicLog dynamicLog && dynamicLog._Events != null)
                 {
-                    foreach (var ev in log._Events)
+                    foreach (var ev in dynamicLog._Events)
                     {
                         var stEv = ToString(ev, indent + " ");
                         st += string.IsNullOrEmpty(stEv) ? "" : stEv;
@@ -46,7 +46,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         {
             if (ev != null)
             {
-                var displayName = ev.DisplayName;
+                var displayName = ev.Title;
                 var description = ev.Description;
 
                 var st = ev.Date.ToString(DataValueTypes.Date) ?? "";

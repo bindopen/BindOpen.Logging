@@ -16,7 +16,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        void Log(IBdoDynamicLog item, IBdoLog log = null);
+        void Log(IBdoLog item, IBdoLog log = null);
 
         /// <summary>
         /// 

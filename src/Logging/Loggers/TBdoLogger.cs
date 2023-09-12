@@ -33,7 +33,7 @@ namespace BindOpen.Kernel.Logging.Loggers
             id ??= _rootLogId;
 
             var log = BdoData.New<BdoLog>().WithId(id);
-            _rootLogId = id;
+            _rootLogId = log?.Id;
 
             return log;
         }
@@ -42,7 +42,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public abstract void Log(IBdoDynamicLog item, IBdoLog log = null);
+        public abstract void Log(IBdoLog item, IBdoLog log = null);
 
         /// <summary>
         /// 

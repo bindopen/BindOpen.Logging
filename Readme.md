@@ -41,7 +41,7 @@ Note: We recommend that later on, you install only the package you need.
 ```csharp
     ...
 
-    var log = BdoLogging.NewLog().WithDisplayName("A test log");
+    var log = BdoLogging.NewLog().WithTitle("A test log");
 
     TestMethodA(-1, log);
 
@@ -55,21 +55,32 @@ private void TestMethodA(int num, IBdoLog log = null)
 
     ...
 
-    var subLog = log.InsertChild(BdoLogging.NewLog().WithDisplayName("Sub test log"));
+    var subLog = log.InsertChild(BdoLogging.NewLog().WithTitle("Sub test log"));
 
     TestMethodA1("B" + num, subLog);
 }
 
 private void TestMethodA1(string st, IBdoLog log = null)
 {
-    if (!st?.StartWith("A")) { log?.InsertError("String must start with 'A'").WithResultCode("500"); return; }
+    if (st?.StartsWith("A") != true) { log?.InsertError("String must start with 'A'").WithResultCode("500"); return; }
 
     ...
 }
 
 ```
 
-### Native loggers
+### Basic loggers
+
+```csharp
+var logger = BdoLogging.NewLogger<BdoConsoleLogger>();
+
+var log = logger.NewRootLog();
+log.AddCheckpoint("Checkpoint A");
+            
+logger.Log(log);
+```
+
+### External loggers
 
 ```csharp
 // Example with Serilog
@@ -86,17 +97,6 @@ loggerFactory.AddSerilog(Log.Logger);
 var logger = BdoLogging.NewLogger(loggerFactory);
 
 var log = BdoLogging.NewLog();
-log.AddCheckpoint("Checkpoint A");
-            
-logger.Log(log);
-```
-
-### Basic loggers
-
-```csharp
-var logger = BdoLogging.NewLogger<BdoConsoleLogger>();
-
-var log = logger.NewRootLog();
 log.AddCheckpoint("Checkpoint A");
             
 logger.Log(log);

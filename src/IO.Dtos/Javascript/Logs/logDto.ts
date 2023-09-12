@@ -3,7 +3,7 @@
 import { ProcessExecutionDto } from "./../Processing/processExecutionDto";
 
 export interface LogDto {
-    displayName: string;
+    title: string;
     description: string;
     execution: ProcessExecutionDto;
     task: any;

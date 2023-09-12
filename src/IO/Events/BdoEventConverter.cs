@@ -26,9 +26,9 @@ namespace BindOpen.Kernel.Logging.Events
                 Date = poco.Date.ToString(),
                 Description = poco.Description,
                 Detail = poco.Detail.ToDto(),
-                DisplayName = poco.DisplayName,
                 Kind = poco.Kind,
-                LongDescription = poco.LongDescription
+                LongDescription = poco.LongDescription,
+                Title = poco.Title
             };
 
             return dto;
@@ -49,7 +49,7 @@ namespace BindOpen.Kernel.Logging.Events
                 Date = dto.Date.ToDateTime(),
                 Description = dto.Description,
                 Detail = dto.Detail.ToPoco(),
-                DisplayName = dto.DisplayName,
+                Title = dto.Title,
                 Kind = dto.Kind,
                 LongDescription = dto.LongDescription
             };

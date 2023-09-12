@@ -24,11 +24,11 @@ namespace BindOpen.Kernel.Logging.Events
         // General ----------------------------------
 
         /// <summary>
-        /// The display name of this instance.
+        /// The title of this instance.
         /// </summary>
-        [JsonPropertyName("displayName")]
-        [XmlElement("displayName")]
-        public string DisplayName { get; set; }
+        [JsonPropertyName("title")]
+        [XmlElement("title")]
+        public string Title { get; set; }
 
         /// <summary>
         /// The description of this instance.

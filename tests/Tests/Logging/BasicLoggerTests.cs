@@ -19,7 +19,7 @@ namespace BindOpen.Kernel.Logging.Loggers
             };
         }
 
-        private void PopulateLog(IBdoDynamicLog log)
+        private void PopulateLog(IBdoLog log)
         {
             if (log != null)
             {
@@ -29,24 +29,39 @@ namespace BindOpen.Kernel.Logging.Loggers
                     log.AddException("Exception" + i);
                     log.AddMessage("Message" + i);
                     log.AddWarning("Warning" + i);
-                    log.InsertChild(q => q.WithDisplayName("Child" + i))
+                    log.InsertChild(q => q.WithTitle("Child" + i))
                         .AddError("Error" + i + "-1");
                 }
+
+                log.InsertChild(q => q.WithTitle("ChildA"))
+                    .AddError("ErrorA" + "-1");
             }
         }
 
         [Test, Order(1)]
-        public void DebugLoggerTest()
+        public void RootLogTest()
         {
             var logger = BdoLogging.NewLogger<BdoDebugLogger>();
 
             var log = logger.NewRootLog();
+
+            var newLog = logger.NewRootLog();
+
+            Assert.That(log?.Id == newLog?.Id, "Root log must be the same");
+        }
+
+        [Test, Order(2)]
+        public void DebugLoggerTest()
+        {
+            var logger = BdoLogging.NewLogger<BdoDebugLogger>();
+
+            var log = logger.NewRootLog().AddChild();
             PopulateLog(log);
 
             logger.Log(log);
         }
 
-        [Test, Order(2)]
+        [Test, Order(3)]
         public void ConsoleLoggerTest()
         {
             var logger = BdoLogging.NewLogger<BdoConsoleLogger>();

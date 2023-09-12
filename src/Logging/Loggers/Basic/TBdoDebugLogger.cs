@@ -20,7 +20,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public override void Log(IBdoDynamicLog item, IBdoLog log = null)
+        public override void Log(IBdoLog item, IBdoLog log = null)
         {
             var st = _formater?.ToString(item);
             Debug.WriteLine(st);
