@@ -1,8 +1,9 @@
 ﻿using BindOpen.Kernel.Logging.Loggers;
+using BindOpen.Kernel.Logging.Tests;
 using NUnit.Framework;
 using System;
 
-namespace BindOpen.Kernel.Logging.Tests
+namespace BindOpen.Kernel.Logging
 {
     [TestFixture, Order(401)]
     public class LogFormatTests

@@ -39,13 +39,52 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public override void Log(IBdoLogEvent ev)
+        public override void Log(IBdoDynamicLog item, IBdoLog log = null)
         {
-            if (ev != null && _nativeLogger != null)
+            if (item != null && _nativeLogger != null)
             {
-                string st = _formater?.ToString(ev);
+                string st = _formater?.ToString(item);
 
-                switch (ev?.Kind ?? EventKinds.None)
+                var kind = item.GetMaxEventKind();
+
+                LogNative(kind, st);
+
+                var events = item.Events();
+
+                if (events != null)
+                {
+                    foreach (IBdoLogEvent ev in events)
+                    {
+                        Log(ev);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        public override void Log(IBdoLogEvent item, IBdoLog log = null)
+        {
+            if (item != null && _nativeLogger != null)
+            {
+                string st = _formater?.ToString(item);
+
+                LogNative(item.Kind, st);
+
+                if (item.Log != null)
+                {
+                    Log(item.Log);
+                }
+            }
+        }
+
+        private void LogNative(EventKinds kind, string st)
+        {
+            if (!string.IsNullOrEmpty(st))
+            {
+                switch (kind)
                 {
                     case EventKinds.Checkpoint:
                         _nativeLogger.LogTrace(st);
@@ -56,22 +95,12 @@ namespace BindOpen.Kernel.Logging.Loggers
                     case EventKinds.Exception:
                         _nativeLogger.LogCritical(st);
                         break;
-                    case EventKinds.Message:
-                        _nativeLogger.LogInformation(st);
-                        break;
                     case EventKinds.Warning:
                         _nativeLogger.LogWarning(st);
                         break;
-                }
-
-                var events = ev?.Log?.Events();
-
-                if (events != null)
-                {
-                    foreach (IBdoLogEvent logEvent in events)
-                    {
-                        Log(logEvent);
-                    }
+                    default:
+                        _nativeLogger.LogInformation(st);
+                        break;
                 }
             }
         }

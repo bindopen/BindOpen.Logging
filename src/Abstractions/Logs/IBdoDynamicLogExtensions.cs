@@ -1,6 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Logging.Events;
-using BindOpen.Kernel.Logging.Loggers;
 using BindOpen.Kernel.Processing;
 using System;
 using System.Collections.Generic;
@@ -74,25 +73,6 @@ namespace BindOpen.Kernel.Logging
             }
 
             return false;
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="execution"></param>
-        /// <returns></returns>
-        public static T WithLogger<T>(
-            this T log,
-            IBdoLogger logger)
-            where T : IBdoLog
-        {
-            if (log is IBdoDynamicLog dynamicLog)
-            {
-                dynamicLog.Logger = logger;
-            }
-
-            return log;
         }
 
         /// <summary>

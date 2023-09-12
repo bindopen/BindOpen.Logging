@@ -1,10 +1,11 @@
 ﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.IO;
+using BindOpen.Kernel.Logging.Tests;
 using NUnit.Framework;
 using System.IO;
 using System.Linq;
 
-namespace BindOpen.Kernel.Logging.Tests
+namespace BindOpen.Kernel.Logging
 {
     [TestFixture, Order(400)]
     public class IOTests
