@@ -176,8 +176,8 @@ namespace BindOpen.Kernel.Logging
             string resultCode = null)
         {
             var child = InsertChild(kind, q => q
-                .WithDescription(title)
-                .WithLongDescription(description)
+                .WithTitle(title)
+                .WithDescription(description)
                 .WithDate(date)
                 .WithResultCode(resultCode));
 
@@ -193,8 +193,8 @@ namespace BindOpen.Kernel.Logging
             string resultCode = null)
         {
             var ev = InsertEvent(kind, q => q
-                .WithDescription(title)
-                .WithLongDescription(description)
+                .WithTitle(title)
+                .WithDescription(description)
                 .WithDate(date)
                 .WithResultCode(resultCode)
                 .WithLog(child ?? BdoLogging.NewLog()));
