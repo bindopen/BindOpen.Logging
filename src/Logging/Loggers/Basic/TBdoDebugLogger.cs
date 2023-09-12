@@ -6,13 +6,13 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// <summary>
     /// This class represents a logger.
     /// </summary>
-    public class TDebugLogger<T> : TBdoLogger<T>
+    public class TBdoDebugLogger<T> : TBdoLogger<T>
         where T : IBdoLoggerFormat, new()
     {
         /// <summary>
         /// Initializes a new instance of the BdoLogger class.
         /// </summary>
-        public TDebugLogger() : base()
+        public TBdoDebugLogger() : base()
         {
         }
 

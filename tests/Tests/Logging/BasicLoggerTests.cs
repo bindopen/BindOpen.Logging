@@ -38,7 +38,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         [Test, Order(1)]
         public void DebugLoggerTest()
         {
-            var logger = BdoLogging.NewLogger<DebugLogger>();
+            var logger = BdoLogging.NewLogger<BdoDebugLogger>();
 
             var log = logger.NewRootLog();
             PopulateLog(log);
@@ -49,7 +49,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         [Test, Order(2)]
         public void ConsoleLoggerTest()
         {
-            var logger = BdoLogging.NewLogger<ConsoleLogger>();
+            var logger = BdoLogging.NewLogger<BdoConsoleLogger>();
 
             var log = logger.NewRootLog();
             PopulateLog(log);
