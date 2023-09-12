@@ -85,7 +85,18 @@ loggerFactory.AddSerilog(Log.Logger);
 
 var logger = BdoLogging.NewLogger(loggerFactory);
 
-var log = logger.NewLog();
+var log = BdoLogging.NewLog();
+log.AddCheckpoint("Checkpoint A");
+            
+logger.Log(log);
+```
+
+### Basic loggers
+
+```csharp
+var logger = BdoLogging.NewLogger<BdoConsoleLogger>();
+
+var log = logger.NewRootLog();
 log.AddCheckpoint("Checkpoint A");
             
 logger.Log(log);

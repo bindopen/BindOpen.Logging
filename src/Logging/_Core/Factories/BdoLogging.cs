@@ -158,6 +158,19 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         /// <param name="logger">The logger to consider.</param>
         /// <returns>Returns the created BDO logger.</returns>
+        public static T NewLogger<T>()
+            where T : IBdoLogger, new()
+        {
+            var logger = BdoData.New<T>();
+
+            return logger;
+        }
+
+        /// <summary>
+        /// Creates a new instance of a ITBdoLogger instance.
+        /// </summary>
+        /// <param name="logger">The logger to consider.</param>
+        /// <returns>Returns the created BDO logger.</returns>
         public static TBdoLogger<T> NewLogger<T>(ILogger logger)
             where T : IBdoLoggerFormat, new()
         {
