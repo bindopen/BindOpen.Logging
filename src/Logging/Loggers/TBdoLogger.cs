@@ -24,10 +24,18 @@ namespace BindOpen.Kernel.Logging.Loggers
             _formater = new T();
         }
 
+        public IBdoDynamicLog NewLog() => BdoData.New<BdoLog>();
+
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public abstract void Log(IBdoLogEvent ev);
+        public abstract void Log(IBdoDynamicLog item, IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        public abstract void Log(IBdoLogEvent item, IBdoLog log = null);
     }
 }
