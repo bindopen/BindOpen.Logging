@@ -19,7 +19,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// <param name="pageSize"></param>
         /// <param name="pageOffset"></param>
         /// <returns></returns>
-        Task<ITDataPage<IBdoLog>> ListLogs(
+        Task<ITDataPage<IBdoDynamicLog>> ListLogs(
             ILogsRequestForm requestForm,
             IBdoLog log = null);
 
@@ -32,7 +32,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// </summary>
         /// <param name="id">The identifiant to consider.</param>
         /// <returns>Returns the specified log.</returns>
-        Task<IBdoLog> GetLog(
+        Task<IBdoDynamicLog> GetLog(
             string identifiant,
             QueryResultModes mode = QueryResultModes.Quick,
             IBdoLog log = null);

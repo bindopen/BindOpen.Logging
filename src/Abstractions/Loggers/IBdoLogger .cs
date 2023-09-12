@@ -8,7 +8,9 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// </summary>
     public partial interface IBdoLogger : IBdoObject
     {
-        IBdoDynamicLog NewLog();
+        string RootLogId { get; }
+
+        IBdoDynamicLog NewRootLog(string id = null);
 
         /// <summary>
         /// 
