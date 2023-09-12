@@ -36,7 +36,7 @@ Note: We recommend that later on, you install only the package you need.
 
 ## Get started
 
-### Dynamic tracking logs
+### Dynamic logs
 
 ```csharp
     ...
@@ -113,7 +113,7 @@ This BindOpen.Kernel.Logging module contains the following Nuget packages:
 | Package | Provision |
 |----------|-----|
 | [BindOpen.Kernel.Logging.Abstractions](https://www.nuget.org/packages/BindOpen.Kernel.Logging.Abstractions) | Interfaces and enumerations |
-| [BindOpen.Kernel.Logging](https://www.nuget.org/packages/BindOpen.Kernel.Data) | Core package |
+| [BindOpen.Kernel.Logging](https://www.nuget.org/packages/BindOpen.Kernel.Logging) | Core package |
 | [BindOpen.Kernel.Logging.IO](https://www.nuget.org/packages/BindOpen.Kernel.Logging.IO) | Serialization / Deserialization |
 | [BindOpen.Kernel.Logging.IO.Dtos](https://www.nuget.org/packages/BindOpen.Kernel.Logging.IO.Dtos) | Data transfer classes |
 
