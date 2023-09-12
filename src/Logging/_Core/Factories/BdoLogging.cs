@@ -3,6 +3,8 @@ using BindOpen.Kernel.Data.Conditions;
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Logging.Events;
 using BindOpen.Kernel.Logging.Loggers;
+using BindOpen.Kernel.Scoping;
+using BindOpen.Kernel.Scoping.Connectors;
 using Microsoft.Extensions.Logging;
 using System;
 
@@ -19,18 +21,9 @@ namespace BindOpen.Kernel.Logging
         /// Creates a new instance of the BdoLog class.
         /// </summary>
         /// <param name="logger">The logger to consider.</param>
-        public static BdoLog NewLog(IBdoLogger logger = null)
+        public static BdoLog NewLog()
         {
-            return new BdoLog().WithLogger(logger);
-        }
-
-        /// <summary>
-        /// Creates a new instance of the BdoLog class.
-        /// </summary>
-        /// <param name="logger">The logger to consider.</param>
-        public static BdoLog NewLog(ILogger logger)
-        {
-            return NewLog(NewLogger<BdoSnapLoggerFormat>(logger));
+            return new BdoLog();
         }
 
         /// <summary>
@@ -38,11 +31,9 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         /// <param name="eventFilter">The function that filters events.</param>
         /// <param name="logger">The logger to consider.</param>
-        public static BdoLog NewLog(
-            Predicate<IBdoLogEvent> eventFilter,
-            IBdoLogger logger)
+        public static BdoLog NewLog(Predicate<IBdoLogEvent> eventFilter)
         {
-            return NewLog(logger)
+            return NewLog()
                 .WithEventFilter(eventFilter);
         }
 
@@ -54,10 +45,9 @@ namespace BindOpen.Kernel.Logging
         /// <param name="logger">The logger to consider.</param>
         public static BdoLog NewLog(
             IBdoConfiguration task,
-            Predicate<IBdoLogEvent> eventFilter = null,
-            IBdoLogger logger = null)
+            Predicate<IBdoLogEvent> eventFilter = null)
         {
-            return NewLog(eventFilter, logger)
+            return NewLog(eventFilter)
                 .WithTask(task);
         }
 
@@ -72,7 +62,7 @@ namespace BindOpen.Kernel.Logging
             IBdoConfiguration task = null,
             Predicate<IBdoLogEvent> eventFilter = null)
         {
-            return NewLog(eventFilter, parent?.Logger)
+            return NewLog(eventFilter)
                 .WithTask(task)
                 .WithParent(parent);
         }
@@ -154,10 +144,7 @@ namespace BindOpen.Kernel.Logging
         {
             var ev = new T();
 
-            if (updater != null)
-            {
-                updater.Invoke(ev);
-            }
+            updater?.Invoke(ev);
 
             ev.Kind = kind;
 
@@ -191,6 +178,34 @@ namespace BindOpen.Kernel.Logging
             bdoLogger.SetNative(logger);
 
             return bdoLogger;
+        }
+
+        /// <summary>
+        /// Creates a new instance of a ITBdoLogger instance.
+        /// </summary>
+        /// <param name="logger">The logger to consider.</param>
+        /// <returns>Returns the created BDO logger.</returns>
+        public static TBdoLogger<BdoSnapLoggerFormat> NewLogger(ILoggerFactory factory)
+        {
+            var logger = factory.CreateLogger<IBdoScope>();
+
+            var bdoLogger = NewLogger(logger);
+
+            return bdoLogger;
+        }
+
+        /// <summary>
+        /// Creates a new instance of a ITBdoLogger instance.
+        /// </summary>
+        /// <param name="logger">The logger to consider.</param>
+        /// <returns>Returns the created BDO logger.</returns>
+        public static T NewLogger<T>(IBdoConnector connector)
+            where T : IBdoPersistencegger, new()
+        {
+            var logger = BdoData.New<T>()
+                .WithConnector(connector);
+
+            return logger;
         }
     }
 }

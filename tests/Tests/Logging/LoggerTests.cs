@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Kernel.Logging.Tests;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Serilog;
 using System.Linq;
 
-namespace BindOpen.Kernel.Logging.Tests
+namespace BindOpen.Kernel.Logging.Loggers
 {
     [TestFixture, Order(400)]
     public class LoggerTests
@@ -44,9 +44,9 @@ namespace BindOpen.Kernel.Logging.Tests
 
             var loggerFactory = new LoggerFactory();
             loggerFactory.AddSerilog(Log.Logger);
-            var logger = loggerFactory.CreateLogger<IBdoScope>();
 
-            _log = BdoLogging.NewLog(logger);
+            var logger = BdoLogging.NewLogger(loggerFactory);
+            _log = logger.NewLog();
 
             for (int i = 0; i < _testData.itemNumber; i++)
             {
@@ -59,6 +59,8 @@ namespace BindOpen.Kernel.Logging.Tests
 
             _log.WithEvents(_log._Events?.ToArray());
             _log.WithChildren(_log._Children?.ToArray());
+
+            logger.Log(_log);
 
             Test(_log);
         }
