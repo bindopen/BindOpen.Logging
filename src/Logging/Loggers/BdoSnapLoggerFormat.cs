@@ -1,4 +1,5 @@
-﻿using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Logging.Events;
 using System;
 
@@ -45,12 +46,13 @@ namespace BindOpen.Kernel.Logging.Loggers
         {
             if (ev != null)
             {
-                var displayName = ev.Title ?? ev.Log?.Title;
+                var title = ev.Title ?? ev.Log?.Title;
                 var description = ev.Description ?? ev.Log?.Description;
 
                 var st = ev.Date.ToString(DataValueTypes.Date) ?? "";
-                st += displayName == null ? "" : (st == "" ? "" : " | ") + displayName;
-                st += description == null ? "" : (st == "" ? "" : " | ") + description;
+                st += ev.Kind == EventKinds.Any ? "" : ev.Kind.ToString() + ": ";
+                st += string.IsNullOrEmpty(title) ? "" : title;
+                st += description == null ? "" : (string.IsNullOrEmpty(title) ? "" : " | ") + description;
 
                 if (ev.Log != null)
                 {

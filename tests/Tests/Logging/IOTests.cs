@@ -1,5 +1,4 @@
 ﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.IO;
 using BindOpen.Kernel.Logging.Tests;
 using NUnit.Framework;
 using System.IO;
