@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.Kernel.Data;
+using System;
 
 namespace BindOpen.Kernel.Logging.Events
 {
