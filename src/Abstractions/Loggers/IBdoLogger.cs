@@ -10,6 +10,8 @@ namespace BindOpen.Kernel.Logging.Loggers
     {
         string RootLogId { get; }
 
+        IBdoCompleteLog NewRootLog(string id = null);
+
         /// <summary>
         /// 
         /// </summary>

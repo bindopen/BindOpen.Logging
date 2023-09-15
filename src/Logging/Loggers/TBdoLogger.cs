@@ -28,11 +28,11 @@ namespace BindOpen.Kernel.Logging.Loggers
 
         public string RootLogId { get => _rootLogId; protected set => _rootLogId = value; }
 
-        public IBdoDynamicLog NewRootLog(string id = null)
+        public IBdoCompleteLog NewRootLog(string id = null)
         {
             id ??= _rootLogId;
 
-            var log = BdoData.New<BdoLog>().WithId(id);
+            var log = BdoData.New<BdoLog>().WithId(id).WithLogger(this);
             _rootLogId = log?.Id;
 
             return log;

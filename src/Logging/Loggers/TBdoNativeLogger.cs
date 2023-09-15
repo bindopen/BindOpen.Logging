@@ -41,7 +41,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// <typeparam name="ev"></typeparam>
         public override void Log(IBdoLog item, IBdoLog log = null)
         {
-            if (item is IBdoDynamicLog dynamicLog && _nativeLogger != null)
+            if (item is IBdoCompleteLog dynamicLog && _nativeLogger != null)
             {
                 string st = _formater?.ToString(item);
 
