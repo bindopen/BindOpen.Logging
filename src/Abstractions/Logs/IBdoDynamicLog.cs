@@ -1,4 +1,5 @@
 ﻿using BindOpen.Kernel.Logging.Events;
+using BindOpen.Kernel.Logging.Loggers;
 using System;
 using System.Collections.Generic;
 
@@ -7,7 +8,7 @@ namespace BindOpen.Kernel.Logging
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoDynamicLog : IBdoLog, ITChildClonable<IBdoDynamicLog, IBdoDynamicLog>
+    public interface IBdoDynamicLog : IBdoLog, ITChildClonable<IBdoDynamicLog, IBdoDynamicLog>, IBdoPersistenceLoggerTracked
     {
         /// <summary>
         /// 
