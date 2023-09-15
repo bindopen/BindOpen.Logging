@@ -5,7 +5,7 @@ namespace BindOpen.Kernel.Logging.Loggers.LiteDb
     /// <summary>
     /// This class represents a logger.
     /// </summary>
-    public partial class BdoLiteDbLogger : BdoPersistenceLogger
+    public partial class BdoLiteDbLogger : BdoPersistentLogger
     {
 
         public BdoLiteDbLogger() : base()

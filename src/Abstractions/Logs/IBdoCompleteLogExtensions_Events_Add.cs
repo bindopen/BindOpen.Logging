@@ -6,7 +6,7 @@ namespace BindOpen.Kernel.Logging
     /// <summary>
     /// 
     /// </summary>
-    public static partial class IBdoDynamicLogExtensions
+    public static partial class IBdoCompleteLogExtensions
     {
         /// <summary>
         /// 
@@ -14,7 +14,7 @@ namespace BindOpen.Kernel.Logging
         public static T AddEvent<T>(this T log, EventKinds eventKind, Action<IBdoLogEvent> updater = null)
             where T : IBdoLog
         {
-            (log as IBdoDynamicLog)?.InsertEvent(eventKind, updater);
+            (log as IBdoCompleteLog)?.InsertEvent(eventKind, updater);
             return log;
         }
 

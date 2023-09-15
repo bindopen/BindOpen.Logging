@@ -13,7 +13,7 @@ namespace BindOpen.Kernel.Logging
     /// <summary>
     /// This class represents a logger of tasks.
     /// </summary>
-    public class BdoLog : BdoObject, IBdoDynamicLog
+    public class BdoLog : BdoObject, IBdoCompleteLog
     {
         List<IBdoLogEvent> _events;
 
@@ -35,12 +35,12 @@ namespace BindOpen.Kernel.Logging
         #endregion
 
         // ------------------------------------------
-        // IBdoDynamicLog Implementation
+        // IBdoCompleteLog Implementation
         // ------------------------------------------
 
-        #region IBdoDynamicLog
+        #region IBdoCompleteLog
 
-        public IBdoPersistenceLogger Logger { get; set; }
+        public IBdoLogger Logger { get; set; }
 
         public int RemoveEvents(
             Predicate<IBdoLogEvent> filter = null,
@@ -258,9 +258,9 @@ namespace BindOpen.Kernel.Logging
 
         // Tree
 
-        public IBdoDynamicLog NewLog()
+        public IBdoCompleteLog NewLog()
         {
-            return (this as IBdoLog).NewLog() as IBdoDynamicLog;
+            return (this as IBdoLog).NewLog() as IBdoCompleteLog;
         }
 
         IBdoLog IBdoLog.NewLog()
@@ -376,7 +376,7 @@ namespace BindOpen.Kernel.Logging
             return Clone(null);
         }
 
-        public IBdoDynamicLog Clone(IBdoDynamicLog parent)
+        public IBdoCompleteLog Clone(IBdoCompleteLog parent)
         {
             var cloned = base.Clone() as BdoLog;
 

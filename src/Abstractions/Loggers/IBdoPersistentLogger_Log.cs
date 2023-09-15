@@ -1,5 +1,4 @@
 ﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Logging.Events;
 using BindOpen.Kernel.Scoping.Connectors;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,7 +9,7 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// <summary>
     /// 
     /// </summary>
-    public partial interface IBdoPersistenceLogger : IBdoLogger, IBdoConnected
+    public partial interface IBdoPersistentLogger : IBdoLogger, IBdoConnected
     {
         /// <summary>
         /// 
@@ -21,70 +20,70 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// <param name="pageSize"></param>
         /// <param name="pageOffset"></param>
         /// <returns></returns>
-        Task<ITDataPage<IBdoLogEvent>> ListEvents(
-            ILogEventsRequestForm requestForm,
+        Task<ITDataPage<IBdoCompleteLog>> ListLogs(
+            ILogsRequestForm requestForm,
             IBdoLog log = null);
 
-        Task<ITDataPage<object>> SearchEvents(
-            ILogEventsRequestForm requestForm,
+        Task<ITDataPage<object>> SearchLogs(
+            ILogsRequestForm requestForm,
             IBdoLog log = null);
 
         /// <summary>
-        /// Lists the specified client.
+        /// Lists the specified log.
         /// </summary>
         /// <param name="id">The identifiant to consider.</param>
-        /// <returns>Returns the specified client.</returns>
-        Task<IBdoLogEvent> GetEvent(
+        /// <returns>Returns the specified log.</returns>
+        Task<IBdoCompleteLog> GetLog(
             string identifiant,
             QueryResultModes mode = QueryResultModes.Quick,
             IBdoLog log = null);
 
         /// <summary>
-        /// Creates the client with the specified identifiant.
+        /// Creates the log with the specified identifiant.
         /// </summary>
-        /// <param name="client">The client to consider.</param>
+        /// <param name="log">The log to consider.</param>
         /// <returns>Returns the operation result.</returns>
-        IResultItem CreateEvent(
-            IBdoLogEvent item,
+        IResultItem CreateLog(
+            IBdoCompleteLog item,
             TransactionScope scope = null,
             IBdoLog log = null);
 
         /// <summary>
-        /// Updates the specified client.
+        /// Updates the specified log.
         /// </summary>
-        /// <param name="client">The client to update with.</param>
+        /// <param name="log">The log to update with.</param>
         /// <returns>Returns the operation result.</returns>
-        IResultItem UpdateEvent(
-            IBdoLogEvent item,
+        IResultItem UpdateLog(
+            IBdoCompleteLog item,
             TransactionScope scope = null,
             IBdoLog log = null);
 
         /// <summary>
-        /// Deletes the specified client.
+        /// Deletes the specified log.
         /// </summary>
-        /// <param name="id">The identifiant of the client to consider.</param>
+        /// <param name="id">The identifiant of the log to consider.</param>
         /// <returns>Returns the operation result.</returns>
-        IResultItem DeleteEvent(
+        IResultItem DeleteLog(
             string identifiant,
             TransactionScope scope = null,
             IBdoLog log = null);
 
         /// <summary>
-        /// Deletes the specified clients.
+        /// Deletes the specified logs.
         /// </summary>
-        /// <param name="identifiants">The identifiants of the clients to consider.</param>
+        /// <param name="identifiants">The identifiants of the logs to consider.</param>
         /// <returns>Returns the operation result.</returns>
-        IEnumerable<IResultItem> DeleteEvents(
+        IEnumerable<IResultItem> DeleteLogs(
             string[] identifiants,
             TransactionScope scope = null,
             IBdoLog log = null);
 
         /// <summary>
-        /// Clones the client with the specified identifiant.
+        /// Clones the log with the specified identifiant.
         /// </summary>
-        /// <param name="id">The client identifier to consider.</param>
+        /// <param name="id">The log identifier to consider.</param>
         /// <returns>Returns the operation result.</returns>
-        IResultItem CloneEvent(
+        IResultItem CloneLog(
             string identifiant,
             TransactionScope scope = null,
             IBdoLog log = null);

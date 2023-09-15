@@ -7,15 +7,15 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// <summary>
     /// This class represents a logger.
     /// </summary>
-    public abstract partial class BdoPersistenceLogger : BdoObject, IBdoLogger
+    public abstract partial class BdoPersistentLogger : BdoObject, IBdoLogger
     {
         public IBdoConnector Connector { get; set; }
 
-        protected BdoPersistenceLogger() : base()
+        protected BdoPersistentLogger() : base()
         {
         }
 
-        protected BdoPersistenceLogger(IBdoConnector connector) : base()
+        protected BdoPersistentLogger(IBdoConnector connector) : base()
         {
             Connector = connector;
         }
@@ -25,14 +25,14 @@ namespace BindOpen.Kernel.Logging.Loggers
 
         public string RootLogId { get => _rootLogId; protected set => _rootLogId = value; }
 
-        public IBdoDynamicLog NewRootLog(string id = null)
+        public IBdoCompleteLog NewRootLog(string id = null)
         {
             id ??= _rootLogId;
 
             var log = GetLog(id).Result;
             if (log != null)
             {
-                log = BdoData.New<BdoLog>().WithId(id);
+                log = BdoData.New<BdoPersistentLog>().WithId(id).WithLogger(this);
                 CreateLog(log);
             }
             _rootLogId = log?.Id;
@@ -46,7 +46,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// <typeparam name="ev"></typeparam>
         public void Log(IBdoLog item, IBdoLog log = null)
         {
-            if (item is IBdoDynamicLog dynamicLog)
+            if (item is IBdoCompleteLog dynamicLog)
             {
                 CreateLog(dynamicLog, null, log);
             }

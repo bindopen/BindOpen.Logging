@@ -3,11 +3,11 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoPersistenceLoggerTracked
+    public interface IBdoPersistentLoggerTracked
     {
         /// <summary>
         /// 
         /// </summary>
-        IBdoPersistenceLogger Logger { get; set; }
+        IBdoPersistentLogger Logger { get; set; }
     }
 }

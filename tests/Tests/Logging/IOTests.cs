@@ -12,7 +12,7 @@ namespace BindOpen.Kernel.Logging
         private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "Log.xml";
         private readonly string _filePath_json = GlobalVariables.WorkingFolder + "Log.json";
 
-        private IBdoDynamicLog _log = null;
+        private IBdoCompleteLog _log = null;
 
         private dynamic _testData;
 
@@ -25,7 +25,7 @@ namespace BindOpen.Kernel.Logging
             };
         }
 
-        private void Test(IBdoDynamicLog log)
+        private void Test(IBdoCompleteLog log)
         {
             Assert.That(log.Errors(false).Count() == _testData.itemNumber, "Bad insertion of errors ({0} expected; {1} found)", _testData.itemNumber, _log.Errors().Count());
             Assert.That(log.Exceptions().Count() == _testData.itemNumber, "Bad insertion of exceptions ({0} expected; {1} found)", _testData.itemNumber, _log.Exceptions().Count());

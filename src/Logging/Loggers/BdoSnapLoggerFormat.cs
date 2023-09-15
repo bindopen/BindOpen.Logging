@@ -23,7 +23,7 @@ namespace BindOpen.Kernel.Logging.Loggers
 
                 st = string.IsNullOrEmpty(st) ? "" : (indent + "o " + st + Environment.NewLine);
 
-                if (log is IBdoDynamicLog dynamicLog && dynamicLog._Events != null)
+                if (log is IBdoCompleteLog dynamicLog && dynamicLog._Events != null)
                 {
                     foreach (var ev in dynamicLog._Events)
                     {
@@ -58,7 +58,7 @@ namespace BindOpen.Kernel.Logging.Loggers
                 {
                     st = string.IsNullOrEmpty(st) ? "" : (indent + "o " + st + Environment.NewLine);
 
-                    if (ev.Log is IBdoDynamicLog dynamicLog && dynamicLog._Events != null)
+                    if (ev.Log is IBdoCompleteLog dynamicLog && dynamicLog._Events != null)
                     {
                         foreach (var childEv in dynamicLog._Events)
                         {

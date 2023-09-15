@@ -6,14 +6,14 @@ namespace BindOpen.Kernel.Logging
     /// <summary>
     /// 
     /// </summary>
-    public static partial class IBdoDynamicLogExtensions
+    public static partial class IBdoCompleteLogExtensions
     {
         /// <summary>
         /// 
         /// </summary>
         public static IBdoLogEvent InsertCheckpoint(this IBdoLog log, Action<IBdoLogEvent> updater = null)
         {
-            return (log as IBdoDynamicLog)?.InsertEvent(EventKinds.Checkpoint, updater);
+            return (log as IBdoCompleteLog)?.InsertEvent(EventKinds.Checkpoint, updater);
         }
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         public static IBdoLogEvent InsertError(this IBdoLog log, Action<IBdoLogEvent> updater = null)
         {
-            return (log as IBdoDynamicLog)?.InsertEvent(EventKinds.Error, updater);
+            return (log as IBdoCompleteLog)?.InsertEvent(EventKinds.Error, updater);
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         public static IBdoLogEvent InsertException(this IBdoLog log, Action<IBdoLogEvent> updater = null)
         {
-            return (log as IBdoDynamicLog)?.InsertEvent(EventKinds.Exception, updater);
+            return (log as IBdoCompleteLog)?.InsertEvent(EventKinds.Exception, updater);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         public static IBdoLogEvent InsertMessage(this IBdoLog log, Action<IBdoLogEvent> updater = null)
         {
-            return (log as IBdoDynamicLog)?.InsertEvent(EventKinds.Message, updater);
+            return (log as IBdoCompleteLog)?.InsertEvent(EventKinds.Message, updater);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         public static IBdoLogEvent InsertWarning(this IBdoLog log, Action<IBdoLogEvent> updater = null)
         {
-            return (log as IBdoDynamicLog)?.InsertEvent(EventKinds.Warning, updater);
+            return (log as IBdoCompleteLog)?.InsertEvent(EventKinds.Warning, updater);
         }
     }
 }

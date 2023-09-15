@@ -13,7 +13,7 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>The string corresponding to the specified log using the specified formater.</returns>
-        public static string ToString<T>(this IBdoDynamicLog log)
+        public static string ToString<T>(this IBdoCompleteLog log)
             where T : IBdoLoggerFormat, new()
         {
             var formater = new T();
