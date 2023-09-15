@@ -9,11 +9,11 @@ namespace BindOpen.Kernel.Logging.Loggers.LiteDb
     /// <summary>
     /// This class represents a logger.
     /// </summary>
-    public partial class BdoLiteDbLogger : BdoPersistenceLogger
+    public partial class BdoLiteDbLogger : BdoPersistentLogger
     {
-        public override async Task<ITDataPage<IBdoDynamicLog>> ListLogs(ILogsRequestForm requestForm, IBdoLog log = null)
+        public override async Task<ITDataPage<IBdoCompleteLog>> ListLogs(ILogsRequestForm requestForm, IBdoLog log = null)
         {
-            IList<IBdoDynamicLog> list = Array.Empty<IBdoDynamicLog>();
+            IList<IBdoCompleteLog> list = Array.Empty<IBdoCompleteLog>();
 
             var page = list.ToDataPage(null);
 
@@ -29,19 +29,19 @@ namespace BindOpen.Kernel.Logging.Loggers.LiteDb
             return await Task.FromResult(page);
         }
 
-        public override async Task<IBdoDynamicLog> GetLog(string identifiant, QueryResultModes mode = QueryResultModes.Quick, IBdoLog log = null)
+        public override async Task<IBdoCompleteLog> GetLog(string identifiant, QueryResultModes mode = QueryResultModes.Quick, IBdoLog log = null)
         {
-            IBdoDynamicLog item = null;
+            IBdoCompleteLog item = null;
             return await Task.FromResult(item);
         }
 
-        public override IResultItem CreateLog(IBdoDynamicLog item, TransactionScope scope = null, IBdoLog log = null)
+        public override IResultItem CreateLog(IBdoCompleteLog item, TransactionScope scope = null, IBdoLog log = null)
         {
             return BdoData.NewResultItem(ResourceStatus.Created);
         }
 
 
-        public override IResultItem UpdateLog(IBdoDynamicLog item, TransactionScope scope = null, IBdoLog log = null)
+        public override IResultItem UpdateLog(IBdoCompleteLog item, TransactionScope scope = null, IBdoLog log = null)
         {
             return BdoData.NewResultItem(ResourceStatus.Updated);
         }

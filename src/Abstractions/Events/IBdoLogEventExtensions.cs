@@ -18,7 +18,7 @@
         {
             if (ev != null)
             {
-                ev.Log = log as IBdoDynamicLog;
+                ev.Log = log as IBdoCompleteLog;
             }
 
             return ev;
@@ -32,7 +32,7 @@
         /// <returns>Returns the specified object.</returns>
         public static T WithParent<T>(
             this T ev,
-            IBdoDynamicLog parent)
+            IBdoCompleteLog parent)
             where T : IBdoLogEvent
         {
             if (ev != null)

@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.IO.Dtos" Version="1.2.103" />
+    <PackageReference Include="BindOpen.Kernel.IO.Dtos" Version="1.2.104" />
     <PackageReference Include="MTT" Version="0.7.2" />
   </ItemGroup>
 

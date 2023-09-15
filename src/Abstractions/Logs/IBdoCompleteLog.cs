@@ -8,7 +8,7 @@ namespace BindOpen.Kernel.Logging
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoDynamicLog : IBdoLog, ITChildClonable<IBdoDynamicLog, IBdoDynamicLog>, IBdoPersistenceLoggerTracked
+    public interface IBdoCompleteLog : IBdoLog, ITChildClonable<IBdoCompleteLog, IBdoCompleteLog>, IBdoLoggerTracked
     {
         /// <summary>
         /// 
@@ -40,7 +40,7 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         void BuildTree();
 
-        new IBdoDynamicLog NewLog();
+        new IBdoCompleteLog NewLog();
 
         // Events
 

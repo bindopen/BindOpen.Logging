@@ -3,14 +3,14 @@
     /// <summary>
     /// 
     /// </summary>
-    public static class IBdoPersistenceLoggerTrackedExtensions
+    public static class IBdoPersistentLoggerTrackedExtensions
     {
         /// <summary>
         /// 
         /// </summary>
         public static T WithLogger<T>(
             this T tracked,
-            IBdoPersistenceLogger logger)
+            IBdoPersistentLogger logger)
             where T : IBdoLoggerTracked
         {
             if (tracked != null)

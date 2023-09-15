@@ -11,7 +11,7 @@ namespace BindOpen.Kernel.Logging.Loggers
     {
         private readonly string _filePath_serilog = GlobalVariables.WorkingFolder + "Serilog.txt";
 
-        private IBdoDynamicLog _log = null;
+        private IBdoCompleteLog _log = null;
 
         private dynamic _testData;
 
@@ -24,7 +24,7 @@ namespace BindOpen.Kernel.Logging.Loggers
             };
         }
 
-        private void Test(IBdoDynamicLog log)
+        private void Test(IBdoCompleteLog log)
         {
             Assert.That(log.Errors().Count() == _testData.itemNumber, "Bad insertion of errors ({0} expected; {1} found)", _testData.itemNumber, _log.Errors().Count());
             Assert.That(log.Exceptions().Count() == _testData.itemNumber, "Bad insertion of exceptions ({0} expected; {1} found)", _testData.itemNumber, _log.Exceptions().Count());

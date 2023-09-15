@@ -58,7 +58,7 @@ namespace BindOpen.Kernel.Logging
         /// <param name="task">The task to consider.</param>
         /// <param name="eventFilter">The function that filters events.</param>
         public static BdoLog NewLog(
-            IBdoDynamicLog parent,
+            IBdoCompleteLog parent,
             IBdoConfiguration task = null,
             Predicate<IBdoLogEvent> eventFilter = null)
         {
@@ -213,7 +213,7 @@ namespace BindOpen.Kernel.Logging
         /// <param name="logger">The logger to consider.</param>
         /// <returns>Returns the created BDO logger.</returns>
         public static T NewLogger<T>(IBdoConnector connector)
-            where T : IBdoPersistenceLogger, new()
+            where T : IBdoPersistentLogger, new()
         {
             var logger = BdoData.New<T>()
                 .WithConnector(connector);

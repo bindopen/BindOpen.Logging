@@ -51,12 +51,12 @@ namespace BindOpen.Kernel.Logging.Events
         /// <summary>
         /// The log of this instance.
         /// </summary>
-        public IBdoDynamicLog Log { get; set; }
+        public IBdoCompleteLog Log { get; set; }
 
         /// <summary>
         /// Parent of this instance.
         /// </summary>
-        public IBdoDynamicLog Parent { get; set; }
+        public IBdoCompleteLog Parent { get; set; }
 
         #endregion
 
@@ -75,7 +75,7 @@ namespace BindOpen.Kernel.Logging.Events
             return Clone(null);
         }
 
-        public IBdoLogEvent Clone(IBdoDynamicLog parent)
+        public IBdoLogEvent Clone(IBdoCompleteLog parent)
         {
             var cloned = base.Clone() as BdoLogEvent;
 

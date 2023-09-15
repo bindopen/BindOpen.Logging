@@ -9,7 +9,7 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// <summary>
     /// This class represents a logger.
     /// </summary>
-    public abstract partial class BdoPersistenceLogger : BdoObject, IBdoLogger
+    public abstract partial class BdoPersistentLogger : BdoObject, IBdoLogger
     {
         public abstract Task<ITDataPage<IBdoLogEvent>> ListEvents(ILogEventsRequestForm requestForm, IBdoLog log = null);
 

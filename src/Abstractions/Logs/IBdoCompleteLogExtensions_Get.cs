@@ -8,7 +8,7 @@ namespace BindOpen.Kernel.Logging
     /// <summary>
     /// 
     /// </summary>
-    public static partial class IBdoDynamicLogExtensions
+    public static partial class IBdoCompleteLogExtensions
     {
         /// <summary>
         /// 
@@ -18,7 +18,7 @@ namespace BindOpen.Kernel.Logging
             bool isRecursive = true,
             Predicate<IBdoLogEvent> filter = null)
         {
-            return (log as IBdoDynamicLog)?.Events(q => q.Kind == EventKinds.Checkpoint && (filter?.Invoke(q) != false), isRecursive) ?? Enumerable.Empty<IBdoLogEvent>();
+            return (log as IBdoCompleteLog)?.Events(q => q.Kind == EventKinds.Checkpoint && (filter?.Invoke(q) != false), isRecursive) ?? Enumerable.Empty<IBdoLogEvent>();
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace BindOpen.Kernel.Logging
             bool isRecursive = true,
             Predicate<IBdoLogEvent> filter = null)
         {
-            return (log as IBdoDynamicLog)?.Events(q => q.Kind == EventKinds.Error && (filter?.Invoke(q) != false), isRecursive) ?? Enumerable.Empty<IBdoLogEvent>();
+            return (log as IBdoCompleteLog)?.Events(q => q.Kind == EventKinds.Error && (filter?.Invoke(q) != false), isRecursive) ?? Enumerable.Empty<IBdoLogEvent>();
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace BindOpen.Kernel.Logging
             bool isRecursive = true,
             Predicate<IBdoLogEvent> filter = null)
         {
-            return (log as IBdoDynamicLog)?.Events(q => q.Kind == EventKinds.Exception && (filter?.Invoke(q) != false), isRecursive) ?? Enumerable.Empty<IBdoLogEvent>();
+            return (log as IBdoCompleteLog)?.Events(q => q.Kind == EventKinds.Exception && (filter?.Invoke(q) != false), isRecursive) ?? Enumerable.Empty<IBdoLogEvent>();
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace BindOpen.Kernel.Logging
             bool isRecursive = true,
             Predicate<IBdoLogEvent> filter = null)
         {
-            return (log as IBdoDynamicLog)?.Events(q => q.Kind == EventKinds.Message && (filter?.Invoke(q) != false), isRecursive) ?? Enumerable.Empty<IBdoLogEvent>();
+            return (log as IBdoCompleteLog)?.Events(q => q.Kind == EventKinds.Message && (filter?.Invoke(q) != false), isRecursive) ?? Enumerable.Empty<IBdoLogEvent>();
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace BindOpen.Kernel.Logging
             bool isRecursive = true,
             Predicate<IBdoLogEvent> filter = null)
         {
-            return (log as IBdoDynamicLog)?.Events(q => q.Kind == EventKinds.Warning && (filter?.Invoke(q) != false), isRecursive) ?? Enumerable.Empty<IBdoLogEvent>();
+            return (log as IBdoCompleteLog)?.Events(q => q.Kind == EventKinds.Warning && (filter?.Invoke(q) != false), isRecursive) ?? Enumerable.Empty<IBdoLogEvent>();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static LogDto ToDto(this IBdoDynamicLog poco)
+        public static LogDto ToDto(this IBdoCompleteLog poco)
         {
             if (poco == null) return null;
 
@@ -39,7 +39,7 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         /// <param name="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IBdoDynamicLog ToPoco(this LogDto dto)
+        public static IBdoCompleteLog ToPoco(this LogDto dto)
         {
             if (dto == null) return null;
 

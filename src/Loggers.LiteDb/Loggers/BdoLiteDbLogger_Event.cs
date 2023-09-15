@@ -10,7 +10,7 @@ namespace BindOpen.Kernel.Logging.Loggers.LiteDb
     /// <summary>
     /// This class represents a logger.
     /// </summary>
-    public partial class BdoLiteDbLogger : BdoPersistenceLogger
+    public partial class BdoLiteDbLogger : BdoPersistentLogger
     {
         public override async Task<ITDataPage<IBdoLogEvent>> ListEvents(ILogEventsRequestForm requestForm, IBdoLog log = null)
         {

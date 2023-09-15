@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public static partial class IBdoDynamicLogExtensions
+    public static partial class IBdoCompleteLogExtensions
     {
         /// <summary>
         /// Indicates whether this instance has the specified events.

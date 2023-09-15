@@ -10,14 +10,14 @@ namespace BindOpen.Kernel.Logging
     /// <summary>
     /// 
     /// </summary>
-    public static partial class IBdoDynamicLogExtensions
+    public static partial class IBdoCompleteLogExtensions
     {
 
         public static IEnumerable<IBdoLog> Children<T>(
             this T log, Predicate<IBdoLog> filter = null, bool isRecursive = false)
             where T : IBdoLog
         {
-            if (log is IBdoDynamicLog dynamicLog)
+            if (log is IBdoCompleteLog dynamicLog)
             {
                 var children = (dynamicLog._Events?.Where(p => p.Log != null && filter?.Invoke(p.Log) != false).Select(p => p.Log).Cast<IBdoLog>() ?? Enumerable.Empty<IBdoLog>()).ToList();
 
@@ -40,7 +40,7 @@ namespace BindOpen.Kernel.Logging
             this T log, Predicate<IBdoLog> filter = null, bool isRecursive = false)
             where T : IBdoLog
         {
-            if (log is IBdoDynamicLog dynamicLog)
+            if (log is IBdoCompleteLog dynamicLog)
             {
                 var children = dynamicLog._Children;
 
@@ -67,7 +67,7 @@ namespace BindOpen.Kernel.Logging
             this T log, Predicate<IBdoLog> filter = null, bool isRecursive = false)
             where T : IBdoLog
         {
-            if (log is IBdoDynamicLog dynamicLog)
+            if (log is IBdoCompleteLog dynamicLog)
             {
                 return dynamicLog._Events?.Any(q => q.Log != null && filter?.Invoke(q.Log) != false || (isRecursive && (q.Log?.HasChild(filter, true) == true))) == true;
             }
@@ -85,7 +85,7 @@ namespace BindOpen.Kernel.Logging
             Predicate<IBdoLogEvent> filter)
             where T : IBdoLog
         {
-            if (log is IBdoDynamicLog dynamicLog)
+            if (log is IBdoCompleteLog dynamicLog)
             {
                 dynamicLog.EventFilter = filter;
             }
@@ -103,7 +103,7 @@ namespace BindOpen.Kernel.Logging
             IBdoProcessExecution execution)
             where T : IBdoLog
         {
-            if (log is IBdoDynamicLog dynamicLog)
+            if (log is IBdoCompleteLog dynamicLog)
             {
                 dynamicLog.Execution = execution;
             }
@@ -123,7 +123,7 @@ namespace BindOpen.Kernel.Logging
             params IBdoLogEvent[] events)
             where T : IBdoLog
         {
-            if (log is IBdoDynamicLog dynamicLog && events != null)
+            if (log is IBdoCompleteLog dynamicLog && events != null)
             {
                 dynamicLog.RemoveEvents();
 
@@ -141,7 +141,7 @@ namespace BindOpen.Kernel.Logging
             this T log,
             bool isRecursive = true,
             params EventKinds[] kinds)
-            where T : IBdoDynamicLog
+            where T : IBdoCompleteLog
         {
             return log?.Events(isRecursive, kinds).Select(p => p.Kind).ToList().Max() ?? EventKinds.None;
         }
@@ -153,7 +153,7 @@ namespace BindOpen.Kernel.Logging
             bool isRecursive = true)
             where T : IBdoLog
         {
-            if (log is IBdoDynamicLog dynamicLog)
+            if (log is IBdoCompleteLog dynamicLog)
             {
                 var events = dynamicLog._Events?.Where(q => filter == null || filter?.Invoke(q) == true).ToList() ?? new List<IBdoLogEvent>();
 
@@ -161,7 +161,7 @@ namespace BindOpen.Kernel.Logging
                 {
                     foreach (var child in dynamicLog._Children)
                     {
-                        events.AddRange((child as IBdoDynamicLog)?.Events(filter, isRecursive));
+                        events.AddRange((child as IBdoCompleteLog)?.Events(filter, isRecursive));
                     }
                 }
 
@@ -177,7 +177,7 @@ namespace BindOpen.Kernel.Logging
             params EventKinds[] kinds)
             where T : IBdoLog
         {
-            if (log is IBdoDynamicLog dynamicLog)
+            if (log is IBdoCompleteLog dynamicLog)
             {
                 return dynamicLog.Events(q => kinds.Has(q.Kind), isRecursive);
             }
@@ -197,7 +197,7 @@ namespace BindOpen.Kernel.Logging
             bool isRecursive = false)
             where T : IBdoLog
         {
-            if (log is IBdoDynamicLog dynamicLog)
+            if (log is IBdoCompleteLog dynamicLog)
             {
                 IBdoLogEvent ev = dynamicLog._Events?.FirstOrDefault(q => filter == null || filter?.Invoke(q) != false);
 
@@ -205,7 +205,7 @@ namespace BindOpen.Kernel.Logging
                 {
                     foreach (var child in dynamicLog._Children)
                     {
-                        ev = (child as IBdoDynamicLog)?.Event(filter, true);
+                        ev = (child as IBdoCompleteLog)?.Event(filter, true);
                         if (ev != null) return ev;
                     }
                 }
@@ -228,7 +228,7 @@ namespace BindOpen.Kernel.Logging
             bool isRecursive = false)
             where T : IBdoLog
         {
-            if (!string.IsNullOrEmpty(id) && log is IBdoDynamicLog dynamicLog)
+            if (!string.IsNullOrEmpty(id) && log is IBdoCompleteLog dynamicLog)
             {
                 return dynamicLog.Event(q => q.BdoKeyEquals(id), isRecursive);
             }
@@ -242,7 +242,7 @@ namespace BindOpen.Kernel.Logging
             bool isRecursive = true)
             where T : IBdoLog
         {
-            if (log is IBdoDynamicLog dynamicLog)
+            if (log is IBdoCompleteLog dynamicLog)
             {
                 bool hasEvent = dynamicLog._Events?.Any(q => filter == null || filter?.Invoke(q) != false) == true;
 
@@ -250,7 +250,7 @@ namespace BindOpen.Kernel.Logging
                 {
                     foreach (var child in dynamicLog._Children)
                     {
-                        if (hasEvent = (child as IBdoDynamicLog)?.HasEvent(filter, isRecursive) ?? false)
+                        if (hasEvent = (child as IBdoCompleteLog)?.HasEvent(filter, isRecursive) ?? false)
                         {
                             return true;
                         }
