@@ -1,4 +1,5 @@
 ﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Scoping.Connectors;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -8,7 +9,7 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// <summary>
     /// 
     /// </summary>
-    public partial interface IBdoPersistencegger : IBdoLogger
+    public partial interface IBdoPersistenceLogger : IBdoLogger, IBdoConnected
     {
         /// <summary>
         /// 

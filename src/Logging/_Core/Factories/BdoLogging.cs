@@ -213,7 +213,7 @@ namespace BindOpen.Kernel.Logging
         /// <param name="logger">The logger to consider.</param>
         /// <returns>Returns the created BDO logger.</returns>
         public static T NewLogger<T>(IBdoConnector connector)
-            where T : IBdoPersistencegger, new()
+            where T : IBdoPersistenceLogger, new()
         {
             var logger = BdoData.New<T>()
                 .WithConnector(connector);

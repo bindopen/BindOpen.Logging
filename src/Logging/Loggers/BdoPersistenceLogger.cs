@@ -11,7 +11,17 @@ namespace BindOpen.Kernel.Logging.Loggers
     {
         public IBdoConnector Connector { get; set; }
 
-        public string _rootLogId;
+        protected BdoPersistenceLogger() : base()
+        {
+        }
+
+        protected BdoPersistenceLogger(IBdoConnector connector) : base()
+        {
+            Connector = connector;
+        }
+
+
+        protected string _rootLogId;
 
         public string RootLogId { get => _rootLogId; protected set => _rootLogId = value; }
 
