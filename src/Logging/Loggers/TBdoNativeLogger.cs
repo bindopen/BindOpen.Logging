@@ -7,7 +7,7 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// This class represents a logger.
     /// </summary>
     public class TBdoExternalLogger<T> : TBdoLogger<T>, ITBdoExternalLogger<T>
-        where T : IBdoLoggerFormat, new()
+        where T : IBdoLoggerFormater, new()
     {
         protected ILogger _nativeLogger;
 
@@ -43,7 +43,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         {
             if (item is IBdoCompleteLog dynamicLog && _nativeLogger != null)
             {
-                string st = _formater?.ToString(item);
+                string st = _formater?.Format(item);
 
                 var kind = dynamicLog.GetMaxEventKind();
 
@@ -57,25 +57,6 @@ namespace BindOpen.Kernel.Logging.Loggers
                     {
                         Log(ev);
                     }
-                }
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="ev"></typeparam>
-        public override void Log(IBdoLogEvent item, IBdoLog log = null)
-        {
-            if (item != null && _nativeLogger != null)
-            {
-                string st = _formater?.ToString(item);
-
-                LogExternal(item.Kind, st);
-
-                if (item.Log != null)
-                {
-                    Log(item.Log);
                 }
             }
         }
@@ -101,6 +82,72 @@ namespace BindOpen.Kernel.Logging.Loggers
                     default:
                         _nativeLogger.LogInformation(st);
                         break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        public override void LogExecution(IBdoLog item, IBdoLog log = null)
+        {
+            if (item != null && _nativeLogger != null)
+            {
+                string st = _formater?.FormatExecution(item);
+
+                LogExternal(EventKinds.Message, st);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        public override void LogDetail(IBdoLog item, IBdoLog log = null)
+        {
+            if (item != null && _nativeLogger != null)
+            {
+                string st = _formater?.FormatDetail(item);
+
+                LogExternal(EventKinds.Message, st);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        public override void Log(IBdoLogEvent ev, IBdoLog log = null)
+        {
+            if (ev != null && _nativeLogger != null)
+            {
+                string st = _formater?.Format(ev);
+
+                LogExternal(ev.Kind, st);
+
+                if (ev.Log != null)
+                {
+                    Log(ev.Log);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        public override void LogDetail(IBdoLogEvent ev, IBdoLog log = null)
+        {
+            if (ev != null && _nativeLogger != null)
+            {
+                string st = _formater?.FormatDetail(ev);
+
+                LogExternal(ev.Kind, st);
+
+                if (ev.Log != null)
+                {
+                    Log(ev.Log);
                 }
             }
         }

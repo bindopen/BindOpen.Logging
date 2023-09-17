@@ -3,7 +3,6 @@ using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Logging.Events;
 using BindOpen.Kernel.Logging.Loggers;
-using BindOpen.Kernel.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -251,6 +250,8 @@ namespace BindOpen.Kernel.Logging
                 ev.WithParent(this);
                 _events ??= new List<IBdoLogEvent>();
                 _events.Add(ev);
+
+                Logger?.Log(ev);
             }
 
             return this;

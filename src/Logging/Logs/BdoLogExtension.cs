@@ -14,10 +14,10 @@ namespace BindOpen.Kernel.Logging
         /// <param name="log">The log to consider.</param>
         /// <returns>The string corresponding to the specified log using the specified formater.</returns>
         public static string ToString<T>(this IBdoCompleteLog log)
-            where T : IBdoLoggerFormat, new()
+            where T : IBdoLoggerFormater, new()
         {
             var formater = new T();
-            return formater.ToString(log);
+            return formater.Format(log);
         }
         /// <summary>
         /// 

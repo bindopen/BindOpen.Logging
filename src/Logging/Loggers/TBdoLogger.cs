@@ -7,7 +7,7 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// This class represents a logger.
     /// </summary>
     public abstract class TBdoLogger<T> : BdoObject, ITBdoLogger<T>
-        where T : IBdoLoggerFormat, new()
+        where T : IBdoLoggerFormater, new()
     {
         protected T _formater;
 
@@ -48,6 +48,24 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public abstract void Log(IBdoLogEvent item, IBdoLog log = null);
+        public abstract void LogExecution(IBdoLog item, IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        public abstract void LogDetail(IBdoLog item, IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        public abstract void Log(IBdoLogEvent ev, IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        public abstract void LogDetail(IBdoLogEvent ev, IBdoLog log = null);
     }
 }
