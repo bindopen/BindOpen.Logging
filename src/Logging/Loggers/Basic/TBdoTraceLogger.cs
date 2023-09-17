@@ -7,7 +7,7 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// This class represents a logger.
     /// </summary>
     public class TBdoTraceLogger<T> : TBdoLogger<T>
-        where T : IBdoLoggerFormat, new()
+        where T : IBdoLoggerFormater, new()
     {
         /// <summary>
         /// Initializes a new instance of the BdoLogger class.
@@ -22,7 +22,27 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// <typeparam name="ev"></typeparam>
         public override void Log(IBdoLog item, IBdoLog log = null)
         {
-            var st = _formater?.ToString(item);
+            var st = _formater?.Format(item);
+            Trace.Write(st);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        public override void LogExecution(IBdoLog item, IBdoLog log = null)
+        {
+            var st = _formater?.FormatExecution(item);
+            Trace.Write(st);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        public override void LogDetail(IBdoLog item, IBdoLog log = null)
+        {
+            var st = _formater?.FormatDetail(item);
             Trace.Write(st);
         }
 
@@ -32,7 +52,17 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// <typeparam name="ev"></typeparam>
         public override void Log(IBdoLogEvent item, IBdoLog log = null)
         {
-            var st = _formater?.ToString(item);
+            var st = _formater?.Format(item);
+            Trace.Write(st);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        public override void LogDetail(IBdoLogEvent item, IBdoLog log = null)
+        {
+            var st = _formater?.FormatDetail(item);
             Trace.Write(st);
         }
     }

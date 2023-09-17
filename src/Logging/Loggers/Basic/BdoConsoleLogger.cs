@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a logger.
     /// </summary>
-    public class BdoConsoleLogger : TBdoConsoleLogger<BdoSnapLoggerFormat>
+    public class BdoConsoleLogger : TBdoConsoleLogger<BdoSnapLoggerFormater>
     {
         /// <summary>
         /// Initializes a new instance of the BdoLogger class.

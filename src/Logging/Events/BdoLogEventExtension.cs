@@ -200,10 +200,10 @@ namespace BindOpen.Kernel.Logging
         /// <param name="ev">The event to consider.</param>
         /// <returns>The string corresponding to the specified event using the specified formater.</returns>
         public static string ToString<T>(this IBdoLogEvent ev)
-            where T : IBdoLoggerFormat, new()
+            where T : IBdoLoggerFormater, new()
         {
             var formater = new T();
-            return formater.ToString(ev);
+            return formater.Format(ev);
         }
     }
 }

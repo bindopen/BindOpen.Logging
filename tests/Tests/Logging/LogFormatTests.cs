@@ -38,7 +38,7 @@ namespace BindOpen.Kernel.Logging
         public void LogToStringTest()
         {
             BdoLog log = _testData.log;
-            var st = log.ToString<BdoSnapLoggerFormat>();
+            var st = log.ToString<BdoSnapLoggerFormater>();
             var st_expected =
                 "- Error0" + Environment.NewLine +
                 "- Exception0" + Environment.NewLine +
@@ -59,7 +59,7 @@ namespace BindOpen.Kernel.Logging
         {
             BdoLog log = _testData.log;
             var logEvent = log._Events?[0];
-            var st = logEvent.ToString<BdoSnapLoggerFormat>();
+            var st = logEvent.ToString<BdoSnapLoggerFormater>();
             var st_expected = "- Error0";
 
             Assert.That(st == st_expected, "Bad ToString function.");

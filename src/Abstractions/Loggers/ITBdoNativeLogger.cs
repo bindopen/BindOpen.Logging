@@ -6,7 +6,7 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// 
     /// </summary>
     public interface ITBdoExternalLogger<T> : ITBdoLogger<T>
-        where T : IBdoLoggerFormat, new()
+        where T : IBdoLoggerFormater, new()
     {
         /// <summary>
         /// Sets the native logger.
