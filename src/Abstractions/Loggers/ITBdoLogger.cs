@@ -4,7 +4,7 @@
     /// 
     /// </summary>
     public interface ITBdoLogger<T> : IBdoLogger
-        where T : IBdoLoggerFormat, new()
+        where T : IBdoLoggerFormater, new()
     {
         /// <summary>
         /// Initializes a new instance of the BdoLogger class.

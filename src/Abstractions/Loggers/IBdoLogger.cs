@@ -22,6 +22,24 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        void Log(IBdoLogEvent item, IBdoLog log = null);
+        void LogExecution(IBdoLog item, IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        void LogDetail(IBdoLog item, IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        void Log(IBdoLogEvent ev, IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="ev"></typeparam>
+        void LogDetail(IBdoLogEvent ev, IBdoLog log = null);
     }
 }

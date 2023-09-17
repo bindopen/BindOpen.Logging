@@ -172,7 +172,7 @@ namespace BindOpen.Kernel.Logging
         /// <param name="logger">The logger to consider.</param>
         /// <returns>Returns the created BDO logger.</returns>
         public static TBdoLogger<T> NewLogger<T>(ILogger logger)
-            where T : IBdoLoggerFormat, new()
+            where T : IBdoLoggerFormater, new()
         {
             var bdoLogger = BdoData.New<TBdoExternalLogger<T>>();
             bdoLogger.SetExternal(logger);
@@ -185,9 +185,9 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         /// <param name="logger">The logger to consider.</param>
         /// <returns>Returns the created BDO logger.</returns>
-        public static TBdoLogger<BdoSnapLoggerFormat> NewLogger(ILogger logger)
+        public static TBdoLogger<BdoSnapLoggerFormater> NewLogger(ILogger logger)
         {
-            var bdoLogger = BdoData.New<TBdoExternalLogger<BdoSnapLoggerFormat>>();
+            var bdoLogger = BdoData.New<TBdoExternalLogger<BdoSnapLoggerFormater>>();
             bdoLogger.SetExternal(logger);
 
             return bdoLogger;
@@ -198,7 +198,7 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         /// <param name="logger">The logger to consider.</param>
         /// <returns>Returns the created BDO logger.</returns>
-        public static TBdoLogger<BdoSnapLoggerFormat> NewLogger(ILoggerFactory factory)
+        public static TBdoLogger<BdoSnapLoggerFormater> NewLogger(ILoggerFactory factory)
         {
             var logger = factory.CreateLogger<IBdoScope>();
 

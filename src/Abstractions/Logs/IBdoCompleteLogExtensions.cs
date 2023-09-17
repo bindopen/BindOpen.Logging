@@ -1,6 +1,6 @@
 ﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Logging.Events;
-using BindOpen.Kernel.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +12,30 @@ namespace BindOpen.Kernel.Logging
     /// </summary>
     public static partial class IBdoCompleteLogExtensions
     {
+        public static IBdoCompleteLog WithExecution<T>(this IBdoCompleteLog log, IBdoProcessExecution execution)
+        {
+            if (log != null)
+            {
+                log.Execution = execution;
+
+                log.Logger?.LogExecution(log);
+            }
+
+            return log;
+        }
+
+        public static T WithDetail<T>(this T log, IBdoMetaSet detail)
+            where T : IBdoCompleteLog
+        {
+            if (log != null)
+            {
+                log.Detail = detail;
+
+                log.Logger?.LogDetail(log);
+            }
+
+            return log;
+        }
 
         public static IEnumerable<IBdoLog> Children<T>(
             this T log, Predicate<IBdoLog> filter = null, bool isRecursive = false)
@@ -88,24 +112,6 @@ namespace BindOpen.Kernel.Logging
             if (log is IBdoCompleteLog dynamicLog)
             {
                 dynamicLog.EventFilter = filter;
-            }
-
-            return log;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="execution"></param>
-        /// <returns></returns>
-        public static T WithExecution<T>(
-            T log,
-            IBdoProcessExecution execution)
-            where T : IBdoLog
-        {
-            if (log is IBdoCompleteLog dynamicLog)
-            {
-                dynamicLog.Execution = execution;
             }
 
             return log;

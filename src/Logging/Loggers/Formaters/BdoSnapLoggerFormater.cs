@@ -1,5 +1,6 @@
 ﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Logging.Events;
 using System;
 
@@ -8,26 +9,28 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// <summary>
     /// This class represents a logger format.
     /// </summary>
-    public class BdoSnapLoggerFormat : IBdoLoggerFormat
+    public class BdoSnapLoggerFormater : IBdoLoggerFormater
     {
+        // Log
+
         /// <summary>
         /// Converts the log to the string.
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the string that converts the specified log.</returns>
-        public string ToString(IBdoLog log, string indent = "")
+        public string Format(IBdoLog log, string indent = "")
         {
             if (log != null)
             {
                 var st = log.Title + (!string.IsNullOrEmpty(log.Description) ? " | " + log.Description : "");
 
-                st = string.IsNullOrEmpty(st) ? "" : (indent + "o " + st + Environment.NewLine);
+                st = string.IsNullOrEmpty(st) ? "" : indent + "o " + st + Environment.NewLine;
 
                 if (log is IBdoCompleteLog dynamicLog && dynamicLog._Events != null)
                 {
                     foreach (var ev in dynamicLog._Events)
                     {
-                        var stEv = ToString(ev, indent + " ");
+                        var stEv = Format(ev, indent + " ");
                         st += string.IsNullOrEmpty(stEv) ? "" : stEv;
                     }
                 }
@@ -38,11 +41,41 @@ namespace BindOpen.Kernel.Logging.Loggers
             return null;
         }
 
+        public string FormatExecution(IBdoLog log, string indent = "")
+        {
+            if (log != null)
+            {
+                var st = log?.Execution.Status.ToString();
+
+                st = string.IsNullOrEmpty(st) ? "" : indent + "o (Log ID=" + log?.Id + ")" + st + Environment.NewLine;
+
+                return st;
+            }
+
+            return null;
+        }
+
+        public string FormatDetail(IBdoLog log, string indent = "")
+        {
+            if (log != null)
+            {
+                var st = log?.Detail.ToString();
+
+                st = string.IsNullOrEmpty(st) ? "" : indent + "o (Log ID=" + log?.Id + ")" + st + Environment.NewLine;
+
+                return st;
+            }
+
+            return null;
+        }
+
+        // Event
+
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public string ToString(IBdoLogEvent ev, string indent = "")
+        public string Format(IBdoLogEvent ev, string indent = "")
         {
             if (ev != null)
             {
@@ -56,21 +89,35 @@ namespace BindOpen.Kernel.Logging.Loggers
 
                 if (ev.Log != null)
                 {
-                    st = string.IsNullOrEmpty(st) ? "" : (indent + "o " + st + Environment.NewLine);
+                    st = string.IsNullOrEmpty(st) ? "" : indent + "o " + st + Environment.NewLine;
 
                     if (ev.Log is IBdoCompleteLog dynamicLog && dynamicLog._Events != null)
                     {
                         foreach (var childEv in dynamicLog._Events)
                         {
-                            var stEv = ToString(childEv, indent + " ");
+                            var stEv = Format(childEv, indent + " ");
                             st += string.IsNullOrEmpty(stEv) ? "" : stEv;
                         }
                     }
                 }
                 else
                 {
-                    st = string.IsNullOrEmpty(st) ? "" : (indent + "- " + st + Environment.NewLine);
+                    st = string.IsNullOrEmpty(st) ? "" : indent + "- " + st + Environment.NewLine;
                 }
+
+                return st;
+            }
+
+            return null;
+        }
+
+        public string FormatDetail(IBdoLogEvent ev, string indent = "")
+        {
+            if (ev != null)
+            {
+                var st = ev?.Detail.ToString();
+
+                st = string.IsNullOrEmpty(st) ? "" : indent + "o (Event ID=" + ev?.Id + ")" + st + Environment.NewLine;
 
                 return st;
             }

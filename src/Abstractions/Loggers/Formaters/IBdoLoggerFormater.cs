@@ -5,20 +5,26 @@ namespace BindOpen.Kernel.Logging.Loggers
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoLoggerFormat
+    public interface IBdoLoggerFormater
     {
         /// <summary>
         /// Converts the log to the string.
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the string that converts the specified log.</returns>
-        string ToString(IBdoLog log, string indent = "");
+        string Format(IBdoLog log, string indent = "");
+
+        string FormatExecution(IBdoLog log, string indent = "");
+
+        string FormatDetail(IBdoLog log, string indent = "");
 
         /// <summary>
         /// Converts the log event to the string.
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <returns>Returns the string that converts the specified log event.</returns>
-        string ToString(IBdoLogEvent ev, string indent = "");
+        string Format(IBdoLogEvent ev, string indent = "");
+
+        string FormatDetail(IBdoLogEvent ev, string indent = "");
     }
 }
