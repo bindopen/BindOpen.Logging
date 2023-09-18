@@ -42,30 +42,30 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public abstract void Log(IBdoLog item, IBdoLog log = null);
+        public abstract IResultItem Log(IBdoLog item, IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public abstract void LogExecution(IBdoLog item, IBdoLog log = null);
+        public abstract IResultItem LogExecution(IBdoLog item, IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public abstract void LogDetail(IBdoLog item, IBdoLog log = null);
+        public abstract IResultItem LogDetail(IBdoLog item, IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public abstract void Log(IBdoLogEvent ev, IBdoLog log = null);
+        public abstract IResultItem Log(IBdoLogEvent ev, IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public abstract void LogDetail(IBdoLogEvent ev, IBdoLog log = null);
+        public abstract IResultItem LogDetail(IBdoLogEvent ev, IBdoLog log = null);
     }
 }

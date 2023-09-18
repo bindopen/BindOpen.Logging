@@ -1,11 +1,13 @@
-﻿using BindOpen.Kernel.Scoping.Connectors;
+﻿using BindOpen.Kernel.Data.Services;
+using BindOpen.Kernel.Logging.Repositories;
 
 namespace BindOpen.Kernel.Logging.Loggers
 {
     /// <summary>
     /// 
     /// </summary>
-    public partial interface IBdoPersistentLogger : IBdoLogger, IBdoConnected
+    public partial interface IBdoPersistentLogger : IBdoLogger, IBdoDataService
     {
+        IBdoLoggingRepository Repository { get; }
     }
 }
