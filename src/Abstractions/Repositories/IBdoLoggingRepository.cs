@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.Data.Services;
+﻿using BindOpen.Kernel.Data.Repositories;
 
 namespace BindOpen.Kernel.Logging.Repositories
 {
