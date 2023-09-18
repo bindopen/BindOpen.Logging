@@ -60,7 +60,7 @@ namespace BindOpen.Kernel.Logging.Loggers
                         _repository.UsingConnection((conn, l) =>
                         {
                             r = _repository?.CreateLog(dynamicLog, null, log);
-                        }, log, false);
+                        }, false, log);
                     }, ResourceStatus.Created, log).Status;
             }
 
@@ -84,7 +84,7 @@ namespace BindOpen.Kernel.Logging.Loggers
                         _repository.UsingConnection((conn, l) =>
                         {
                             r = _repository?.UpdateLogExecution(item.Id, item.Execution, null, log);
-                        }, log, false);
+                        }, false, log);
                     }, ResourceStatus.Created, log).Status;
             }
 
@@ -108,7 +108,7 @@ namespace BindOpen.Kernel.Logging.Loggers
                         _repository.UsingConnection((conn, l) =>
                         {
                             r = _repository?.UpdateLogDetail(item.Id, item.Detail, null, log);
-                        }, log, false);
+                        }, false, log);
                     }, ResourceStatus.Created, log).Status;
             }
 
@@ -130,7 +130,7 @@ namespace BindOpen.Kernel.Logging.Loggers
                     _repository.UsingConnection((conn, l) =>
                     {
                         r = _repository?.CreateEvent(item, null, log);
-                    }, log, false);
+                    }, false, log);
                 }, ResourceStatus.Created, log).Status;
 
             return result;
@@ -153,7 +153,7 @@ namespace BindOpen.Kernel.Logging.Loggers
                         _repository.UsingConnection((conn, l) =>
                         {
                             r = _repository?.UpdateEventDetail(item.Parent?.Id, item.Detail, null, log);
-                        }, log, false);
+                        }, false, log);
                     }, ResourceStatus.Created, log).Status;
             }
 
