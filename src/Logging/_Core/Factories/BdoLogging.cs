@@ -4,7 +4,6 @@ using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Logging.Events;
 using BindOpen.Kernel.Logging.Loggers;
 using BindOpen.Kernel.Scoping;
-using BindOpen.Kernel.Scoping.Connectors;
 using Microsoft.Extensions.Logging;
 using System;
 
@@ -212,11 +211,11 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         /// <param name="logger">The logger to consider.</param>
         /// <returns>Returns the created BDO logger.</returns>
-        public static T NewLogger<T>(IBdoConnector connector)
+        public static T NewLogger<T>(IBdoConfiguration config)
             where T : IBdoPersistentLogger, new()
         {
-            var logger = BdoData.New<T>()
-                .WithConnector(connector);
+            var logger = BdoData.New<T>();
+            //.WithConfiguration(config);
 
             return logger;
         }

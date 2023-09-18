@@ -1,4 +1,5 @@
-﻿using BindOpen.Kernel.Logging.Events;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Logging.Events;
 using Microsoft.Extensions.Logging;
 
 namespace BindOpen.Kernel.Logging.Loggers
@@ -39,7 +40,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public override void Log(IBdoLog item, IBdoLog log = null)
+        public override IResultItem Log(IBdoLog item, IBdoLog log = null)
         {
             if (item is IBdoCompleteLog dynamicLog && _nativeLogger != null)
             {
@@ -58,7 +59,11 @@ namespace BindOpen.Kernel.Logging.Loggers
                         Log(ev);
                     }
                 }
+
+                return BdoData.NewResultItem(ResourceStatus.Created);
             }
+
+            return BdoData.NewResultItem(ResourceStatus.None);
         }
 
         private void LogExternal(EventKinds kind, string st)
@@ -90,35 +95,43 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public override void LogExecution(IBdoLog item, IBdoLog log = null)
+        public override IResultItem LogExecution(IBdoLog item, IBdoLog log = null)
         {
             if (item != null && _nativeLogger != null)
             {
                 string st = _formater?.FormatExecution(item);
 
                 LogExternal(EventKinds.Message, st);
+
+                return BdoData.NewResultItem(ResourceStatus.Created);
             }
+
+            return BdoData.NewResultItem(ResourceStatus.None);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public override void LogDetail(IBdoLog item, IBdoLog log = null)
+        public override IResultItem LogDetail(IBdoLog item, IBdoLog log = null)
         {
             if (item != null && _nativeLogger != null)
             {
                 string st = _formater?.FormatDetail(item);
 
                 LogExternal(EventKinds.Message, st);
+
+                return BdoData.NewResultItem(ResourceStatus.Created);
             }
+
+            return BdoData.NewResultItem(ResourceStatus.None);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public override void Log(IBdoLogEvent ev, IBdoLog log = null)
+        public override IResultItem Log(IBdoLogEvent ev, IBdoLog log = null)
         {
             if (ev != null && _nativeLogger != null)
             {
@@ -130,14 +143,18 @@ namespace BindOpen.Kernel.Logging.Loggers
                 {
                     Log(ev.Log);
                 }
+
+                return BdoData.NewResultItem(ResourceStatus.Created);
             }
+
+            return BdoData.NewResultItem(ResourceStatus.None);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public override void LogDetail(IBdoLogEvent ev, IBdoLog log = null)
+        public override IResultItem LogDetail(IBdoLogEvent ev, IBdoLog log = null)
         {
             if (ev != null && _nativeLogger != null)
             {
@@ -149,7 +166,11 @@ namespace BindOpen.Kernel.Logging.Loggers
                 {
                     Log(ev.Log);
                 }
+
+                return BdoData.NewResultItem(ResourceStatus.Created);
             }
+
+            return BdoData.NewResultItem(ResourceStatus.None);
         }
     }
 }

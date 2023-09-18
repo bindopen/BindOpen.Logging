@@ -1,4 +1,5 @@
-﻿using BindOpen.Kernel.Logging.Events;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Logging.Events;
 using System.Diagnostics;
 
 namespace BindOpen.Kernel.Logging.Loggers
@@ -20,50 +21,55 @@ namespace BindOpen.Kernel.Logging.Loggers
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public override void Log(IBdoLog item, IBdoLog log = null)
+        public override IResultItem Log(IBdoLog item, IBdoLog log = null)
         {
             var st = _formater?.Format(item);
             Trace.Write(st);
+            return BdoData.NewResultItem(ResourceStatus.Created);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public override void LogExecution(IBdoLog item, IBdoLog log = null)
+        public override IResultItem LogExecution(IBdoLog item, IBdoLog log = null)
         {
             var st = _formater?.FormatExecution(item);
             Trace.Write(st);
+            return BdoData.NewResultItem(ResourceStatus.Created);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public override void LogDetail(IBdoLog item, IBdoLog log = null)
+        public override IResultItem LogDetail(IBdoLog item, IBdoLog log = null)
         {
             var st = _formater?.FormatDetail(item);
             Trace.Write(st);
+            return BdoData.NewResultItem(ResourceStatus.Created);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public override void Log(IBdoLogEvent item, IBdoLog log = null)
+        public override IResultItem Log(IBdoLogEvent item, IBdoLog log = null)
         {
             var st = _formater?.Format(item);
             Trace.Write(st);
+            return BdoData.NewResultItem(ResourceStatus.Created);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="ev"></typeparam>
-        public override void LogDetail(IBdoLogEvent item, IBdoLog log = null)
+        public override IResultItem LogDetail(IBdoLogEvent item, IBdoLog log = null)
         {
             var st = _formater?.FormatDetail(item);
             Trace.Write(st);
+            return BdoData.NewResultItem(ResourceStatus.Created);
         }
     }
 }
