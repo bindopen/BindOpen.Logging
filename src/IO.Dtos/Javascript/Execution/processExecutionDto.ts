@@ -1,16 +1,17 @@
 ﻿/* Auto Generated */
 
 export interface ProcessExecutionDto {
-    detail: any;
+    customStatus: string;
+    endDate: string;
     location: string;
     progressIndex: number;
     progressMax: number;
-    status: any;
-    state: any;
-    customStatus: string;
-    startDate: string;
     restartDate: string;
-    endDate: string;
-    duration: string;
     resultLevel: number;
+    startDate: string;
+    state: any;
+    status: any;
+    id: string;
+    condition: any;
+    detail: any;
 }

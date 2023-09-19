@@ -1,6 +1,6 @@
 ﻿/* Auto Generated */
 
-import { ProcessExecutionDto } from "./processExecutionDto";
+import { ProcessExecutionDto } from "./../Execution/processExecutionDto";
 
 export interface LogDto {
     title: string;

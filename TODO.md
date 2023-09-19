@@ -3,8 +3,8 @@ Todo list for BindOpen.Kernel.Logging
 
 ## Next tasks
 
-- [ ] Improve BdoLogger with methods: Log(log), Update(log), Log(ev), Update(ev)
-- [ ] Enhance test cover 
+- [ ] Converter of ProcessExecution.
+- [ ] Enhance test cover.
 
 ## Stuff to check out later on
 
