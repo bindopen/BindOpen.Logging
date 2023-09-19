@@ -11,7 +11,4 @@ export interface ProcessExecutionDto {
     startDate: string;
     state: any;
     status: any;
-    id: string;
-    condition: any;
-    detail: any;
 }

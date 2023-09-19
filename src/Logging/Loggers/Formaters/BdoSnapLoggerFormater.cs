@@ -45,7 +45,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         {
             if (log != null)
             {
-                var st = log?.Execution.Status.ToString();
+                var st = log?.Execution?.Status.ToString();
 
                 st = string.IsNullOrEmpty(st) ? "" : indent + "o (Log ID=" + log?.Id + ")" + st + Environment.NewLine;
 
@@ -59,7 +59,7 @@ namespace BindOpen.Kernel.Logging.Loggers
         {
             if (log != null)
             {
-                var st = log?.Detail.ToString();
+                var st = log?.Detail?.ToString();
 
                 st = string.IsNullOrEmpty(st) ? "" : indent + "o (Log ID=" + log?.Id + ")" + st + Environment.NewLine;
 
