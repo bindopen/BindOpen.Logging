@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.Data" Version="1.2.108" />
+    <PackageReference Include="BindOpen.Kernel.Data" Version="1.2.110" />
   </ItemGroup>
 
   <ItemGroup>
