@@ -24,9 +24,7 @@ namespace BindOpen.Kernel.Logging
             return log;
         }
 
-        public static void WithExecutionAsStarted<T>(
-            this T log)
-            where T : IBdoCompleteLog
+        public static void WithExecutionAsStarted(this IBdoCompleteLog log)
         {
             log?.Execution?
                 .WithStartDate(DateTime.Now)
@@ -42,9 +40,7 @@ namespace BindOpen.Kernel.Logging
         /// <summary>
         /// Restarts this instance.
         /// </summary>
-        public static void WithExecutionAsRestarted<T>(
-            this T log)
-            where T : IBdoCompleteLog
+        public static void WithExecutionAsRestarted(this IBdoCompleteLog log)
         {
             log?.Execution?
                 .WithRestartDate(DateTime.Now)
@@ -59,9 +55,7 @@ namespace BindOpen.Kernel.Logging
         /// <summary>
         /// Resumes this instance.
         /// </summary>
-        public static void WithExecutionAsResumed<T>(
-            this T log)
-            where T : IBdoCompleteLog
+        public static void WithExecutionAsResumed(this IBdoCompleteLog log)
         {
             if (!(log?.Execution?.State == ProcessExecutionState.Pending && log?.Execution?.Status == ProcessExecutionStatus.Paused)) return;
 
@@ -76,9 +70,7 @@ namespace BindOpen.Kernel.Logging
         /// <summary>
         /// Resumes this instance.
         /// </summary>
-        public static void WithExecutionAsPaused<T>(
-            this T log)
-            where T : IBdoCompleteLog
+        public static void WithExecutionAsPaused(this IBdoCompleteLog log)
         {
             if (log?.Execution?.State != ProcessExecutionState.Pending) return;
 
@@ -91,10 +83,9 @@ namespace BindOpen.Kernel.Logging
         }
 
         public static void WithExecutionAsEnded<T>(
-            this T log,
+            this IBdoCompleteLog log,
             ProcessExecutionStatus status = ProcessExecutionStatus.Completed,
             float? progressIndex = null)
-            where T : IBdoCompleteLog
         {
             if (!ProcessExecutionState.Ended.ToStatuses().Contains(status)) return;
 
