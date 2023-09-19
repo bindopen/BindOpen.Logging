@@ -1,6 +1,7 @@
 ﻿using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Logging.Events;
+using BindOpen.Kernel.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace BindOpen.Kernel.Logging
     /// </summary>
     public static partial class IBdoCompleteLogExtensions
     {
-        public static IBdoCompleteLog WithExecution<T>(this IBdoCompleteLog log, IBdoProcessExecution execution)
+        public static IBdoCompleteLog WithExecution(this IBdoCompleteLog log, IBdoProcessExecution execution)
         {
             if (log != null)
             {
@@ -24,14 +25,98 @@ namespace BindOpen.Kernel.Logging
             return log;
         }
 
-        public static T WithDetail<T>(this T log, IBdoMetaSet detail)
+        public static void WithExecutionAsStarted<T>(
+            this T log)
             where T : IBdoCompleteLog
+        {
+            log?.Execution?
+                .WithStartDate(DateTime.Now)
+                .WithRestartDate(null)
+                .WithEndDate(null)
+                .WithState(ProcessExecutionState.Pending)
+                .WithStatus(ProcessExecutionStatus.Processing)
+                .WithProgressIndex(0);
+
+            log.WithExecution(log.Execution);
+        }
+
+        /// <summary>
+        /// Restarts this instance.
+        /// </summary>
+        public static void WithExecutionAsRestarted<T>(
+            this T log)
+            where T : IBdoCompleteLog
+        {
+            log?.Execution?
+                .WithRestartDate(DateTime.Now)
+                .WithEndDate(null)
+                .WithState(ProcessExecutionState.Pending)
+                .WithStatus(ProcessExecutionStatus.Processing)
+                .WithProgressIndex(0);
+
+            log.WithExecution(log.Execution);
+        }
+
+        /// <summary>
+        /// Resumes this instance.
+        /// </summary>
+        public static void WithExecutionAsResumed<T>(
+            this T log)
+            where T : IBdoCompleteLog
+        {
+            if (!(log?.Execution?.State == ProcessExecutionState.Pending && log?.Execution?.Status == ProcessExecutionStatus.Paused)) return;
+
+            log?.Execution?
+                .WithEndDate(null)
+                .WithState(ProcessExecutionState.Pending)
+                .WithStatus(ProcessExecutionStatus.Processing);
+
+            log.WithExecution(log.Execution);
+        }
+
+        /// <summary>
+        /// Resumes this instance.
+        /// </summary>
+        public static void WithExecutionAsPaused<T>(
+            this T log)
+            where T : IBdoCompleteLog
+        {
+            if (log?.Execution?.State != ProcessExecutionState.Pending) return;
+
+            log?.Execution?
+                .WithEndDate(null)
+                .WithState(ProcessExecutionState.Pending)
+                .WithStatus(ProcessExecutionStatus.Paused);
+
+            log.WithExecution(log.Execution);
+        }
+
+        public static void WithExecutionAsEnded<T>(
+            this T log,
+            ProcessExecutionStatus status = ProcessExecutionStatus.Completed)
+            where T : IBdoCompleteLog
+        {
+            if (!ProcessExecutionState.Ended.ToStatuses().Contains(status)) return;
+
+            log?.Execution?
+                .WithEndDate(DateTime.Now)
+                .WithState(ProcessExecutionState.Ended)
+                .WithStatus(status);
+
+            log.WithExecution(log.Execution);
+        }
+
+        public static T WithDetail<T>(this T log, IBdoMetaSet detail)
+            where T : IBdoLog
         {
             if (log != null)
             {
                 log.Detail = detail;
 
-                log.Logger?.LogDetail(log);
+                if (log is IBdoCompleteLog dynamicLog)
+                {
+                    dynamicLog.Logger?.LogDetail(log);
+                }
             }
 
             return log;
