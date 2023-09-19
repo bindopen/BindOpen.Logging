@@ -55,5 +55,6 @@ namespace BindOpen.Kernel.Logging
         int RemoveEvents(
             Predicate<IBdoLogEvent> filter = null,
             bool isRecursive = true);
+        IBdoProcessExecution InitExecution();
     }
 }
