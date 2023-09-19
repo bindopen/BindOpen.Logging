@@ -1,4 +1,7 @@
-﻿namespace BindOpen.Kernel.Logging
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Helpers;
+
+namespace BindOpen.Kernel.Logging
 {
     /// <summary>
     /// This class represents a Xml helper.
@@ -18,6 +21,16 @@
 
             ProcessExecutionDto dto = new()
             {
+                CustomStatus = poco.CustomStatus,
+                EndDate = poco.EndDate.ToString(DataValueTypes.Date),
+                Location = poco.Location,
+                ProgressIndex = poco.ProgressIndex,
+                ProgressMax = poco.ProgressMax,
+                RestartDate = poco.RestartDate.ToString(DataValueTypes.Date),
+                ResultLevel = poco.ResultLevel,
+                StartDate = poco.StartDate.ToString(DataValueTypes.Date),
+                State = poco.State,
+                Status = poco.Status
             };
 
             return dto;
@@ -34,6 +47,16 @@
 
             ProcessExecution poco = new()
             {
+                CustomStatus = dto.CustomStatus,
+                EndDate = dto.EndDate.ToDateTime(),
+                Location = dto.Location,
+                ProgressIndex = dto.ProgressIndex,
+                ProgressMax = dto.ProgressMax,
+                RestartDate = dto.RestartDate.ToDateTime(),
+                ResultLevel = dto.ResultLevel,
+                StartDate = dto.StartDate.ToDateTime(),
+                State = dto.State,
+                Status = dto.Status
             };
 
             return poco;

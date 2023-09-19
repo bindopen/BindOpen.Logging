@@ -1,7 +1,5 @@
 ﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Conditions;
 using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Processing;
 using System;
 
 namespace BindOpen.Kernel.Logging
@@ -31,7 +29,6 @@ namespace BindOpen.Kernel.Logging
         public ProcessExecutionState State { get; set; }
         public ProcessExecutionStatus Status { get; set; }
         public string Id { get; set; }
-        public IBdoCondition Condition { get; set; }
         public IBdoMetaSet Detail { get; set; }
 
         #endregion

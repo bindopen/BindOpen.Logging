@@ -223,7 +223,7 @@ namespace BindOpen.Kernel.Logging
         /// <summary>
         /// Creates a new job.
         /// </summary>
-        public static BdoProcessExecution CreateExecution()
+        public static BdoProcessExecution NewExecution()
         {
             var ex = new BdoProcessExecution();
 

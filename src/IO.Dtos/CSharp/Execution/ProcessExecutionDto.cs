@@ -1,6 +1,4 @@
 ﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Conditions;
-using BindOpen.Kernel.Data.Meta;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -56,18 +54,6 @@ namespace BindOpen.Kernel.Logging
         [JsonPropertyName("status")]
         [XmlElement("status")]
         public ProcessExecutionStatus Status { get; set; }
-
-        [JsonPropertyName("id")]
-        [XmlAttribute("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("conditiion")]
-        [XmlElement("conditiion")]
-        public ConditionDto Condition { get; set; }
-
-        [JsonPropertyName("detail")]
-        [XmlElement("detail")]
-        public MetaSetDto Detail { get; set; }
 
         #endregion
 
