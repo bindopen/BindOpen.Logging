@@ -219,5 +219,15 @@ namespace BindOpen.Kernel.Logging
 
             return logger;
         }
+
+        /// <summary>
+        /// Creates a new job.
+        /// </summary>
+        public static BdoProcessExecution CreateExecution()
+        {
+            var ex = new BdoProcessExecution();
+
+            return ex;
+        }
     }
 }

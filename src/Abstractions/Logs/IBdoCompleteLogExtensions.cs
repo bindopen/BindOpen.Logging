@@ -1,7 +1,6 @@
 ﻿using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Logging.Events;
-using BindOpen.Kernel.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,7 +92,8 @@ namespace BindOpen.Kernel.Logging
 
         public static void WithExecutionAsEnded<T>(
             this T log,
-            ProcessExecutionStatus status = ProcessExecutionStatus.Completed)
+            ProcessExecutionStatus status = ProcessExecutionStatus.Completed,
+            float? progressIndex = null)
             where T : IBdoCompleteLog
         {
             if (!ProcessExecutionState.Ended.ToStatuses().Contains(status)) return;
@@ -102,6 +102,8 @@ namespace BindOpen.Kernel.Logging
                 .WithEndDate(DateTime.Now)
                 .WithState(ProcessExecutionState.Ended)
                 .WithStatus(status);
+
+            if (progressIndex != null) log?.Execution.WithProgressIndex(progressIndex.Value);
 
             log.WithExecution(log.Execution);
         }
