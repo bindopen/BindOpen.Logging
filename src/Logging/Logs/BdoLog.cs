@@ -122,6 +122,11 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         public IBdoProcessExecution Execution { get; set; }
 
+        /// <summary>
+        /// Execution of this instance.
+        /// </summary>
+        public IBdoProcessExecution InitExecution() => Execution = BdoLogging.NewExecution();
+
         // Task ----------------------------------
 
         /// <summary>

@@ -12,18 +12,6 @@ namespace BindOpen.Kernel.Logging
     /// </summary>
     public static partial class IBdoCompleteLogExtensions
     {
-        public static IBdoCompleteLog WithExecution(this IBdoCompleteLog log, IBdoProcessExecution execution)
-        {
-            if (log != null)
-            {
-                log.Execution = execution;
-
-                log.Logger?.LogExecution(log);
-            }
-
-            return log;
-        }
-
         public static T WithDetail<T>(this T log, IBdoMetaSet detail)
             where T : IBdoLog
         {
@@ -278,5 +266,88 @@ namespace BindOpen.Kernel.Logging
             params EventKinds[] kinds)
             where T : IBdoLog
             => log.HasEvent(q => kinds.Has(q.Kind), isRecursive);
+
+        // Execution
+
+        public static IBdoCompleteLog WithExecution(this IBdoCompleteLog log, IBdoProcessExecution execution)
+        {
+            if (log != null)
+            {
+                log.Execution = execution;
+
+                log.Logger?.LogExecution(log);
+            }
+
+            return log;
+        }
+
+        public static void WithExecutionAsStarted(this IBdoCompleteLog log)
+        {
+            if (log == null) return;
+
+            log.InitExecution();
+
+            log.Execution.SetAsStarted();
+
+            log.WithExecution(log.Execution);
+        }
+
+        /// <summary>
+        /// Restarts this instance.
+        /// </summary>
+        public static void WithExecutionAsRestarted(this IBdoCompleteLog log)
+        {
+            if (log == null) return;
+
+            log.InitExecution();
+
+            log.Execution.SetAsRestarted();
+
+            log.WithExecution(log.Execution);
+        }
+
+        /// <summary>
+        /// Resumes this instance.
+        /// </summary>
+        public static void WithExecutionAsResumed(this IBdoCompleteLog log)
+        {
+            if (log == null) return;
+
+            log.InitExecution();
+
+            log.Execution.SetAsResumed();
+
+            log.WithExecution(log.Execution);
+        }
+
+        /// <summary>
+        /// Resumes this instance.
+        /// </summary>
+        public static void WithExecutionAsPaused(this IBdoCompleteLog log)
+        {
+            if (log == null) return;
+
+            log.InitExecution();
+
+            log.Execution.SetAsPaused();
+
+            log.WithExecution(log.Execution);
+        }
+
+        public static void WithExecutionAsEnded(
+            this IBdoCompleteLog log,
+            ProcessExecutionStatus status = ProcessExecutionStatus.Completed,
+            float? progressIndex = null)
+        {
+            if (log == null) return;
+
+            log.InitExecution();
+
+            log.Execution.SetAsEnded(status);
+
+            if (progressIndex != null) log?.Execution.WithProgressIndex(progressIndex.Value);
+
+            log.WithExecution(log.Execution);
+        }
     }
 }
