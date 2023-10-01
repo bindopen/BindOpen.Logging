@@ -1,5 +1,6 @@
 ﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Logging.Events;
+using System;
 
 namespace BindOpen.Kernel.Logging.Loggers
 {
@@ -28,7 +29,7 @@ namespace BindOpen.Kernel.Logging.Loggers
 
         public string RootLogId { get => _rootLogId; protected set => _rootLogId = value; }
 
-        public IBdoCompleteLog NewRootLog(string id = null, ILogsRequestForm requestForm = null, IBdoLog log = null)
+        public IBdoCompleteLog NewRootLog(string id = null, Action<ILogsRequestForm> requestFormAction = null, IBdoLog log = null)
         {
             id ??= _rootLogId;
 
@@ -38,8 +39,8 @@ namespace BindOpen.Kernel.Logging.Loggers
             return rootLog;
         }
 
-        public IBdoCompleteLog NewRootLog(ILogsRequestForm requestFormm, IBdoLog log = null)
-            => NewRootLog(null, requestFormm, log);
+        public IBdoCompleteLog NewRootLog(Action<ILogsRequestForm> requestFormAction, IBdoLog log = null)
+            => NewRootLog(null, requestFormAction, log);
 
         /// <summary>
         /// 
