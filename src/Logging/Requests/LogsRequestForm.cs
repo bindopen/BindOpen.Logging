@@ -8,15 +8,13 @@ namespace BindOpen.Kernel.Logging
     /// </summary>
     public class LogsRequestForm : ILogsRequestForm
     {
-        /// <summary>
-        /// Le mot clé.
-        /// </summary>
         public string Motcle { get; set; }
 
-        /// <summary>
-        /// Le type de résultat de requête.
-        /// </summary>
         public QueryResultModes ResultMode { get; set; }
+
+        public ProcessExecutionState State { get; set; }
+
+        public ProcessExecutionStatus Status { get; set; }
 
         public int? MaxCount { get; set; }
         public int? PageSize { get; set; }
