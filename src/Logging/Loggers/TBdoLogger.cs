@@ -28,15 +28,18 @@ namespace BindOpen.Kernel.Logging.Loggers
 
         public string RootLogId { get => _rootLogId; protected set => _rootLogId = value; }
 
-        public IBdoCompleteLog NewRootLog(string id = null)
+        public IBdoCompleteLog NewRootLog(string id = null, ILogsRequestForm requestForm = null, IBdoLog log = null)
         {
             id ??= _rootLogId;
 
-            var log = BdoData.New<BdoLog>().WithId(id).WithLogger(this);
-            _rootLogId = log?.Id;
+            var rootLog = BdoData.New<BdoLog>().WithId(id).WithLogger(this);
+            _rootLogId = rootLog?.Id;
 
-            return log;
+            return rootLog;
         }
+
+        public IBdoCompleteLog NewRootLog(ILogsRequestForm requestFormm, IBdoLog log = null)
+            => NewRootLog(null, requestFormm, log);
 
         /// <summary>
         /// 

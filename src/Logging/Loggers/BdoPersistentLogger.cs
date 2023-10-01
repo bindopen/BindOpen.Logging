@@ -2,6 +2,7 @@
 using BindOpen.Kernel.Data.Services;
 using BindOpen.Kernel.Logging.Events;
 using BindOpen.Kernel.Logging.Repositories;
+using System.Linq;
 
 namespace BindOpen.Kernel.Logging.Loggers
 {
@@ -28,20 +29,32 @@ namespace BindOpen.Kernel.Logging.Loggers
 
         public string RootLogId { get => _rootLogId; protected set => _rootLogId = value; }
 
-        public IBdoCompleteLog NewRootLog(string id = null)
+        public IBdoCompleteLog NewRootLog(string id = null, ILogsRequestForm requestForm = null, IBdoLog log = null)
         {
             id ??= _rootLogId;
 
-            var log = _repository?.GetLog(id).Result;
-            if (log != null)
+            var rootLog = _repository?.GetLog(id).Result;
+            if (rootLog == null)
             {
-                log = BdoData.New<BdoPersistentLog>().WithId(id).WithLogger(this);
-                _repository?.CreateLog(log);
+                rootLog = BdoData.New<BdoPersistentLog>().WithId(id);
+                _repository?.CreateLog(rootLog);
             }
-            _rootLogId = log?.Id;
 
-            return log;
+            if (rootLog != null)
+            {
+                rootLog?.WithLogger(this);
+
+                var children = _repository.ListLogs(requestForm, log).Result?.Items?.ToArray();
+                rootLog.WithChildren(children);
+            }
+
+            _rootLogId = rootLog?.Id;
+
+            return rootLog;
         }
+
+        public IBdoCompleteLog NewRootLog(ILogsRequestForm requestForm, IBdoLog log = null)
+            => NewRootLog(null, requestForm);
 
         /// <summary>
         /// 
