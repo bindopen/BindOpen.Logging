@@ -2,6 +2,8 @@
 using BindOpen.Kernel.Data.Services;
 using BindOpen.Kernel.Logging.Events;
 using BindOpen.Kernel.Logging.Repositories;
+using System;
+using System.Linq;
 
 namespace BindOpen.Kernel.Logging.Loggers
 {
@@ -28,20 +30,37 @@ namespace BindOpen.Kernel.Logging.Loggers
 
         public string RootLogId { get => _rootLogId; protected set => _rootLogId = value; }
 
-        public IBdoCompleteLog NewRootLog(string id = null)
+        public IBdoCompleteLog NewRootLog(string id = null, Action<ILogsRequestForm> requestFormAction = null, IBdoLog log = null)
         {
             id ??= _rootLogId;
 
-            var log = _repository?.GetLog(id).Result;
-            if (log != null)
+            var rootLog = _repository?.GetLog(id).Result;
+            if (rootLog == null)
             {
-                log = BdoData.New<BdoPersistentLog>().WithId(id).WithLogger(this);
-                _repository?.CreateLog(log);
+                rootLog = BdoData.New<BdoPersistentLog>().WithId(id);
+                _repository?.CreateLog(rootLog);
             }
-            _rootLogId = log?.Id;
 
-            return log;
+            if (rootLog != null)
+            {
+                rootLog?.WithLogger(this);
+
+                if (requestFormAction != null)
+                {
+                    var requestForm = new LogsRequestForm();
+                    requestFormAction?.Invoke(requestForm);
+                    var children = _repository?.ListLogs(requestForm, log).Result?.Items?.ToArray();
+                    rootLog.WithChildren(children);
+                }
+            }
+
+            _rootLogId = rootLog?.Id;
+
+            return rootLog;
         }
+
+        public IBdoCompleteLog NewRootLog(Action<ILogsRequestForm> requestFormAction, IBdoLog log = null)
+            => NewRootLog(null, requestFormAction);
 
         /// <summary>
         /// 

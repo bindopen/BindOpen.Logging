@@ -5,7 +5,7 @@ namespace BindOpen.Kernel.Logging
     /// <summary>
     /// 
     /// </summary>
-    public partial interface ILogEventsRequestForm : IDataPageRequest, ISearchRequest, IExportRequest
+    public interface ILogsRequestForm : IDataPageRequest, ISearchRequest, IExportRequest
     {
         /// <summary>
         /// Le mot clé.
