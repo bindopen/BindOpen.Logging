@@ -17,5 +17,8 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         QueryResultModes ResultMode { get; set; }
 
+        ProcessExecutionState State { get; set; }
+
+        ProcessExecutionStatus Status { get; set; }
     }
 }
