@@ -27,11 +27,11 @@ namespace BindOpen.Kernel.Logging
 
         private void Test(IBdoCompleteLog log)
         {
-            Assert.That(log.Errors(false).Count() == _testData.itemNumber, "Bad insertion of errors ({0} expected; {1} found)", _testData.itemNumber, _log.Errors().Count());
-            Assert.That(log.Exceptions().Count() == _testData.itemNumber, "Bad insertion of exceptions ({0} expected; {1} found)", _testData.itemNumber, _log.Exceptions().Count());
-            Assert.That(log.Messages().Count() == _testData.itemNumber, "Bad insertion of messages ({0} expected; {1} found)", _testData.itemNumber, _log.Messages().Count());
-            Assert.That(log.Warnings().Count() == _testData.itemNumber, "Bad insertion of warnings ({0} expected; {1} found)", _testData.itemNumber, _log.Warnings().Count());
-            Assert.That(log.Children().Count() == _testData.itemNumber, "Bad insertion of sub logs ({0} expected; {1} found)", _testData.itemNumber, _log.Children().Count());
+            Assert.That(log.Errors(false).Count() == _testData.itemNumber, string.Format("Bad insertion of errors ({0} expected; {1} found)", _testData.itemNumber, _log.Errors().Count()));
+            Assert.That(log.Exceptions().Count() == _testData.itemNumber, string.Format("Bad insertion of exceptions ({0} expected; {1} found)", _testData.itemNumber, _log.Exceptions().Count()));
+            Assert.That(log.Messages().Count() == _testData.itemNumber, string.Format("Bad insertion of messages ({0} expected; {1} found)", _testData.itemNumber, _log.Messages().Count()));
+            Assert.That(log.Warnings().Count() == _testData.itemNumber, string.Format("Bad insertion of warnings ({0} expected; {1} found)", _testData.itemNumber, _log.Warnings().Count()));
+            Assert.That(log.Children().Count() == _testData.itemNumber, string.Format("Bad insertion of sub logs ({0} expected; {1} found)", _testData.itemNumber, _log.Children().Count()));
         }
 
         [Test, Order(1)]
