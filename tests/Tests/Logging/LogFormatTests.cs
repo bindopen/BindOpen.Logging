@@ -40,16 +40,16 @@ namespace BindOpen.Kernel.Logging
             BdoLog log = _testData.log;
             var st = log.ToString<BdoSnapLoggerFormater>();
             var st_expected =
-                "- Error0" + Environment.NewLine +
-                "- Exception0" + Environment.NewLine +
-                "- Message0" + Environment.NewLine +
-                "- Warning0" + Environment.NewLine +
-                "o Sub log0" + Environment.NewLine +
-                "- Error1" + Environment.NewLine +
-                "- Exception1" + Environment.NewLine +
-                "- Message1" + Environment.NewLine +
-                "- Warning1" + Environment.NewLine +
-                "o Sub log1" + Environment.NewLine;
+                " - Error: Error0" + Environment.NewLine +
+                " - Exception: Exception0" + Environment.NewLine +
+                " - Message: Message0" + Environment.NewLine +
+                " - Warning: Warning0" + Environment.NewLine +
+                " o Sub log0" + Environment.NewLine +
+                " - Error: Error1" + Environment.NewLine +
+                " - Exception: Exception1" + Environment.NewLine +
+                " - Message: Message1" + Environment.NewLine +
+                " - Warning: Warning1" + Environment.NewLine +
+                " o Sub log1" + Environment.NewLine;
 
             Assert.That(st == st_expected, "Bad ToString function.");
         }
@@ -60,7 +60,7 @@ namespace BindOpen.Kernel.Logging
             BdoLog log = _testData.log;
             var logEvent = log._Events?[0];
             var st = logEvent.ToString<BdoSnapLoggerFormater>();
-            var st_expected = "- Error0";
+            var st_expected = "- Error: Error0" + Environment.NewLine;
 
             Assert.That(st == st_expected, "Bad ToString function.");
         }
