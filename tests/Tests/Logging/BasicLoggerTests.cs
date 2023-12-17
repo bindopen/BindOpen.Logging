@@ -1,4 +1,5 @@
-﻿using BindOpen.Kernel.Logging.Tests;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Logging.Tests;
 using NUnit.Framework;
 
 namespace BindOpen.Kernel.Logging.Loggers
