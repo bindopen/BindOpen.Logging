@@ -1,5 +1,6 @@
 ﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Logging.Loggers;
+using System;
 
 namespace BindOpen.Kernel.Logging
 {
@@ -19,6 +20,23 @@ namespace BindOpen.Kernel.Logging
             var formater = new T();
             return formater.Format(log);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithParent<T>(
+            this T log,
+            IBdoLog parent)
+            where T : IBdoLog
+        {
+            if (log != null)
+            {
+                log.Parent = parent;
+            }
+
+            return log;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -47,6 +65,13 @@ namespace BindOpen.Kernel.Logging
             }
 
             return log;
+        }
+
+        public static IBdoLog InsertChild(this IBdoLog log, Action<IBdoLog> updater)
+        {
+            var child = log?.InsertChild<BdoLog>(updater);
+
+            return child;
         }
     }
 }

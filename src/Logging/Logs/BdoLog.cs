@@ -87,9 +87,9 @@ namespace BindOpen.Kernel.Logging
             }
         }
 
-        public IBdoLog InsertChild(Action<IBdoLog> updater)
+        public Q InsertChild<Q>(Action<Q> updater) where Q : IBdoLog, new()
         {
-            var child = NewLog();
+            var child = NewLog<Q>();
             updater?.Invoke(child);
 
             InsertEvent(EventKinds.Any).WithLog(child);
@@ -168,7 +168,7 @@ namespace BindOpen.Kernel.Logging
 
         public IBdoLog InsertChild(EventKinds kind = EventKinds.Any, Action<IBdoLogEvent> updater = null)
         {
-            var child = NewLog();
+            var child = NewLog<BdoLog>();
 
             InsertEvent(kind, updater).WithLog(child);
 
@@ -264,9 +264,9 @@ namespace BindOpen.Kernel.Logging
 
         // Tree
 
-        public IBdoCompleteLog NewLog()
+        public Q NewLog<Q>() where Q : IBdoLog, new()
         {
-            return (this as IBdoLog).NewLog() as IBdoCompleteLog;
+            return BdoLogging.NewLog<Q>(this);
         }
 
         IBdoLog IBdoLog.NewLog()

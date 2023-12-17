@@ -1,4 +1,5 @@
-﻿using BindOpen.Kernel.Logging.Events;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Logging.Events;
 using BindOpen.Kernel.Logging.Loggers;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         void BuildTree();
 
-        new IBdoCompleteLog NewLog();
+        Q NewLog<Q>() where Q : IBdoLog, new();
 
         // Events
 

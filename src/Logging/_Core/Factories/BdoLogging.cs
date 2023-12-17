@@ -22,7 +22,7 @@ namespace BindOpen.Kernel.Logging
         /// <param name="logger">The logger to consider.</param>
         public static BdoLog NewLog()
         {
-            return new BdoLog();
+            return NewLog<BdoLog>();
         }
 
         /// <summary>
@@ -32,8 +32,7 @@ namespace BindOpen.Kernel.Logging
         /// <param name="logger">The logger to consider.</param>
         public static BdoLog NewLog(Predicate<IBdoLogEvent> eventFilter)
         {
-            return NewLog()
-                .WithEventFilter(eventFilter);
+            return NewLog<BdoLog>(eventFilter);
         }
 
         /// <summary>
@@ -46,8 +45,7 @@ namespace BindOpen.Kernel.Logging
             IBdoConfiguration task,
             Predicate<IBdoLogEvent> eventFilter = null)
         {
-            return NewLog(eventFilter)
-                .WithTask(task);
+            return NewLog<BdoLog>(task, eventFilter);
         }
 
         /// <summary>
@@ -61,7 +59,59 @@ namespace BindOpen.Kernel.Logging
             IBdoConfiguration task = null,
             Predicate<IBdoLogEvent> eventFilter = null)
         {
-            return NewLog(eventFilter)
+            return NewLog<BdoLog>(parent, task, eventFilter);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the BdoLog class.
+        /// </summary>
+        /// <param name="logger">The logger to consider.</param>
+        public static T NewLog<T>()
+            where T : IBdoLog, new()
+        {
+            return BdoData.New<T>();
+        }
+
+        /// <summary>
+        /// Creates a new instance of the BdoLog class.
+        /// </summary>
+        /// <param name="eventFilter">The function that filters events.</param>
+        /// <param name="logger">The logger to consider.</param>
+        public static T NewLog<T>(Predicate<IBdoLogEvent> eventFilter)
+            where T : IBdoLog, new()
+        {
+            return NewLog<T>()
+                .WithEventFilter(eventFilter);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the BdoLog class.
+        /// </summary>
+        /// <param name="task">The task to consider.</param>
+        /// <param name="eventFilter">The function that filters events.</param>
+        /// <param name="logger">The logger to consider.</param>
+        public static T NewLog<T>(
+            IBdoConfiguration task,
+            Predicate<IBdoLogEvent> eventFilter = null)
+            where T : IBdoLog, new()
+        {
+            return NewLog<T>(eventFilter)
+                .WithTask(task);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the BdoLog class specifying parent.
+        /// </summary>
+        /// <param name="parent">The parent log to consider.</param>
+        /// <param name="task">The task to consider.</param>
+        /// <param name="eventFilter">The function that filters events.</param>
+        public static T NewLog<T>(
+            IBdoCompleteLog parent,
+            IBdoConfiguration task = null,
+            Predicate<IBdoLogEvent> eventFilter = null)
+            where T : IBdoLog, new()
+        {
+            return NewLog<T>(eventFilter)
                 .WithTask(task)
                 .WithParent(parent);
         }

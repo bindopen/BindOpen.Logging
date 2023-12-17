@@ -6,7 +6,7 @@
     public static class IBdoLogEventExtensions
     {
         /// <summary>
-        /// Updates the log of the specified object..
+        /// Sets the log of the specified object..
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="log">The log to consider</param>
@@ -25,7 +25,7 @@
         }
 
         /// <summary>
-        /// Updates the parent of the specified object..
+        /// Sets the parent of the specified object..
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="parent">The parent log to consider.</param>
@@ -45,7 +45,7 @@
 
 
         /// <summary>
-        /// Updates the result code of the specified object..
+        /// Sets the result code of the specified object..
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="resultCode">The result code to consider.</param>
@@ -65,7 +65,7 @@
 
 
         /// <summary>
-        /// Updates the source of the specified object..
+        /// Sets the source of the specified object..
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="source">The source to consider.</param>
@@ -85,7 +85,7 @@
 
 
         /// <summary>
-        /// Updates the stack traces of the specified object..
+        /// Sets the stack traces of the specified object..
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="stackTraces">The stack traces to consider.</param>

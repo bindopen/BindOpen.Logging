@@ -4,12 +4,12 @@ using System;
 namespace BindOpen.Kernel.Logging.Events
 {
     /// <summary>
-    /// This static class provides extensions to BdoEvent class.
+    /// This static class provides extensions to IBdoEvent class.
     /// </summary>
     public static class IBdoEventExtensions
     {
         /// <summary>
-        /// Updates the criticality of the specified object.
+        /// Sets the criticality of the specified object.
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="criticality">The criticality to consider.</param>
@@ -28,7 +28,7 @@ namespace BindOpen.Kernel.Logging.Events
         }
 
         /// <summary>
-        /// Updates the date of the specified object.
+        /// Sets the date of the specified object.
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="date">The date to consider.</param>
@@ -47,7 +47,7 @@ namespace BindOpen.Kernel.Logging.Events
         }
 
         /// <summary>
-        /// Updates the kind of the specified object.
+        /// Sets the kind of the specified object.
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="kind">The kind to consider.</param>
@@ -66,7 +66,7 @@ namespace BindOpen.Kernel.Logging.Events
         }
 
         /// <summary>
-        /// Updates the long description of the specified object.
+        /// Sets the long description of the specified object.
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="longDescription">The long description to consider.</param>
