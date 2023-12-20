@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta;
 using System.Linq;
 
-namespace BindOpen.Kernel.Logging.Events
+namespace BindOpen.Logging.Events
 {
     /// <summary>
     /// This class represents a Xml helper.

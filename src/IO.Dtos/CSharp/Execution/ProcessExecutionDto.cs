@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Data;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Logging
 {
     /// <summary>
     /// This class represents a job.

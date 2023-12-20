@@ -1,8 +1,7 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Logging.Events;
-using System;
+﻿using BindOpen.Data;
+using BindOpen.Logging.Events;
 
-namespace BindOpen.Kernel.Logging.Loggers
+namespace BindOpen.Logging.Loggers
 {
     /// <summary>
     /// 
@@ -11,9 +10,7 @@ namespace BindOpen.Kernel.Logging.Loggers
     {
         string RootLogId { get; }
 
-        IBdoCompleteLog NewRootLog(string id = null, Action<ILogsRequestForm> requestFormAction = null, IBdoLog log = null);
-
-        IBdoCompleteLog NewRootLog(Action<ILogsRequestForm> requestFormAction, IBdoLog log = null);
+        IBdoCompleteLog NewRootLog(string id = null);
 
         /// <summary>
         /// 

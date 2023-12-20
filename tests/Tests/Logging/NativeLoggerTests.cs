@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Logging.Tests;
+﻿using BindOpen.Logging.Tests;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Serilog;
 using System.Linq;
 
-namespace BindOpen.Kernel.Logging.Loggers
+namespace BindOpen.Logging.Loggers
 {
     [TestFixture, Order(400)]
     public class ExternalLoggerTests

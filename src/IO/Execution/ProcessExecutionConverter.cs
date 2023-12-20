@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Data;
+using BindOpen.Data.Helpers;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Logging
 {
     /// <summary>
     /// This class represents a Xml helper.

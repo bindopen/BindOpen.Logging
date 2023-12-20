@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Logging.Events
+﻿namespace BindOpen.Logging.Events
 {
     /// <summary>
     /// This static class provides extensions to BdoLogEvent class.
@@ -6,7 +6,7 @@
     public static class IBdoLogEventExtensions
     {
         /// <summary>
-        /// Sets the log of the specified object..
+        /// Sets the log of the specified event.
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="log">The log to consider</param>
@@ -25,7 +25,7 @@
         }
 
         /// <summary>
-        /// Sets the parent of the specified object..
+        /// Sets the parent of the specified event.
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="parent">The parent log to consider.</param>
@@ -45,7 +45,7 @@
 
 
         /// <summary>
-        /// Sets the result code of the specified object..
+        /// Sets the result code of the specified event.
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="resultCode">The result code to consider.</param>
@@ -65,7 +65,7 @@
 
 
         /// <summary>
-        /// Sets the source of the specified object..
+        /// Sets the source of the specified object.
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="source">The source to consider.</param>
@@ -85,7 +85,7 @@
 
 
         /// <summary>
-        /// Sets the stack traces of the specified object..
+        /// Sets the stack traces of the specified event.
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="stackTraces">The stack traces to consider.</param>
@@ -104,7 +104,7 @@
         }
 
         /// <summary>
-        /// Gets the maximum kind of the events of the specified object.
+        /// Gets the maximum event kind of the specified event.
         /// </summary>
         /// <param name="ev">The event to consider.</param>
         /// <param name="isRecursive">Indicate whether the search is recursive.</param>

@@ -1,12 +1,12 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging.Events;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Logging.Events;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Logging
 {
     /// <summary>
     /// This class represents a logger of tasks.
