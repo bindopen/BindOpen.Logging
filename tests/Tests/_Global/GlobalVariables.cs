@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 
-namespace BindOpen.Kernel.Logging.Tests
+namespace BindOpen.Logging.Tests
 {
     public static class GlobalVariables
     {

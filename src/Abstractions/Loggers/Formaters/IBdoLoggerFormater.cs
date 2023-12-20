@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Logging.Events;
+﻿using BindOpen.Logging.Events;
 
-namespace BindOpen.Kernel.Logging.Loggers
+namespace BindOpen.Logging.Loggers
 {
     /// <summary>
-    /// 
+    /// This interface defines the logger formater.
     /// </summary>
     public interface IBdoLoggerFormater
     {

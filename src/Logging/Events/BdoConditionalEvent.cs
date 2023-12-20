@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Conditions;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data;
+using BindOpen.Data.Conditions;
+using BindOpen.Data.Meta;
+using BindOpen.Scoping;
 
-namespace BindOpen.Kernel.Logging.Events
+namespace BindOpen.Logging.Events
 {
     /// <summary>
     /// This class represents a conditional event.

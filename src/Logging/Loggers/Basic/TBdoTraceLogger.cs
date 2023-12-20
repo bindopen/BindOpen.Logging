@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Logging.Events;
+﻿using BindOpen.Data;
+using BindOpen.Logging.Events;
 using System.Diagnostics;
 
-namespace BindOpen.Kernel.Logging.Loggers
+namespace BindOpen.Logging.Loggers
 {
     /// <summary>
     /// This class represents a logger.

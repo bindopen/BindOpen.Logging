@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Logging.Events
+namespace BindOpen.Logging.Events
 {
     /// <summary>
     /// This class represents a conditional event.

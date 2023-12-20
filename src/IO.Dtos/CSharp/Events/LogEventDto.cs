@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Logging.Events
+namespace BindOpen.Logging.Events
 {
     /// <summary>
     /// This class represents a log event.

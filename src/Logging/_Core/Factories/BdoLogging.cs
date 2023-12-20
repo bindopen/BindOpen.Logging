@@ -1,13 +1,13 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Conditions;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging.Events;
-using BindOpen.Kernel.Logging.Loggers;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data;
+using BindOpen.Data.Conditions;
+using BindOpen.Data.Meta;
+using BindOpen.Logging.Events;
+using BindOpen.Logging.Loggers;
+using BindOpen.Scoping;
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Logging
 {
     /// <summary>
     /// This class represents a logging factory.
@@ -254,20 +254,6 @@ namespace BindOpen.Kernel.Logging
             var bdoLogger = NewLogger(logger);
 
             return bdoLogger;
-        }
-
-        /// <summary>
-        /// Creates a new instance of a ITBdoLogger instance.
-        /// </summary>
-        /// <param name="logger">The logger to consider.</param>
-        /// <returns>Returns the created BDO logger.</returns>
-        public static T NewLogger<T>(IBdoConfiguration config)
-            where T : IBdoPersistentLogger, new()
-        {
-            var logger = BdoData.New<T>();
-            //.WithConfiguration(config);
-
-            return logger;
         }
 
         /// <summary>

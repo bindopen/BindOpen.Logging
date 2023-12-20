@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Logging.Tests;
+﻿using BindOpen.Data;
+using BindOpen.Logging.Tests;
 using NUnit.Framework;
 using System.IO;
 using System.Linq;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Logging
 {
     [TestFixture, Order(400)]
     public class IOTests
@@ -72,11 +72,11 @@ namespace BindOpen.Kernel.Logging
             _log.ToDto()?.SaveXml(_filePath_xml, log);
 
             string xml = string.Empty;
-            if (log.HasErrorsOrExceptions())
+            if (log.HasErrorOrException())
             {
                 xml = ". Result was '" + log.ToDto().ToXml() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Log saving failed" + xml);
+            Assert.That(!log.HasErrorOrException(), "Log saving failed" + xml);
         }
 
         [Test, Order(3)]
@@ -91,11 +91,11 @@ namespace BindOpen.Kernel.Logging
             _log = XmlHelper.LoadXml<LogDto>(_filePath_xml, log: log).ToPoco();
 
             string xml = string.Empty;
-            if (log.HasErrorsOrExceptions())
+            if (log.HasErrorOrException())
             {
                 xml = ". Result was '" + log.ToDto().ToXml() + "'";
             }
-            Assert.That(_log.HasErrorsOrExceptions(), "Error while loading log" + xml);
+            Assert.That(_log.HasErrorOrException(), "Error while loading log" + xml);
 
             Test(_log);
         }
@@ -114,11 +114,11 @@ namespace BindOpen.Kernel.Logging
             _log.ToDto()?.SaveJson(_filePath_json, log);
 
             string xml = string.Empty;
-            if (log.HasErrorsOrExceptions())
+            if (log.HasErrorOrException())
             {
                 xml = ". Result was '" + log.ToDto().ToJson() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Log saving failed" + xml);
+            Assert.That(!log.HasErrorOrException(), "Log saving failed" + xml);
         }
 
         [Test, Order(3)]
@@ -133,11 +133,11 @@ namespace BindOpen.Kernel.Logging
             _log = JsonHelper.LoadJson<LogDto>(_filePath_json, log: log).ToPoco();
 
             string xml = string.Empty;
-            if (log.HasErrorsOrExceptions())
+            if (log.HasErrorOrException())
             {
                 xml = ". Result was '" + log.ToDto().ToJson() + "'";
             }
-            Assert.That(_log.HasErrorsOrExceptions(), "Error while loading log" + xml);
+            Assert.That(_log.HasErrorOrException(), "Error while loading log" + xml);
 
             Test(_log);
         }

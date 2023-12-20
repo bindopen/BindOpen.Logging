@@ -1,11 +1,10 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Logging.Events;
-using BindOpen.Kernel.Logging.Loggers;
-using BindOpen.Kernel.Processing;
+﻿using BindOpen.Data;
+using BindOpen.Logging.Events;
+using BindOpen.Logging.Loggers;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Logging
 {
     /// <summary>
     /// This class represents a log event extension.

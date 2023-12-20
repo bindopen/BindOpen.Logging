@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Logging.Events;
+﻿using BindOpen.Data;
+using BindOpen.Data.Helpers;
+using BindOpen.Logging;
+using BindOpen.Logging.Events;
 using System;
 
-namespace BindOpen.Kernel.Logging.Loggers
+namespace BindOpen.Logging.Loggers
 {
     /// <summary>
     /// This class represents a logger format.
