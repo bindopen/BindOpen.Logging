@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Logging.Events
+﻿namespace BindOpen.Logging.Events
 {
     /// <summary>
     /// This class represents a Xml helper.

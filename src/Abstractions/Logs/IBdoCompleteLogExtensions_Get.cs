@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Logging.Events;
+﻿using BindOpen.Logging.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Logging
 {
     /// <summary>
     /// 

@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Data;
 
-namespace BindOpen.Kernel.Logging.Events
+namespace BindOpen.Logging.Events
 {
     /// <summary>
     /// This interface represents a conditional event.

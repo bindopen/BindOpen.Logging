@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Logging
+﻿namespace BindOpen.Logging
 {
     /// <summary>
     /// 
@@ -70,7 +70,7 @@
         /// </summary>
         /// <param name="isRecursive">Indicates whether the search must be recursive.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
-        public static bool HasErrorsOrExceptions(this IBdoLog log, bool isRecursive = true)
+        public static bool HasErrorOrException(this IBdoLog log, bool isRecursive = true)
         {
             return log.HasEvent(isRecursive, EventKinds.Error, EventKinds.Exception);
         }
@@ -80,7 +80,7 @@
         /// </summary>
         /// <param name="isRecursive">Indicates whether the search must be recursive.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
-        public static bool HasErrorsOrExceptionsOrWarnings(this IBdoLog log, bool isRecursive = true)
+        public static bool HasErrorOrExceptionOrWarning(this IBdoLog log, bool isRecursive = true)
         {
             return log.HasEvent(isRecursive, EventKinds.Warning, EventKinds.Error, EventKinds.Exception);
         }

@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Logging.Tests;
+﻿using BindOpen.Logging.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.Kernel.Logging.Loggers
+namespace BindOpen.Logging.Loggers
 {
     [TestFixture, Order(400)]
     public class LoggerLogTests

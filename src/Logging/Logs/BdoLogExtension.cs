@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Logging.Loggers;
+﻿using BindOpen.Data;
+using BindOpen.Logging.Loggers;
 using System;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Logging
 {
     /// <summary>
     /// This class represents a log extension.

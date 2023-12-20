@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Logging.Events;
-using BindOpen.Kernel.Logging.Loggers;
+﻿using BindOpen.Data;
+using BindOpen.Logging.Events;
+using BindOpen.Logging.Loggers;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Logging
 {
     /// <summary>
     /// 

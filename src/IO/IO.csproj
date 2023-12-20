@@ -4,14 +4,14 @@
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.Kernel.Logging.IO</AssemblyName>
     <PackageId>BindOpen.Kernel.Logging.IO</PackageId>
-    <Product>BindOpen.Runtime</Product>
+    <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Kernel.Logging.IO</RootNamespace>
-    <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel.Logging</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.Logging.git</RepositoryUrl>
+    <RootNamespace>BindOpen.Logging.IO</RootNamespace>
+    <PackageProjectUrl>https://github.com/bindopen/BindOpen.Logging</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.Logging.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>bindopen_icon.png</PackageIcon>
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.IO" Version="1.2.139" />
+    <PackageReference Include="BindOpen.Kernel.IO" Version="1.2.142" />
   </ItemGroup>
 
   <ItemGroup>

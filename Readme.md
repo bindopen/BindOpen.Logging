@@ -1,4 +1,4 @@
-# BindOpen.Kernel.Logging
+# BindOpen.Logging
 
 ![BindOpen logo](https://storage.bindopen.org/img/logos/logo_bindopen.png)
 
@@ -9,16 +9,16 @@ BindOpen is a framework that enables the development of highly extensible applic
 
 ## About
 
-BindOpen.Kernel.Logging offers a simple and multidimensional logging system, perfect to monitor nested task executions.
+BindOpen.Logging offers a simple and multidimensional logging system, perfect to monitor nested task executions.
 
-This repository contains the BindOpen.Kernel.Logging code source.
+This repository contains the BindOpen.Logging code source.
 
 A [full list of all the BindOpen.Kernel repos](https://www.nuget.org/packages?q=bindopen.kernel) is available as well.
 
 
 ## Install
 
-To get started, install the BindOpen.Kernel.Logging module you want to use.
+To get started, install the BindOpen.Logging module you want to use.
 
 Note: We recommend that later on, you install only the package you need.
 
@@ -26,13 +26,13 @@ Note: We recommend that later on, you install only the package you need.
 
 | Module | Instruction |
 |--------|-----|
-| [BindOpen.Kernel.Logging](https://www.nuget.org/packages/BindOpen.Kernel.Logging) | ```PM> Install-Package BindOpen.Kernel.Logging``` |
+| [BindOpen.Logging](https://www.nuget.org/packages/BindOpen.Logging) | ```PM> Install-Package BindOpen.Logging``` |
 
 ### From .NET CLI
 
 | Module | Instruction |
 |--------|-----|
-| [BindOpen.Kernel.Logging](https://www.nuget.org/packages/BindOpen.Kernel.Logging) | ```> dotnet add package BindOpen.Kernel.Logging``` |
+| [BindOpen.Logging](https://www.nuget.org/packages/BindOpen.Logging) | ```> dotnet add package BindOpen.Logging``` |
 
 ## Get started
 
@@ -104,18 +104,18 @@ logger.Log(log);
 
 ## License
 
-This project is licensed under the terms of the MIT license. [See LICENSE](https://github.com/bindopen/BindOpen.Kernel.Logging/blob/master/LICENSE).
+This project is licensed under the terms of the MIT license. [See LICENSE](https://github.com/bindopen/BindOpen.Logging/blob/master/LICENSE).
 
 ## Packages
 
-This BindOpen.Kernel.Logging module contains the following Nuget packages:
+This BindOpen.Logging module contains the following Nuget packages:
 
 | Package | Provision |
 |----------|-----|
-| [BindOpen.Kernel.Logging.Abstractions](https://www.nuget.org/packages/BindOpen.Kernel.Logging.Abstractions) | Interfaces and enumerations |
-| [BindOpen.Kernel.Logging](https://www.nuget.org/packages/BindOpen.Kernel.Logging) | Core package |
-| [BindOpen.Kernel.Logging.IO](https://www.nuget.org/packages/BindOpen.Kernel.Logging.IO) | Serialization / Deserialization |
-| [BindOpen.Kernel.Logging.IO.Dtos](https://www.nuget.org/packages/BindOpen.Kernel.Logging.IO.Dtos) | Data transfer classes |
+| [BindOpen.Logging.Abstractions](https://www.nuget.org/packages/BindOpen.Logging.Abstractions) | Interfaces and enumerations |
+| [BindOpen.Logging](https://www.nuget.org/packages/BindOpen.Logging) | Core package |
+| [BindOpen.Logging.IO](https://www.nuget.org/packages/BindOpen.Logging.IO) | Serialization / Deserialization |
+| [BindOpen.Logging.IO.Dtos](https://www.nuget.org/packages/BindOpen.Logging.IO.Dtos) | Data transfer classes |
 
 The atomicity of these packages allows you install only what you need respecting your solution's architecture.
 

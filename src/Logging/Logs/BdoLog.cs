@@ -1,13 +1,13 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging.Events;
-using BindOpen.Kernel.Logging.Loggers;
+﻿using BindOpen.Data;
+using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta;
+using BindOpen.Logging.Events;
+using BindOpen.Logging.Loggers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Logging
 {
     /// <summary>
     /// This class represents a logger of tasks.
@@ -160,7 +160,7 @@ namespace BindOpen.Kernel.Logging
         /// </summary>
         public void Sanitize()
         {
-            if (this.HasErrorsOrExceptionsOrWarnings() == false)
+            if (this.HasErrorOrExceptionOrWarning() == false)
             {
                 RemoveEvents(true, EventKinds.Checkpoint);
             }

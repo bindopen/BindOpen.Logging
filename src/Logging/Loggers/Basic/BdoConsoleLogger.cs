@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Logging.Loggers
+﻿namespace BindOpen.Logging.Loggers
 {
     /// <summary>
     /// This class represents a logger.

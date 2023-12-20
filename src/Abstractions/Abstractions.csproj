@@ -4,12 +4,12 @@
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.Kernel.Logging.Abstractions</AssemblyName>
     <PackageId>BindOpen.Kernel.Logging.Abstractions</PackageId>
-    <Product>BindOpen.Runtime</Product>
+    <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>The core abstractions of BindOpen framework.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Kernel.Logging</RootNamespace>
+    <RootNamespace>BindOpen.Logging</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -40,12 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.Abstractions" Version="1.2.139" />
+    <PackageReference Include="BindOpen.Kernel.Abstractions" Version="1.2.142" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>
