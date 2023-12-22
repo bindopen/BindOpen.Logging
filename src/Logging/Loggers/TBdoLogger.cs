@@ -28,7 +28,7 @@ namespace BindOpen.Logging.Loggers
 
         public string RootLogId { get => _rootLogId; protected set => _rootLogId = value; }
 
-        public IBdoCompleteLog NewRootLog(string id = null)
+        public virtual IBdoCompleteLog NewRootLog(string id = null)
         {
             id ??= _rootLogId;
 
