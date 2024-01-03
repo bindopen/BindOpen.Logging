@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.Abstractions" Version="1.2.149" />
+    <PackageReference Include="BindOpen.Kernel.Abstractions" Version="1.2.150" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
   </ItemGroup>
 </Project>
