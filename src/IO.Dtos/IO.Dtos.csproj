@@ -7,7 +7,7 @@
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2024</Copyright>
-    <Description>The classes of data transfer objects for BindOpen framework.</Description>
+    <Description>The classes of data transfer objects for BindOpen.Logging.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Logging.IO.Dtos</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Logging</PackageProjectUrl>
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.IO.Dtos" Version="1.2.164" />
+    <PackageReference Include="BindOpen.IO.Dtos" Version="1.2.165" />
   </ItemGroup>
 
   <ItemGroup>
