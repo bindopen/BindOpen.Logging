@@ -7,7 +7,7 @@
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2024</Copyright>
-    <Description>The core abstractions of BindOpen framework.</Description>
+    <Description>The core abstractions of BindOpen.Logging.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Logging</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen</PackageProjectUrl>
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Abstractions" Version="1.2.164" />
+    <PackageReference Include="BindOpen.Abstractions" Version="1.2.165" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
   </ItemGroup>
 </Project>

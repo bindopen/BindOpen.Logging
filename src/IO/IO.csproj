@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.IO" Version="1.2.164" />
+    <PackageReference Include="BindOpen.IO" Version="1.2.165" />
   </ItemGroup>
 
   <ItemGroup>
