@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>BindOpen.Kernel.Logging</AssemblyName>
-    <PackageId>BindOpen.Kernel.Logging</PackageId>
+    <AssemblyName>BindOpen.Logging</AssemblyName>
+    <PackageId>BindOpen.Logging</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2024</Copyright>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Kernel.Logging.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Logging.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.Kernel.Data" Version="1.2.163" />
+    <PackageReference Include="BindOpen.Data" Version="1.2.164" />
   </ItemGroup>
 
   <ItemGroup>
