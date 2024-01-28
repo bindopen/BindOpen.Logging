@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>BindOpen.Logging.IO</AssemblyName>
     <PackageId>BindOpen.Logging.IO</PackageId>
     <Product>BindOpen.Kernel</Product>
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.IO" Version="1.2.165" />
+    <PackageReference Include="BindOpen.IO" Version="1.2.166" />
   </ItemGroup>
 
   <ItemGroup>
