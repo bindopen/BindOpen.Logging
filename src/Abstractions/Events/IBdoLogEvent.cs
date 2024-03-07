@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace BindOpen.Logging.Events
 {
     /// <summary>
-    /// This interface represents a log event.
+    /// This interface defines a log event.
     /// </summary>
     public interface IBdoLogEvent : IBdoEvent, ITChild<IBdoCompleteLog>, ITChildClonable<IBdoLogEvent, IBdoCompleteLog>
     {
