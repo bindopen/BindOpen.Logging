@@ -1,8 +1,9 @@
 ﻿namespace BindOpen.Logging.Events
 {
     /// <summary>
-    /// This static class provides extensions to BdoLogEvent class.
+    /// This static class provides extensions to IBdoLogEvent class.
     /// </summary>
+    /// <seealso cref="IBdoLogEvent"/>
     public static class IBdoLogEventExtensions
     {
         /// <summary>

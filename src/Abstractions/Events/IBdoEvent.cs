@@ -4,7 +4,7 @@ using System;
 namespace BindOpen.Logging.Events
 {
     /// <summary>
-    /// This interface represents an event.
+    /// This interface defines an event.
     /// </summary>
     public interface IBdoEvent :
         IIdentified, INamed,
