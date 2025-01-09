@@ -33,7 +33,7 @@ namespace BindOpen.Logging.Loggers
             id ??= _rootLogId;
 
             var rootLog = BdoData.New<BdoLog>().WithId(id).WithLogger(this);
-            _rootLogId = rootLog?.Id;
+            _rootLogId = rootLog?.Identifier;
 
             return rootLog;
         }
