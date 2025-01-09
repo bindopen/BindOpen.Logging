@@ -47,7 +47,7 @@ namespace BindOpen.Logging.Loggers
             {
                 var st = log?.Execution?.Status.ToString();
 
-                st = string.IsNullOrEmpty(st) ? "" : indent + "o (Log ID=" + log?.Id + ")" + st + Environment.NewLine;
+                st = string.IsNullOrEmpty(st) ? "" : indent + "o (Log ID=" + log?.Identifier + ")" + st + Environment.NewLine;
 
                 return st;
             }
@@ -61,7 +61,7 @@ namespace BindOpen.Logging.Loggers
             {
                 var st = log?.Detail?.ToString();
 
-                st = string.IsNullOrEmpty(st) ? "" : indent + "o (Log ID=" + log?.Id + ")" + st + Environment.NewLine;
+                st = string.IsNullOrEmpty(st) ? "" : indent + "o (Log ID=" + log?.Identifier + ")" + st + Environment.NewLine;
 
                 return st;
             }
@@ -117,7 +117,7 @@ namespace BindOpen.Logging.Loggers
             {
                 var st = ev?.Detail.ToString();
 
-                st = string.IsNullOrEmpty(st) ? "" : indent + "o (Event ID=" + ev?.Id + ")" + st + Environment.NewLine;
+                st = string.IsNullOrEmpty(st) ? "" : indent + "o (Event ID=" + ev?.Identifier + ")" + st + Environment.NewLine;
 
                 return st;
             }
