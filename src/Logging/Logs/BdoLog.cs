@@ -298,7 +298,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        public string Key() => Name ?? Id;
+        public string Key() => Name ?? Identifier;
 
         #endregion
 
@@ -311,7 +311,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        public string Id { get; set; }
+        public string Identifier { get; set; }
 
         #endregion
 

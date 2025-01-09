@@ -48,7 +48,7 @@ namespace BindOpen.Logging.Loggers
 
             var newLog = logger.NewRootLog();
 
-            Assert.That(log?.Id == newLog?.Id, "Root log must be the same");
+            Assert.That(log?.Identifier == newLog?.Identifier, "Root log must be the same");
         }
 
         [Test, Order(2)]
