@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <AssemblyName>BindOpen.Logging.IO</AssemblyName>
-    <PackageId>BindOpen.Logging.IO</PackageId>
+    <AssemblyName>BindOpen.Logging.Dtos.Models</AssemblyName>
+    <PackageId>BindOpen.Logging.Dtos.Models</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright © BindOpen 2011-2025</Copyright>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.</Description>
+    <Description>The classes of data transfer objects for BindOpen.Logging.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Logging.IO</RootNamespace>
+    <RootNamespace>BindOpen.Logging.Dtos.Models</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Logging</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Logging.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Logging.IO.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Logging.Dtos.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,11 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.IO" Version="1.2.170" />
+    <PackageReference Include="BindOpen.Dtos.Models" Version="1.2.176" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IO.Dtos\IO.Dtos.csproj" />
-    <ProjectReference Include="..\Logging\Logging.csproj" />
+    <ProjectReference Include="..\Abstractions\Abstractions.csproj" />
   </ItemGroup>
 </Project>

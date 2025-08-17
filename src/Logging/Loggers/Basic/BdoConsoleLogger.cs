@@ -1,15 +1,14 @@
-﻿namespace BindOpen.Logging.Loggers
+﻿namespace BindOpen.Logging.Loggers;
+
+/// <summary>
+/// This class represents a logger.
+/// </summary>
+public class BdoConsoleLogger : TBdoConsoleLogger<BdoSnapLoggerFormater>
 {
     /// <summary>
-    /// This class represents a logger.
+    /// Initializes a new instance of the BdoLogger class.
     /// </summary>
-    public class BdoConsoleLogger : TBdoConsoleLogger<BdoSnapLoggerFormater>
+    public BdoConsoleLogger() : base()
     {
-        /// <summary>
-        /// Initializes a new instance of the BdoLogger class.
-        /// </summary>
-        public BdoConsoleLogger() : base()
-        {
-        }
     }
 }

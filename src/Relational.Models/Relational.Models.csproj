@@ -2,30 +2,30 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <AssemblyName>BindOpen.Logging.IO.Dtos</AssemblyName>
-    <PackageId>BindOpen.Logging.IO.Dtos</PackageId>
+    <AssemblyName>BindOpen.Logging.Relational.Models</AssemblyName>
+    <PackageId>BindOpen.Logging.Relational.Models</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright © BindOpen 2011-2025</Copyright>
-    <Description>The classes of data transfer objects for BindOpen.Logging.</Description>
+    <Description>This package provides core database entity classes of BindOpen.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Logging.IO.Dtos</RootNamespace>
-    <PackageProjectUrl>https://github.com/bindopen/BindOpen.Logging</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bindopen/BindOpen.Logging.git</RepositoryUrl>
+    <RootNamespace>BindOpen.Logging.Relational.Models</RootNamespace>
+    <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>bindopen_icon.png</PackageIcon>
-    <PackageIconUrl>https://storage.bindopen.org/org/icons/bindopen_icon_64x64.png</PackageIconUrl>
+    <PackageIconUrl>https://storage.bindopen.org/img/icons/bindopen_icon_64x64.png</PackageIconUrl>
     <SignAssembly>true</SignAssembly>
-    <PackageReadmeFile>Readme.md</PackageReadmeFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Logging.IO.Dtos.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Logging.Relational.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\docs\images\bindopen_icon.png">
+    <None Include="..\..\docs\img\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
@@ -33,14 +33,14 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\..\Readme.md">
+    <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BindOpen.IO.Dtos" Version="1.2.170" />
+    <PackageReference Include="BindOpen.Relational.Models" Version="1.2.176" />
   </ItemGroup>
 
   <ItemGroup>

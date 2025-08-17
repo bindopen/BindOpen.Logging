@@ -42,8 +42,8 @@ namespace BindOpen.Logging.Events
         /// </summary>
         [JsonPropertyName("kind")]
         [XmlAttribute("kind")]
-        [DefaultValue(EventKinds.Any)]
-        public EventKinds Kind { get; set; } = EventKinds.Other;
+        [DefaultValue(BdoEventKinds.Any)]
+        public BdoEventKinds Kind { get; set; } = BdoEventKinds.Other;
 
         /// <summary>
         /// Creation date of this instance.
