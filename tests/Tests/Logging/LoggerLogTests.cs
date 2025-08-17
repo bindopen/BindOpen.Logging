@@ -1,34 +1,33 @@
 ﻿using BindOpen.Logging.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.Logging.Loggers
+namespace BindOpen.Logging.Loggers;
+
+[TestFixture, Order(400)]
+public class LoggerLogTests
 {
-    [TestFixture, Order(400)]
-    public class LoggerLogTests
+    private readonly string _filePath_serilog = GlobalVariables.WorkingFolder + "Debug.txt";
+
+    private dynamic _testData;
+
+    [OneTimeSetUp]
+    public void OneTimeSetUp()
     {
-        private readonly string _filePath_serilog = GlobalVariables.WorkingFolder + "Debug.txt";
-
-        private dynamic _testData;
-
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        _testData = new
         {
-            _testData = new
-            {
-                itemNumber = 1000
-            };
-        }
+            itemNumber = 1000
+        };
+    }
 
-        [Test, Order(1)]
-        public void RootLogTest()
-        {
-            var logger = BdoLogging.NewLogger<BdoTraceLogger>();
+    [Test, Order(1)]
+    public void RootLogTest()
+    {
+        var logger = BdoLogging.NewLogger<BdoTraceLogger>();
 
-            var log = logger.NewRootLog();
+        var log = logger.NewRootLog();
 
-            log.WithExecutionAsStarted();
+        log.WithExecutionAsStarted();
 
-            Assert.That(log?.Execution?.Status == ProcessExecutionStatus.Processing, "Root log must be the same");
-        }
+        Assert.That(log?.Execution?.Status == ProcessExecutionStatus.Processing, "Root log must be the same");
     }
 }

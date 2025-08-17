@@ -1,13 +1,14 @@
-﻿namespace BindOpen.Logging.Loggers
+﻿using System.Collections.Generic;
+
+namespace BindOpen.Logging.Loggers;
+
+/// <summary>
+/// This interface defines an object tracked by logger.
+/// </summary>
+public interface IBdoLoggerTracked
 {
     /// <summary>
-    /// This interface defines an object tracked by logger.
+    /// The logger.
     /// </summary>
-    public interface IBdoLoggerTracked
-    {
-        /// <summary>
-        /// The logger.
-        /// </summary>
-        IBdoLogger Logger { get; set; }
-    }
+    List<IBdoLogger> Loggers { get; set; }
 }
