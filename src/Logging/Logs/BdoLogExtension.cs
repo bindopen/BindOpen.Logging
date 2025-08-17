@@ -2,76 +2,75 @@
 using BindOpen.Logging.Loggers;
 using System;
 
-namespace BindOpen.Logging
+namespace BindOpen.Logging;
+
+/// <summary>
+/// This class represents a log extension.
+/// </summary>
+public static class BdoLogExtension
 {
     /// <summary>
-    /// This class represents a log extension.
+    /// Converts the specified log to string.
     /// </summary>
-    public static class BdoLogExtension
+    /// <param name="log">The log to consider.</param>
+    /// <returns>The string corresponding to the specified log using the specified formater.</returns>
+    public static string ToString<T>(this IBdoCompleteLog log)
+        where T : IBdoLoggerFormater, new()
     {
-        /// <summary>
-        /// Converts the specified log to string.
-        /// </summary>
-        /// <param name="log">The log to consider.</param>
-        /// <returns>The string corresponding to the specified log using the specified formater.</returns>
-        public static string ToString<T>(this IBdoCompleteLog log)
-            where T : IBdoLoggerFormater, new()
+        var formater = new T();
+        return formater.Format(log);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public static T WithParent<T>(
+        this T log,
+        IBdoLog parent)
+        where T : IBdoLog
+    {
+        if (log != null)
         {
-            var formater = new T();
-            return formater.Format(log);
+            log.Parent = parent;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithParent<T>(
-            this T log,
-            IBdoLog parent)
-            where T : IBdoLog
+        return log;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public static T WithChildren<T>(
+        this T log,
+        params IBdoLog[] children)
+        where T : IBdoLog
+    {
+        if (log != null)
         {
-            if (log != null)
+            log._Children = BdoData.NewItemSet(children);
+        }
+
+        return log;
+    }
+
+    public static T AddChildren<T>(this T log, params IBdoLog[] children) where T : IBdoLog
+    {
+        if (log != null)
+        {
+            log._Children ??= BdoData.NewItemSet<IBdoLog>();
+            foreach (var child in children)
             {
-                log.Parent = parent;
+                log._Children.Add(child);
             }
-
-            return log;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithChildren<T>(
-            this T log,
-            params IBdoLog[] children)
-            where T : IBdoLog
-        {
-            if (log != null)
-            {
-                log._Children = BdoData.NewItemSet(children);
-            }
+        return log;
+    }
 
-            return log;
-        }
+    public static IBdoLog InsertChild(this IBdoLog log, Action<IBdoLog> updater)
+    {
+        var child = log?.InsertChild<BdoLog>(updater);
 
-        public static T AddChildren<T>(this T log, params IBdoLog[] children) where T : IBdoLog
-        {
-            if (log != null)
-            {
-                log._Children ??= BdoData.NewItemSet<IBdoLog>();
-                foreach (var child in children)
-                {
-                    log._Children.Add(child);
-                }
-            }
-
-            return log;
-        }
-
-        public static IBdoLog InsertChild(this IBdoLog log, Action<IBdoLog> updater)
-        {
-            var child = log?.InsertChild<BdoLog>(updater);
-
-            return child;
-        }
+        return child;
     }
 }

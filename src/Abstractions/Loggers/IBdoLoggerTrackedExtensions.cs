@@ -1,24 +1,23 @@
-﻿namespace BindOpen.Logging.Loggers
+﻿namespace BindOpen.Logging.Loggers;
+
+/// <summary>
+/// 
+/// </summary>
+public static class IBdoLoggerTrackedExtensions
 {
     /// <summary>
     /// 
     /// </summary>
-    public static class IBdoLoggerTrackedExtensions
+    public static T WithLoggers<T>(
+        this T tracked,
+        params IBdoLogger[] loggers)
+        where T : IBdoLoggerTracked
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithLogger<T>(
-            this T tracked,
-            IBdoLogger logger)
-            where T : IBdoLoggerTracked
+        if (tracked != null)
         {
-            if (tracked != null)
-            {
-                tracked.Logger = logger;
-            }
-
-            return tracked;
+            tracked.Loggers = [.. loggers];
         }
+
+        return tracked;
     }
 }
